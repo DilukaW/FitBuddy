@@ -1,0 +1,47 @@
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+    <input type="hidden" name="_id" ngModel >
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="text" class="form-control" name="name" ngModel  placeholder="name@example.com" required #name="ngModel">
+        <div>
+            <small *ngIf="name.invalid && name.touched">dfdsf</small>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="text" class="form-control" name="email" ngModel placeholder="name@example.com" required #email="ngModel">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="text" class="form-control" name="age" ngModel placeholder="name@example.com" required #age="ngModel">
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+</form> 
+<table class="table">
+    <thead>
+      <tr>
+        
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">email</th>
+        <th scope="col">age</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userService.users">
+        <td>{{ user._id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.age}}</td>
+        <td>
+            
+            <a href=""> <i class="bi bi-pencil-fill"></i></a>
+            <a href="">
+                <i class="bi bi-trash-fill"></i>
+            </a>
+        </td>
+      </tr>
+    <br>
+    </tbody>
+  </table>
