@@ -1,0 +1,57 @@
+<nav class="navbar navbar-light navbar-expand-md py-3 sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" routerLink="" routerLinkActive="active-link"
+      ><span
+        class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          fill="currentColor"
+          viewBox="0 0 16 16"
+          class="bi bi-bezier"
+        ></svg></span
+      ><span>Gym Buddy</span></a
+    ><button
+      data-bs-toggle="collapse"
+      class="navbar-toggler"
+      data-bs-target="#navcol-3"
+    >
+      <span class="visually-hidden">Toggle navigation</span
+      ><span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navcol-3">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink=""
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLinkActive="active-link"
+            routerLink="trainers"
+            >Trainers</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLinkActive="active-link"
+            >Exercises</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" routerLinkActive="active-link"
+            >About Us</a
+          >
+        </li>
+      </ul>
+      <button class="btn btn-primary" type="button">Join Now</button>
+    </div>
+  </div>
+</nav>

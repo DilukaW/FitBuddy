@@ -1,0 +1,33 @@
+.navbar{
+    background-color: var(--primary-color);
+}
+
+.navbar-light .navbar-nav .active-link.active-link{
+    color: white;
+    text-decoration: underline;
+    text-decoration-thickness:4px;
+    text-underline-offset:10px ;
+    text-decoration-color:var(--secondary-color) ;
+    font-weight: bold;
+}
+.navbar-light .navbar-nav .nav-link{
+   color:whitesmoke;
+}
+.nav-link:hover{
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-thickness:4px;
+    text-underline-offset:10px ;
+    text-decoration-color:var(--secondary-color) ;
+}
+.navbar-brand {
+    color: white ;
+    font-family: serif;
+    font-weight: bold;
+}
+.navbar-brand:hover,.navbar-brand:visited{
+    color: white;
+}
+.navbar-toggler {
+    background-color:var(--secondary-color);
+}

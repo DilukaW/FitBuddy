@@ -1,0 +1,18 @@
+.card{
+    background-color: var(--card-color);
+    box-shadow: 2px 2px 6px var(--secondary-color);
+  
+}
+.nav-link, p {
+    color: white!important;
+}
+.nav-link:hover{
+    font-weight: bold;
+    text-decoration: underline;
+    text-decoration-thickness:4px;
+    text-underline-offset:10px ;
+    text-decoration-color:var(--secondary-color) ;
+}
+ul{
+    border-bottom: 1px solid var(--secondary-color);
+}
