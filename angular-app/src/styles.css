@@ -12,21 +12,25 @@
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
-    height: 100vh;
+    
+    background-color: var(--card-color);
 }
+
 .btn{
     background-color: var(--secondary-color);
     color: white;
     font-weight: bold;
     border: none;
-    outline: color #f48e16 !important;;
+    outline: color #f48e16 !important;
 }
 .btn:hover{
     background-color: orangered;
+    color: white;
 }
 .btn:focus{
-    background-color: orangered;
+    background-color:#f48e16 ;
     outline: color #f48e16 !important;
+    box-shadow: none;
 }
 
 @media (max-width: 800px) {

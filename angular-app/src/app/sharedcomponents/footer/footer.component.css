@@ -1,6 +1,6 @@
 .card{
-    background-color: var(--card-color);
-    box-shadow: 2px 2px 6px var(--secondary-color);
+    background-color: var(--primary-color);
+    box-shadow: 6px 6px 18px var(--secondary-color);
   
 }
 .nav-link, p {
