@@ -15,6 +15,7 @@ import { TrainersComponent } from './components/trainers/trainers.component';
 import { BannerComponent } from './components/home/banner/banner.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { UserSignupComponent } from './components/user-signup/user-signup.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UserSignupComponent } from './components/user-signup/user-signup.compon
     TrainersComponent,
     BannerComponent,
     UserLoginComponent,
-    UserSignupComponent
+    UserSignupComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

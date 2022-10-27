@@ -1,5 +1,7 @@
 import { Component, OnInit, Type } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/shared/auth/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
@@ -9,8 +11,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UserLoginComponent implements OnInit {
 
   loginForm!:FormGroup;
+  showSuccessMsg!: boolean;
+  errorMsg!: String;
 
-  constructor() { }
+  constructor(private userService:UserService,private router:Router) { }
 
   ngOnInit(): void {
 
@@ -29,7 +33,31 @@ export class UserLoginComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.loginForm.value)
+
+    const data=this.loginForm.value;
+    delete data['type'];
+    console.log(this.loginForm.value);
+    this.userService.loginUser(data).subscribe({
+      next: (res) => {
+        if(res.success){
+          this.showSuccessMsg=true;
+          setTimeout(() => (this.showSuccessMsg = false), 4000);
+          localStorage.setItem('token',res.token);
+          this.router.navigate(['/profile']);
+        }
+        else{
+          this.errorMsg = res.message;
+          setTimeout(() => (this.showSuccessMsg = false), 4000);
+        }
+       
+      },
+      error: (err) => {
+       alert('failed')
+      },
+      complete: () => {
+       
+      },
+    });
   }
 
 }

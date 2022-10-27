@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { User } from '../user-registration/user';
-import { UserService } from 'src/app/shared/user.service';
+import { UserService } from 'src/app/shared/auth/user.service';
 
 @Component({
   selector: 'app-user-signup',
@@ -28,7 +28,25 @@ export class UserSignupComponent implements OnInit {
   }
   onSubmit(form: FormGroup) {
     console.log(form.value);
-    this.userService.registerUser(form.value).subscribe(
+    this.userService.registerUser(form.value).subscribe({
+      next: (res) => {
+        this.showSuccessMsg = true;
+        setTimeout(() => (this.showSuccessMsg = false), 4000);
+      },
+      error: (err) => {
+        if (err.status == 422) {
+          this.errorMsg = err.error.join('<br/>');
+          setTimeout(() => (this.errorMsg = ''), 4000);
+        } else {
+          this.errorMsg = 'Some thing went wrong !';
+        }
+      },
+      complete: () => {
+        this.restForm(form);
+      },
+    });
+    /*
+    .subscribe(
       (res) => {
         this.showSuccessMsg = true;
         setTimeout(() => (this.showSuccessMsg = false), 4000);
@@ -45,8 +63,7 @@ export class UserSignupComponent implements OnInit {
         }
       }
       
-    );
-    
+    );*/
   }
 
   restForm(form: FormGroup) {
