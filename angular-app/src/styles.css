@@ -32,10 +32,16 @@ body{
     outline: color #f48e16 !important;
     box-shadow: none;
 }
+.alert{
+    margin: 10px 320px;
+}
 
 @media (max-width: 800px) {
     body{
         font-size: small;
+    }
+    .alert{
+        margin: 0;
     }
     
     
@@ -43,6 +49,9 @@ body{
 @media (max-width: 290px) {
     body{
         font-size:x-small;
+    }
+    .alert{
+        margin: 0;
     }
     
     

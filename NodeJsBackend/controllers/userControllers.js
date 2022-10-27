@@ -1,17 +1,20 @@
 import express from "express";
 import { User } from "../models/user.js";
+import passport from "passport";
 
-import { Types } from "mongoose";
+
+
+import mongoose, { Types } from "mongoose";
 
 const router = express.Router();
 
 // create user
-router.post("/", (req, res) => {
+router.post("/register", (req, res,next) => {
   //new user
   var user = new User({
-    name: req.body.name,
-    age: req.body.age,
+    uname: req.body.uname,
     email: req.body.email,
+    password:req.body.password
   });
 
   //save user
@@ -19,13 +22,18 @@ router.post("/", (req, res) => {
     if (!err) {
       res.send(doc);
     } else {
-      console.log("Error in user Save:" + err);
+      if(err.code==11000){
+        res.status(422).send(['Duplicate email address found.']);
+      }
+      else{
+        return next(err);
+      }
     }
   });
 });
 
 // get all users
-router.get("/", (req, res) => {
+router.get("/register", (req, res) => {
   User.find((err, docs) => {
     if (!err) {
       let result = docs;
@@ -88,4 +96,9 @@ router.delete("/:id", (req, res) => {
   })
 
   });
+
+
+
+
+
 export default router;
