@@ -77,38 +77,58 @@ router.get("/profile",checkAuth,(req,res)=>{
 });
 
 // get all users
-router.get("/register", (req, res) => {
-  User.find((err, docs) => {
-    if (!err) {
-      let result = docs;
-      res.send(result);
-      console.log(result);
-    } else {
-      console.log(err + " Error in getting all users ");
-    }
-  });
+router.get("/all", (req, res) => {
+ User.find().exec().then((result)=>{
+  if(result.length<1){
+    return res.json({success:false,message:"Users not found"});
+   }
+   else{
+    res.json({success:true,data:result});
+
+   }
+ }).catch(err=>{
+  res.json({success:false,message:"server error"});
+ })
 });
+
+// // get all users
+// router.get("/register", (req, res) => {
+//   User.find((err, docs) => {
+//     if (!err) {
+//       let result = docs;
+//       res.send(result);
+//       console.log(result);
+//     } else {
+//       console.log(err + " Error in getting all users ");
+//     }
+//   });
+// });
 
 //get user by id
 router.get("/:id", (req, res) => {
-  if (!Types.ObjectId.isValid(req.params.id)) {
-    return res.status(400).send(`No such user:${req.params.id}`);
-  }
+ 
+  User.findById(req.params.id).exec().then((result) => {
+    if(result.length<1){
+      
+      return res.json({success:false,message:"User not found"});
+      
+     }
+     else{
+      res.json({success:true,data:result});
+  
+     }
+   }).catch(err=>{
+    res.json({success:false,message:"server error"});
 
-  User.findById(req.params.id, (err, doc) => {
-    if (!err) {
-      res.send(doc);
-    } else {
-      console.log("Error in retrieving user");
-    }
   });
 });
 
 //update user
 router.put("/:id", (req, res) => {
+  /*
   if (!Types.ObjectId.isValid(req.params.id)) {
     return res.status(400).send(`No such user:${req.params.id}`);
-  }
+  }*/
   //new user
   var user = {
     name: req.body.name,

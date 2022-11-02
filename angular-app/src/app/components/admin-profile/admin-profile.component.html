@@ -1,4 +1,201 @@
 <router-outlet></router-outlet>
-<p>admin-profile works!</p>
+<!-- <p>admin-profile works!</p>
 {{data | json}}
-<button (click)="logOut()">LogOut</button>
+<button (click)="logOut()">LogOut</button> -->
+
+<div class="container">
+    <!-- success message -->
+<div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
+    New trainer added successfully!
+</div>
+<!-- error message -->
+<div class="alert alert-danger text-center" role="alert" *ngIf="errorMsg">
+   {{errorMsg}}
+</div>
+</div>
+
+<!-- profile -->
+<div class="container rounded bg-white mt-5 mb-5 py-2">
+    <div class="row">
+        <div class="col-md-3 border-end border-dark">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5"
+                    width="150px"
+                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
+                    class="font-weight-bold">{{data.uname}}</span><span class="text-black-50">{{data.email}}</span><span>
+                </span></div>
+        </div>
+        <div class="col-md-9 pd-5">
+            <!-- Tabs navs -->
+            <ul class="nav nav-tabs nav-justified mb-3 mt-4" style="border: none;" id="ex1" role="tablist">
+                <li class="nav-item tab-link" role="presentation" (click)="onTabClick('add user')"
+                    [class.active]="activeTab=='add user'">
+                    Add Trainer
+                </li>
+                <li class="nav-item" role="presentation" (click)="onTabClick('update user')"
+                    [class.active]="activeTab=='update user' ">
+                    Update Trainer
+                </li>
+
+            </ul>
+            <!-- Tabs navs -->
+
+            <!-- Tabs content -->
+            <div class="tab-content">
+                <div *ngIf=" activeTab =='add user' ">
+                    <div class="col-md-8 mx-auto">
+                        <div class="p-3 py-2">
+                            <form [formGroup]="trainerUpdateForm" (ngSubmit)="onSubmit(trainerUpdateForm)">
+
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="uname" placeholder="Enter Name" 
+                                        formControlName="uname" [ngClass]="(trainerUpdateForm.get('uname')!.touched || trainerUpdateForm.get('uname')!.dirty)&&
+                                        trainerUpdateForm.get('uname')!.errors? 'is-invalid':'' ">
+                                        <div class="invalid-feedback">
+                                            Please enter a name
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email" placeholder="name@example.com"
+                                            formControlName="email" 
+                                            [ngClass]="(trainerUpdateForm.get('email')!.touched || trainerUpdateForm.get('email')!.dirty)&&
+                                            trainerUpdateForm.get('email')!.errors? 'is-invalid':''">
+                                            <div class="invalid-feedback">
+                                                Please enter a valid email
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <label class="form-label">Training Area</label>
+                                        <input type="text" class="form-control" name="area" placeholder="Enter Training Area"
+                                            formControlName="area" [ngClass]="(trainerUpdateForm.get('area')!.touched || trainerUpdateForm.get('area')!.dirty)&&
+                                            trainerUpdateForm.get('area')!.errors? 'is-invalid':'' ">
+                                            <div class="invalid-feedback">
+                                                Please enter training area
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <label class="form-label">Description</label>
+                                        <textarea type="text" class="form-control" name="description" placeholder="Enter Description"
+                                        formControlName="description" [ngClass]="(trainerUpdateForm.get('description')!.touched || trainerUpdateForm.get('description')!.dirty)&&
+                                        trainerUpdateForm.get('description')!.errors? 'is-invalid':'' ">
+                                    </textarea>
+                                    <div class="invalid-feedback">
+                                        Please enter a Description
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <label class="form-label">Password</label>
+                                        <input type="password" class="form-control" name="password" placeholder="Enter Password"
+                                        formControlName="password" [ngClass]="(trainerUpdateForm.get('password')!.touched || trainerUpdateForm.get('password')!.dirty)&&
+                                        trainerUpdateForm.get('password')!.errors? 'is-invalid':'' ">
+                                            <div class="invalid-feedback">
+                                                Please enter a valid password
+                                            </div>
+                                    </div>
+
+                                </div>
+                                <div class="mt-3 text-center">
+                                    <button class="btn btn-custom"
+                                    type="submit" [disabled]="trainerUpdateForm.invalid">Add Trainer</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div *ngIf=" activeTab =='update user' ">
+                <div class="tab-content">
+                <div class="row p-3">
+                    <div class="col-md-5 border-end border-dark">
+                        <div class="card my-2" >
+                            <div class="card-body p-0 " (click)="getTrainer(trainers[0]._id,0)" [ngClass]="{active1: isActive(0)}" ><span><img class="rounded-circle mx-2"
+                                width="40px"
+                                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                {{ trainers[0].uname }}
+                            </span></div>
+                        </div>
+                        <div class="card my-2" *ngFor="let trainer of trainers | slice:1" [ngClass]="{active1: isActive(trainer)}">
+                            <div class="card-body p-0 " (click)="getTrainer(trainer._id,trainer)" ><span><img class="rounded-circle mx-2"
+                                width="40px"
+                                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                {{ trainer.uname }}
+                            </span></div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <form [formGroup]="trainerUpdateForm" (ngSubmit)="onSubmit(trainerUpdateForm)">
+
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" name="uname" placeholder="Enter Name" [ngModel]="uname"
+                                    formControlName="uname" [ngClass]="(trainerUpdateForm.get('uname')!.touched || trainerUpdateForm.get('uname')!.dirty)&&
+                                    trainerUpdateForm.get('uname')!.errors? 'is-invalid':'' ">
+                                    <div class="invalid-feedback">
+                                        Please enter a name
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="email" placeholder="name@example.com" [ngModel]="email"
+                                        formControlName="email" 
+                                        [ngClass]="(trainerUpdateForm.get('email')!.touched || trainerUpdateForm.get('email')!.dirty)&&
+                                        trainerUpdateForm.get('email')!.errors? 'is-invalid':''">
+                                        <div class="invalid-feedback">
+                                            Please enter a valid email
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <label class="form-label">Training Area</label>
+                                    <input type="text" class="form-control" name="area" placeholder="Enter Training Area" [ngModel]="area"
+                                        formControlName="area" [ngClass]="(trainerUpdateForm.get('area')!.touched || trainerUpdateForm.get('area')!.dirty)&&
+                                        trainerUpdateForm.get('area')!.errors? 'is-invalid':'' ">
+                                        <div class="invalid-feedback">
+                                            Please enter training area
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <label class="form-label">Description</label>
+                                    <textarea type="text" class="form-control" name="description" placeholder="Enter Description" [ngModel]="des"
+                                    formControlName="description" [ngClass]="(trainerUpdateForm.get('description')!.touched || trainerUpdateForm.get('description')!.dirty)&&
+                                    trainerUpdateForm.get('description')!.errors? 'is-invalid':'' ">
+                                </textarea>
+                                <div class="invalid-feedback">
+                                    Please enter a Description
+                                </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3 text-center">
+                                <button class="btn btn-custom"
+                                type="submit" [disabled]="trainerUpdateForm.invalid">Update Trainer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+                
+                
+            </div>
+
+        </div>
+
+    </div>
+</div>

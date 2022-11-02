@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   providers: [UserService],
 })
 export class UserSignupComponent implements OnInit {
+
   signupForm!: FormGroup;
   showSuccessMsg!: boolean;
   errorMsg!: String;
@@ -18,6 +19,7 @@ export class UserSignupComponent implements OnInit {
   constructor(private userService: UserService,private router:Router) {}
 
   ngOnInit(): void {
+    // form validation
     this.signupForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       uname: new FormControl('', [Validators.required]),
@@ -27,6 +29,8 @@ export class UserSignupComponent implements OnInit {
       ]),
     });
   }
+
+  // form submit function
   onSubmit(form: FormGroup) {
     console.log(form.value);
     this.userService.registerUser(form.value).subscribe({
@@ -68,6 +72,7 @@ export class UserSignupComponent implements OnInit {
     );*/
   }
 
+  // reset form field values
   restForm(form: FormGroup) {
     this.userService.selectedUser = {
       _id: '',

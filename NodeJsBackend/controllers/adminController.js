@@ -80,4 +80,5 @@ router.get("/profile",checkAuth,(req,res)=>{
     })
   });
 
+
 export default router;

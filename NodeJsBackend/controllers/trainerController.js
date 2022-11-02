@@ -81,4 +81,65 @@ router.get("/profile",checkAuth,(req,res)=>{
       res.json({success:false,message:"server error"});
     })
   });
+
+  // get all trainers
+router.get("/all", (req, res) => {
+  Trainer.find().exec().then((result)=>{
+   if(result.length<1){
+     return res.json({success:false,message:"Trainers not found"});
+    }
+    else{
+     res.json({success:true,data:result});
+     console.log(result);
+ 
+    }
+  }).catch(err=>{
+   res.json({success:false,message:"server error"});
+  })
+ });
+
+ //get trainer by id
+router.get("/:id", (req, res) => {
+ 
+  Trainer.findById(req.params.id).exec().then((result) => {
+    if(result.length<1){
+      
+      return res.json({success:false,message:"User not found"});
+      
+     }
+     else{
+      res.json({success:true,data:result});
+  
+     }
+   }).catch(err=>{
+    res.json({success:false,message:"server error"});
+
+  });
+});
+
+router.put("/:id", (req, res) => {
+  /*
+  if (!Types.ObjectId.isValid(req.params.id)) {
+    return res.status(400).send(`No such user:${req.params.id}`);
+  }*/
+  //new user
+  var user = {
+    name: req.body.name,
+    age: req.body.age,
+    email: req.body.email,
+  };
+  User.findByIdAndUpdate(
+    req.params.id,
+    { $set: user },
+    { new: true },
+    (err, doc) => {
+      if (!err) {
+        res.send(doc);
+      } else {
+        console.log("Error in user updating: " + err);
+      }
+    }
+  );
+});
+
 export default router;

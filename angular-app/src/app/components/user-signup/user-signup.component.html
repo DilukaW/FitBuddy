@@ -1,11 +1,13 @@
 <router-outlet></router-outlet> 
-<!-- success message -->
+<div class="container">
+    <!-- success message -->
 <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
     successfully Registered!
 </div>
 <!-- error message -->
 <div class="alert alert-danger text-center" role="alert" *ngIf="errorMsg">
    {{errorMsg}}
+</div>
 </div>
 <!-- register form -->
 <div class="container" >

@@ -17,6 +17,7 @@ export class TrainerService {
     password:" ",
   };
 
+
   constructor(private http:HttpClient) { }
   registerTrainer(trainer:Trainer):Observable<any>{
     return this.http.post(environment.baseUrl+'trainer/register',trainer);
@@ -34,5 +35,19 @@ export class TrainerService {
       'Authorization':"Bearer "+sessionStorage.getItem('token')
     }
     return this.http.get(environment.baseUrl+'trainer/profile',{headers:headers});
+  }
+
+  getAllTrainers():Observable<any>{
+   
+    return this.http.get(environment.baseUrl+'trainer/all',);
+
+  }
+  getTrainerById(id:string):Observable<any>{
+  
+    return this.http.get(environment.baseUrl+'trainer/'+id);
+  }
+  updateTrainerById(id:string):Observable<any>{
+  
+    return this.http.get(environment.baseUrl+'trainer/'+id);
   }
 }

@@ -1,11 +1,13 @@
 <router-outlet></router-outlet>
-<!-- success message -->
+<div class="container">
+    <!-- success message -->
 <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
     Login successfully!
 </div>
 <!-- error message -->
 <div class="alert alert-danger text-center" role="alert" *ngIf="errorMsg">
    {{errorMsg}}
+</div>
 </div>
 <!-- login Form -->
 <div class="container">
@@ -14,7 +16,7 @@
             <img src="../assets/login.jpg">
         </div>
         <div class="right_div">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
                 <h2><b>Log in</b></h2>
                 <hr>
                 <div class="mb-2">
