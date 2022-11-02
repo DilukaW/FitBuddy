@@ -6,6 +6,8 @@ import passport from 'passport';
 
 import  apiRoutes  from './controllers/apiControllers.js';
 import userRoutes from './controllers/userControllers.js';
+import adminRoutes from './controllers/adminController.js';
+import trainerRoutes from './controllers/trainerController.js';
 import { connectDb } from './database/connection.js';
 
 import cors from 'cors';
@@ -22,6 +24,8 @@ connectDb();
 //routes
 app.use('/',apiRoutes);
 app.use('/users/',userRoutes);
+app.use('/admin/',adminRoutes);
+app.use('/trainer/',trainerRoutes);
 
 //error handler
 app.use((err,req,res,next)=>{

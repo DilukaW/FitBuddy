@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { User } from '../user-registration/user';
 import { UserService } from 'src/app/shared/auth/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-signup',
@@ -14,7 +15,7 @@ export class UserSignupComponent implements OnInit {
   showSuccessMsg!: boolean;
   errorMsg!: String;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private router:Router) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -32,6 +33,7 @@ export class UserSignupComponent implements OnInit {
       next: (res) => {
         this.showSuccessMsg = true;
         setTimeout(() => (this.showSuccessMsg = false), 4000);
+        this.router.navigate(['/profile']);
       },
       error: (err) => {
         if (err.status == 422) {

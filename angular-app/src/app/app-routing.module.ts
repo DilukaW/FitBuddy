@@ -5,6 +5,8 @@ import { TrainersComponent } from './components/trainers/trainers.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { UserSignupComponent } from './components/user-signup/user-signup.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
+import { TrainerProfileComponent } from './components/trainer-profile/trainer-profile.component';
 
 const routes: Routes = [
 
@@ -12,7 +14,9 @@ const routes: Routes = [
   {path:"trainers",component:TrainersComponent},
   {path:"login",component:UserLoginComponent},
   {path:"register",component:UserSignupComponent},
-  {path:"profile",component:UserProfileComponent}
+  {path:"user/profile",component:UserProfileComponent},
+  {path:"admin/profile",component:AdminProfileComponent},
+  {path:"trainer/profile",component:TrainerProfileComponent},
 ];
 
 @NgModule({

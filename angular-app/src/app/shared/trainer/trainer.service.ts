@@ -1,39 +1,38 @@
 import { Injectable } from '@angular/core';
-import { User } from './user.model';
+import { Trainer } from './trainer.model';
 import{HttpClient ,HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import{ Observable,of } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-
-  selectedUser:User={
+export class TrainerService {
+  selectedTrainer:Trainer={
     _id:" ",
     uname:" ",
     email:" ",
+    area:" ",
+    description:" ",
     password:" ",
   };
 
   constructor(private http:HttpClient) { }
-
-  registerUser(user:User):Observable<any>{
-    return this.http.post(environment.baseUrl+'users/register',user);
+  registerTrainer(trainer:Trainer):Observable<any>{
+    return this.http.post(environment.baseUrl+'trainer/register',trainer);
   }
   
-  loginUser(data: any):Observable<any>{
+  loginTrainer(data: any):Observable<any>{
     let headers={
       'Authorization':"Bearer "+sessionStorage.getItem('token')
     }
-    return this.http.post(environment.baseUrl+'users/login',data);
+    return this.http.post(environment.baseUrl+'trainer/login',data);
   }
 
-  getUserProfile():Observable<any>{
+  getTrainerProfile():Observable<any>{
     let headers={
       'Authorization':"Bearer "+sessionStorage.getItem('token')
     }
-    return this.http.get(environment.baseUrl+'users/profile',{headers:headers});
+    return this.http.get(environment.baseUrl+'trainer/profile',{headers:headers});
   }
 }

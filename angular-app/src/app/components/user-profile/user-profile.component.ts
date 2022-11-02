@@ -10,12 +10,13 @@ export class UserProfileComponent implements OnInit {
   constructor(private userService: UserService,private router:Router) {}
 
   data: any;
+
   
 
   ngOnInit(): void {
     this.getDetails();  
+   
   }
-
   getDetails() {
     this.userService.getUserProfile().subscribe({
       next: (res) => {

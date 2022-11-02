@@ -1,0 +1,84 @@
+import express from "express";
+import { Trainer } from "../models/trainer.js";
+import passport from "passport";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { checkAuth } from "../middleware/checkAuth.js";
+
+import mongoose, { Types } from "mongoose";
+
+const router = express.Router();
+
+router.get('/',(req,res)=>{
+    res.send('trainer');
+
+});
+
+// create trainer
+router.post("/register", (req, res, next) => {
+    //new user
+    var trainer = new Trainer({
+      uname: req.body.uname,
+      email: req.body.email,
+      area:req.body.area,
+      description:req.body.description,
+      password: req.body.password,
+    });
+  
+    //save trainer
+    trainer.save((err, doc) => {
+      if (!err) {
+        res.send(doc);
+      } else {
+        if (err.code == 11000) {
+          res.status(422).send(["Duplicate email address found."]);
+        } else {
+          return next(err);
+        }
+      }
+    });
+  });
+
+//login trainer
+router.post("/login", (req, res) => {
+    Trainer.find({ email:req.body.email }).exec().then((result)=>{
+      if(result.length<1){
+        
+       return res.json({success:false,message:"Trainer user not found"});
+       
+      }
+      const trainer=result[0];
+      bcrypt.compare(req.body.password,trainer.password,(err,ret)=>{
+       
+        if(ret){
+          const payload={
+            trainerId:trainer._id
+          }
+          const token= jwt.sign(payload,"secret");
+          return res.json({success:true,message:"Login Successful", token:token});
+        }
+        else{
+          
+          return res.json({success:false,message:"Password do not matched"});
+        }
+  
+      });
+  
+    }).catch(err=>{
+      res.json({success:false,message:'Login Failed'});
+    });
+  });
+
+  //login trainer profile
+router.get("/profile",checkAuth,(req,res)=>{
+    const trainerId=req.userData.trainerId;
+    Trainer.findById(trainerId)
+    .exec().then((result)=>{
+  
+      res.json({success:true,data:result});
+  
+    }).catch(err=>{
+      res.json({success:false,message:"server error"});
+    })
+  });
+export default router;
