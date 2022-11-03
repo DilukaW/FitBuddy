@@ -15,6 +15,8 @@ router.post("/register", (req, res, next) => {
   var user = new User({
     uname: req.body.uname,
     email: req.body.email,
+    gender:req.body.gender,
+    age:req.body.age,
     password: req.body.password,
   });
 
@@ -133,6 +135,8 @@ router.put("/:id", (req, res) => {
   var user = {
     uname: req.body.uname,
     email: req.body.email,
+    gender:req.body.gender,
+    age:req.body.age,
   };
   User.findByIdAndUpdate(req.params.id,{ $set: user },{ new: true },(err, doc) => {
       if (!err) {

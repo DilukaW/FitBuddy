@@ -18,6 +18,7 @@ import { AdminProfileComponent } from './components/admin-profile/admin-profile.
 import { TrainerProfileComponent } from './components/trainer-profile/trainer-profile.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,8 @@ import { TrainersComponent } from './components/trainers/trainers.component';
     UserProfileComponent,
     AdminProfileComponent,
     TrainerProfileComponent,
-    TrainersComponent
+    TrainersComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -5,10 +5,11 @@
     Login successfully!
 </div>
 <!-- error message -->
-<div class="alert alert-danger text-center" role="alert" *ngIf="errorMsg">
+<div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
    {{errorMsg}}
 </div>
 </div>
+
 <!-- login Form -->
 <div class="container">
     <div class="card_login rounded">

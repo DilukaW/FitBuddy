@@ -2,10 +2,10 @@
 <div class="container">
     <!-- success message -->
 <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
-    successfully Registered!
+    Successfully Registered!
 </div>
 <!-- error message -->
-<div class="alert alert-danger text-center" role="alert" *ngIf="errorMsg">
+<div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
    {{errorMsg}}
 </div>
 </div>
@@ -34,6 +34,25 @@
                     signupForm.get('email')!.errors? 'is-invalid':''">
                     <div class="invalid-feedback">
                         Please enter a valid email
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="type" class="form-label">Gender</label>
+                    <select class="form-select" name="type"formControlName="gender" (change)=" changeType($event)" >
+
+                        <option value="Male" selected >Male</option>
+                        <option value="Female">Female</option>
+                        
+                    </select>
+                </div>
+                <div class="mb-2" >
+                    <label for="age" class="form-label">Age</label>
+                    <input type="number" class="form-control " name="age" placeholder="Enter Age"
+                    formControlName="age" [ngClass]="(signupForm.get('age')!.touched || signupForm.get('age')!.dirty)&&
+                    signupForm.get('age')!.errors? 'is-invalid':''">
+                   
+                    <div class="invalid-feedback">
+                        Please enter age
                     </div>
                 </div>
                 <div class="mb-2">

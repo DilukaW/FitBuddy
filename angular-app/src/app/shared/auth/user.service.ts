@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './user.model';
+import { User,regUser } from './user.model';
 import{HttpClient ,HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import{ Observable,of } from 'rxjs';
@@ -16,10 +16,17 @@ export class UserService {
     email:" ",
     password:" ",
   };
-
+  selectedRegUser:regUser={
+    _id:" ",
+    uname:" ",
+    gender:" ",
+    age:Number(null),
+    email:" ",
+    password:" ",
+  };
   constructor(private http:HttpClient) { }
 
-  registerUser(user:User):Observable<any>{
+  registerUser(user:regUser):Observable<any>{
     return this.http.post(environment.baseUrl+'users/register',user);
   }
   
@@ -35,5 +42,9 @@ export class UserService {
       'Authorization':"Bearer "+sessionStorage.getItem('token')
     }
     return this.http.get(environment.baseUrl+'users/profile',{headers:headers});
+  }
+  updateUserById(id:string,data: any):Observable<any>{
+  
+    return this.http.put(environment.baseUrl+'users/'+id,data);
   }
 }

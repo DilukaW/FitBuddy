@@ -1,0 +1,23 @@
+li:hover{
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 10px;
+}
+li{
+    border-bottom:2px solid var(--secondary-color) ;
+}
+.active{
+   
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 10px;
+}
+.a{
+    position: relative;
+}
+.b{
+  position: absolute;
+  top: 90px;
+  margin-left: 70px;
+  
+}

@@ -29,6 +29,7 @@ export class AdminProfileComponent implements OnInit {
 
   // messages
   showSuccessMsg!: boolean;
+  showErrorsMsg!: boolean;
   errorMsg!: String;
   successMsg!: string;
 
@@ -81,7 +82,8 @@ export class AdminProfileComponent implements OnInit {
       },
       error: (err) => {
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showSuccessMsg = false), 4000);
+        this.showErrorsMsg = true;
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {},
     });
@@ -103,7 +105,8 @@ export class AdminProfileComponent implements OnInit {
       },
       error: (err) => {
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showSuccessMsg = false), 4000);
+        this.showErrorsMsg = true;
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {},
     });
@@ -127,7 +130,8 @@ export class AdminProfileComponent implements OnInit {
       },
       error: (err) => {
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showSuccessMsg = false), 4000);
+        this.showErrorsMsg = true;
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {},
     });
@@ -157,9 +161,12 @@ export class AdminProfileComponent implements OnInit {
       error: (err) => {
         if (err.status == 422) {
           this.errorMsg = err.error.join('<br/>');
-          setTimeout(() => (this.errorMsg = ''), 4000);
+          this.showErrorsMsg = true;
+          setTimeout(() => (this.showErrorsMsg = false), 4000);
         } else {
           this.errorMsg = 'Some thing went wrong !';
+          this.showErrorsMsg = true;
+          setTimeout(() => (this.showErrorsMsg = false), 4000);
         }
       },
       complete: () => {
@@ -182,12 +189,14 @@ export class AdminProfileComponent implements OnInit {
         
           } else {
             this.errorMsg = res.message;
-            setTimeout(() => (this.showSuccessMsg = false), 4000);
+            this.showErrorsMsg = true;
+            setTimeout(() => (this.showErrorsMsg = false), 4000);
           }
         },
         error: () => {
           this.errorMsg = 'Server Error';
-          setTimeout(() => (this.showSuccessMsg = false), 4000);
+          this.showErrorsMsg = true;
+          setTimeout(() => (this.showErrorsMsg = false), 4000);
         },
         complete: () => {
         
@@ -210,12 +219,14 @@ export class AdminProfileComponent implements OnInit {
       
         } else {
           this.errorMsg = res.message;
-          setTimeout(() => (this.showSuccessMsg = false), 4000);
+          this.showErrorsMsg = true;
+          setTimeout(() => (this.showErrorsMsg = false), 4000);
         }
       },
       error: () => {
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showSuccessMsg = false), 4000);
+        this.showErrorsMsg = true;
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {
       

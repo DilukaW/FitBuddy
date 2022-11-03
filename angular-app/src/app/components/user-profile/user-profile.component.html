@@ -1,5 +1,150 @@
 <router-outlet></router-outlet>
-<p>user-profile works!</p>
+<!-- <p>admin-profile works!</p>
 {{data | json}}
-<h1>{{data.uname}}</h1>
-<button (click)="logOut()">LogOut</button>
+<button (click)="logOut()">LogOut</button> -->
+
+<div class="container">
+    <!-- success message -->
+    <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
+        {{successMsg}}
+    </div>
+    <!-- error message -->
+    <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
+        {{errorMsg}}
+    </div>
+</div>
+
+<!-- profile -->
+<div class="container rounded bg-white mt-5 mb-5 py-2">
+    <div class="row">
+        <div class="col-md-3 border-end border-dark">
+            <h1 class="text-center">My Dashboard</h1>
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"
+           >
+            <img class="rounded-circle mt-5"
+                    width="150px"
+                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                    <span
+                    class="font-weight-bold" >Name:{{uname}}
+                </span>
+                <span
+                    class="text-black-50" >Email:{{email}}</span>
+                
+                <span
+                    class="text-black-50" >Gender:{{gender}}</span>
+                <span
+                    class="text-black-50">Age:{{age}}
+                    
+                </span>
+            </div>
+        </div>
+        <div class="col-md-9 pd-5">
+            <!-- Tabs navs -->
+            <ul class="nav nav-tabs nav-justified mb-3 mt-4" style="border: none;" id="ex1" role="tablist">
+                <li class="nav-item tab-link" role="presentation" (click)="onTabClick('update user')"
+                    [class.active]="activeTab=='update user'">
+                    Update Account
+                </li>
+                <li class="nav-item" role="presentation" (click)="onTabClick('trainers')"
+                    [class.active]="activeTab=='trainers' ">
+                    My Trainer
+                </li>
+                <li class="nav-item" role="presentation" (click)="onTabClick('chat')"
+                [class.active]="activeTab=='chat' ">
+                Chat
+            </li>
+
+            </ul>
+            <!-- Tabs navs -->
+
+            <!-- Tabs content -->
+            <div class="tab-content">
+                <div *ngIf=" activeTab =='update user' ">
+                    <div class="col-md-8 mx-auto">
+                        <div class="p-2 py-1">
+                            <form [formGroup]="userUpdateForm" (ngSubmit)="update(userUpdateForm)">
+                                
+
+                                <div class="d-flex justify-content-center a mt-0">
+                                    <img class="rounded-circle mt-0 "
+                                    width="120px"
+                                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                
+                                    <div class="btn rounded-circle b">
+                                        <label class="form-label text-white m-1" for="customFile2"><i class="bi bi-camera-fill"></i></label>
+                                        <input type="file" class="form-control d-none" id="customFile2" />
+                                    </div>
+                                </div>
+           
+
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="uname" placeholder="Enter Name" [ngModel]="uname" 
+                                            formControlName="uname" [ngClass]="(userUpdateForm.get('uname')!.touched || userUpdateForm.get('uname')!.dirty)&&
+                                        userUpdateForm.get('uname')!.errors? 'is-invalid':'' ">
+                                        <div class="invalid-feedback">
+                                            Please enter a name
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email" [ngModel]="email" 
+                                            placeholder="name@example.com" formControlName="email" [ngClass]="(userUpdateForm.get('email')!.touched || userUpdateForm.get('email')!.dirty)&&
+                                            userUpdateForm.get('email')!.errors? 'is-invalid':''">
+                                        <div class="invalid-feedback">
+                                            Please enter a valid email
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <label for="type" class="form-label">Gender</label>
+                                    <select class="form-select" name="type"formControlName="gender" (change)=" changeType($event)">
+                
+                                        <option value="Male" selected  [ngModel]="gender" >Male</option>
+                                        <option value="Female">Female</option>
+                                        
+                                    </select>
+                                </div>
+                                <div class="mt-2" >
+                                    <label for="age" class="form-label">Age</label>
+                                    <input type="text" class="form-control " name="age" placeholder="Enter Age" [ngModel]="age"
+                                    formControlName="age" [ngClass]="(userUpdateForm.get('age')!.touched || userUpdateForm.get('age')!.dirty)&&
+                                    userUpdateForm.get('age')!.errors? 'is-invalid':''">
+                                   
+                                    <div class="invalid-feedback">
+                                        Please enter age
+                                    </div>
+                                </div>
+            
+                                <div class="mt-3 text-center">
+                                    <button class="btn btn-custom" type="submit"
+                                        [disabled]="userUpdateForm.invalid">Update</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div *ngIf=" activeTab =='trainers' ">
+                <div class="tab-content">
+                    trainers
+                </div>
+
+
+            </div>
+            <div *ngIf=" activeTab =='chat' ">
+                <div class="tab-content">
+                    chat
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

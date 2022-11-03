@@ -14,6 +14,7 @@ export class UserLoginComponent implements OnInit {
   loginForm!: FormGroup;
   showSuccessMsg!: boolean;
   errorMsg!: String;
+  showErrorsMsg!: boolean;
  
 
   constructor(
@@ -34,6 +35,8 @@ export class UserLoginComponent implements OnInit {
     });
     this.loginForm.get('type')?.setValue(1);
   }
+
+  
   changeType(e: any) {
     this.loginForm.get('type')!.setValue(e.target.value, {
       onlySelf: true,
@@ -54,13 +57,15 @@ export class UserLoginComponent implements OnInit {
             sessionStorage.setItem('token', res.token);
             this.router.navigate(['user/profile']);
           } else {
-            this.errorMsg = res.message;
-            setTimeout(() => (this.showSuccessMsg = false), 4000);
+            this.errorMsg = res.message
+            this.showErrorsMsg = true;
+            setTimeout(() => (this.showErrorsMsg = false), 4000);
           }
         },
         error: (err) => {
           this.errorMsg = "Server Error";
-          setTimeout(() => (this.showSuccessMsg = false), 4000);
+          this.showErrorsMsg = true;
+          setTimeout(() => (this.showErrorsMsg = false), 4000);
         },
         complete: () => {
           this.restForm(form)
@@ -82,12 +87,14 @@ export class UserLoginComponent implements OnInit {
             this.router.navigate(['trainer/profile']);
           } else {
             this.errorMsg = res.message;
-            setTimeout(() => (this.showSuccessMsg = false), 4000);
+            this.showErrorsMsg = true;
+            setTimeout(() => (this.showErrorsMsg = false), 4000);
           }
         },
         error: (err) => {
           this.errorMsg = "Server Error";
-          setTimeout(() => (this.showSuccessMsg = false), 4000);
+          this.showErrorsMsg = true;
+          setTimeout(() => (this.showErrorsMsg = false), 4000);
         },
         complete: () => {
           this.restForm(form)
@@ -113,12 +120,14 @@ export class UserLoginComponent implements OnInit {
             
           } else {
             this.errorMsg = res.message;
-            setTimeout(() => (this.showSuccessMsg = false), 4000);
+            this.showErrorsMsg = true;
+            setTimeout(() => (this.showErrorsMsg = false), 4000);
           }
         },
         error: (err) => {
           this.errorMsg = "Server Error";
-          setTimeout(() => (this.showSuccessMsg = false), 4000);
+          this.showErrorsMsg = true;
+          setTimeout(() => (this.showErrorsMsg = false), 4000);
         },
         complete: () => {
           this.restForm(form)
@@ -136,7 +145,8 @@ export class UserLoginComponent implements OnInit {
       password: ' ',
     };
     form.reset();
-    this.errorMsg = '';
+    this.loginForm.get('type')?.setValue(1);
+    
   }
   
 }

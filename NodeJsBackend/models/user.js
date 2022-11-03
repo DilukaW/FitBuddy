@@ -14,6 +14,16 @@ var userSchema = new mongoose.Schema({
    required: "Email cannot be empty", 
    unique: true 
 },
+gender: { 
+  type: String, 
+  required: "Gender cannot be empty", 
+ 
+},
+age: { 
+  type: Number, 
+  required: "Age cannot be empty", 
+ 
+},
   password: { 
    type: String, 
    required: "password cannot be empty",

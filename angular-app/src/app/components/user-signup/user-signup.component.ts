@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { User } from '../user-registration/user';
 import { UserService } from 'src/app/shared/auth/user.service';
 import { Router } from '@angular/router';
 
@@ -14,6 +13,7 @@ export class UserSignupComponent implements OnInit {
 
   signupForm!: FormGroup;
   showSuccessMsg!: boolean;
+  showErrorsMsg!: boolean;
   errorMsg!: String;
 
   constructor(private userService: UserService,private router:Router) {}
@@ -23,10 +23,19 @@ export class UserSignupComponent implements OnInit {
     this.signupForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       uname: new FormControl('', [Validators.required]),
+      age: new FormControl('', [Validators.required]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
       ]),
+      gender: new FormControl(''),
+    });
+    this.signupForm.get('gender')?.setValue('Male');
+  }
+
+  changeType(e: any) {
+    this.signupForm.get('gender')!.setValue(e.target.value, {
+      onlySelf: true,
     });
   }
 
@@ -42,9 +51,14 @@ export class UserSignupComponent implements OnInit {
       error: (err) => {
         if (err.status == 422) {
           this.errorMsg = err.error.join('<br/>');
-          setTimeout(() => (this.errorMsg = ''), 4000);
+      
+            this.showErrorsMsg = true;
+            setTimeout(() => (this.showErrorsMsg = false), 4000);
         } else {
           this.errorMsg = 'Some thing went wrong !';
+          
+            this.showErrorsMsg = true;
+            setTimeout(() => (this.showErrorsMsg = false), 4000);
         }
       },
       complete: () => {
@@ -74,13 +88,16 @@ export class UserSignupComponent implements OnInit {
 
   // reset form field values
   restForm(form: FormGroup) {
-    this.userService.selectedUser = {
-      _id: '',
-      uname: ' ',
-      email: ' ',
-      password: ' ',
+    this.userService.selectedRegUser = {
+    _id:" ",
+    uname:" ",
+    gender:" ",
+    age:parseInt(""),
+    email:" ",
+    password:" ",
     };
     form.reset();
-    this.errorMsg = '';
+    this.signupForm.get('gender')?.setValue('Male');
+   
   }
 }
