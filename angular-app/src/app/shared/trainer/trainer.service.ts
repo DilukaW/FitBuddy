@@ -46,8 +46,13 @@ export class TrainerService {
   
     return this.http.get(environment.baseUrl+'trainer/'+id);
   }
-  updateTrainerById(id:string):Observable<any>{
+  updateTrainerById(id:string,data: any):Observable<any>{
   
-    return this.http.get(environment.baseUrl+'trainer/'+id);
+    return this.http.put(environment.baseUrl+'trainer/'+id,data);
   }
+  deleteTrainerById(id:string):Observable<any>{
+  
+    return this.http.delete(environment.baseUrl+'trainer/'+id);
+  }
+
 }

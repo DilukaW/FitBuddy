@@ -117,29 +117,43 @@ router.get("/:id", (req, res) => {
   });
 });
 
+
+//update trainer
 router.put("/:id", (req, res) => {
-  /*
+  
   if (!Types.ObjectId.isValid(req.params.id)) {
-    return res.status(400).send(`No such user:${req.params.id}`);
-  }*/
-  //new user
-  var user = {
-    name: req.body.name,
-    age: req.body.age,
+    return res.json({success:false,message:"User not found"});
+  }
+  //new trainer
+  var trainer = {
+    uname: req.body.uname,
     email: req.body.email,
+    area:req.body.area,
+    description:req.body.description,
   };
-  User.findByIdAndUpdate(
-    req.params.id,
-    { $set: user },
-    { new: true },
-    (err, doc) => {
+  Trainer.findByIdAndUpdate(req.params.id,{ $set: trainer },{ new: true },(err, doc) => {
       if (!err) {
-        res.send(doc);
+        res.json({success:true,data:doc});
       } else {
-        console.log("Error in user updating: " + err);
+        return res.json({success:false,message:"Duplicate Email"});
       }
     }
   );
+});
+
+//delete trainer
+router.delete("/:id", (req, res) => {
+  if (!Types.ObjectId.isValid(req.params.id)) {
+    return res.json({success:false,message:"User not found"});
+  }
+
+  Trainer.findByIdAndRemove(req.params.id, (err, doc) => {
+    if (!err) {
+      res.json({success:true,data:doc});
+    } else {
+      return res.json({success:false,message:"User not found"});
+    }
+  });
 });
 
 export default router;

@@ -6,7 +6,7 @@
 <div class="container">
     <!-- success message -->
 <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
-    New trainer added successfully!
+    {{successMsg}}
 </div>
 <!-- error message -->
 <div class="alert alert-danger text-center" role="alert" *ngIf="errorMsg">
@@ -123,6 +123,7 @@
                                 width="40px"
                                 src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                                 {{ trainers[0].uname }}
+                                <button class="btn text-dark bg-transparent float-end p-1 m-2" (click)="deleteTrainer(trainers[0]._id)"><i class="bi bi-trash-fill"></i></button>
                             </span></div>
                         </div>
                         <div class="card my-2" *ngFor="let trainer of trainers | slice:1" [ngClass]="{active1: isActive(trainer)}">
@@ -130,18 +131,19 @@
                                 width="40px"
                                 src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                                 {{ trainer.uname }}
+                                <button class="btn text-dark bg-transparent float-end p-1 m-2" (click)="deleteTrainer(trainer._id)"><i class="bi bi-trash-fill"></i></button>
                             </span></div>
                         </div>
                     </div>
                     <div class="col-md-7">
-                        <form [formGroup]="trainerUpdateForm" (ngSubmit)="onSubmit(trainerUpdateForm)">
+                        <form [formGroup]="updateForm" (ngSubmit)="update(updateForm)" >
 
                             <div class="row mt-2">
                                 <div class="col">
                                     <label class="form-label">Name</label>
                                     <input type="text" class="form-control" name="uname" placeholder="Enter Name" [ngModel]="uname"
-                                    formControlName="uname" [ngClass]="(trainerUpdateForm.get('uname')!.touched || trainerUpdateForm.get('uname')!.dirty)&&
-                                    trainerUpdateForm.get('uname')!.errors? 'is-invalid':'' ">
+                                    formControlName="uname" [ngClass]="(updateForm.get('uname')!.touched || updateForm.get('uname')!.dirty)&&
+                                    updateForm.get('uname')!.errors? 'is-invalid':'' ">
                                     <div class="invalid-feedback">
                                         Please enter a name
                                     </div>
@@ -152,8 +154,8 @@
                                     <label class="form-label">Email</label>
                                     <input type="email" class="form-control" name="email" placeholder="name@example.com" [ngModel]="email"
                                         formControlName="email" 
-                                        [ngClass]="(trainerUpdateForm.get('email')!.touched || trainerUpdateForm.get('email')!.dirty)&&
-                                        trainerUpdateForm.get('email')!.errors? 'is-invalid':''">
+                                        [ngClass]="(updateForm.get('email')!.touched || updateForm.get('email')!.dirty)&&
+                                        updateForm.get('email')!.errors? 'is-invalid':''">
                                         <div class="invalid-feedback">
                                             Please enter a valid email
                                         </div>
@@ -163,8 +165,8 @@
                                 <div class="col">
                                     <label class="form-label">Training Area</label>
                                     <input type="text" class="form-control" name="area" placeholder="Enter Training Area" [ngModel]="area"
-                                        formControlName="area" [ngClass]="(trainerUpdateForm.get('area')!.touched || trainerUpdateForm.get('area')!.dirty)&&
-                                        trainerUpdateForm.get('area')!.errors? 'is-invalid':'' ">
+                                        formControlName="area" [ngClass]="(updateForm.get('area')!.touched || updateForm.get('area')!.dirty)&&
+                                        updateForm.get('area')!.errors? 'is-invalid':'' ">
                                         <div class="invalid-feedback">
                                             Please enter training area
                                         </div>
@@ -174,8 +176,8 @@
                                 <div class="col">
                                     <label class="form-label">Description</label>
                                     <textarea type="text" class="form-control" name="description" placeholder="Enter Description" [ngModel]="des"
-                                    formControlName="description" [ngClass]="(trainerUpdateForm.get('description')!.touched || trainerUpdateForm.get('description')!.dirty)&&
-                                    trainerUpdateForm.get('description')!.errors? 'is-invalid':'' ">
+                                    formControlName="description" [ngClass]="(updateForm.get('description')!.touched || updateForm.get('description')!.dirty)&&
+                                    updateForm.get('description')!.errors? 'is-invalid':'' ">
                                 </textarea>
                                 <div class="invalid-feedback">
                                     Please enter a Description
@@ -185,7 +187,7 @@
                             
                             <div class="mt-3 text-center">
                                 <button class="btn btn-custom"
-                                type="submit" [disabled]="trainerUpdateForm.invalid">Update Trainer</button>
+                                type="submit" [disabled]="updateForm.invalid" >Update Trainer</button>
                             </div>
                         </form>
                     </div>

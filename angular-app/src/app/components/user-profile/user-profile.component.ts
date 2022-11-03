@@ -27,7 +27,9 @@ export class UserProfileComponent implements OnInit {
           
         }
       },
-      error: (err) => {},
+      error: (err) => {
+        
+      },
       complete: () => {
         
       },

@@ -125,25 +125,20 @@ router.get("/:id", (req, res) => {
 
 //update user
 router.put("/:id", (req, res) => {
-  /*
+  
   if (!Types.ObjectId.isValid(req.params.id)) {
-    return res.status(400).send(`No such user:${req.params.id}`);
-  }*/
+    return res.json({success:false,message:"User not found"});
+  }
   //new user
   var user = {
-    name: req.body.name,
-    age: req.body.age,
+    uname: req.body.uname,
     email: req.body.email,
   };
-  User.findByIdAndUpdate(
-    req.params.id,
-    { $set: user },
-    { new: true },
-    (err, doc) => {
+  User.findByIdAndUpdate(req.params.id,{ $set: user },{ new: true },(err, doc) => {
       if (!err) {
-        res.send(doc);
+        res.json({success:true,data:doc});
       } else {
-        console.log("Error in user updating: " + err);
+        return res.json({success:false,message:"Duplicate Email"});
       }
     }
   );
@@ -152,14 +147,14 @@ router.put("/:id", (req, res) => {
 //delete user
 router.delete("/:id", (req, res) => {
   if (!Types.ObjectId.isValid(req.params.id)) {
-    return res.status(400).send(`No such user:${req.params.id}`);
+    return res.json({success:false,message:"User not found"});
   }
 
   User.findByIdAndRemove(req.params.id, (err, doc) => {
     if (!err) {
-      res.send(doc);
+      res.json({success:true,data:doc});
     } else {
-      console.log("Error in user deleting: " + err);
+      return res.json({success:false,message:"User not found"});
     }
   });
 });
