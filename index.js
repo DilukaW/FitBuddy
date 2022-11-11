@@ -47,7 +47,7 @@ app.use((err,req,res,next)=>{
 });
 
 
-//server angular-app in nidejs
+//server angular-app in nodejs
 app.use(express.static(path.join(__dirname,'public')));
 
 app.get('*',(req,res)=>{
