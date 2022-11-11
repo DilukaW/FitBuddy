@@ -46,11 +46,14 @@ app.use((err,req,res,next)=>{
 
 });
 
+
+//server angular-app in nidejs
 app.use(express.static(path.join(__dirname,'public')));
 
 app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'public/index.html'))
 })
+
 //start server
 app.listen(port,()=>console.log('started at port:'+port));
 
