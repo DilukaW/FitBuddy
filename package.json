@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
-  
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+   
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -24,8 +26,19 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
   },
-  "description": "",
+  "engines": {
+    "node": "16.x"
+  },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DilukaW/GymBuddy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DilukaW/GymBuddy/issues"
+  },
+  "homepage": "https://github.com/DilukaW/GymBuddy#readme",
+  "description": ""
 }
