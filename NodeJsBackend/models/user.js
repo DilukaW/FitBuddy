@@ -41,7 +41,7 @@ var User=mongoose.model('UserDb',{
 
 });*/
 
-//Validation
+// Email validation
 userSchema.path('email').validate((val)=>{
   regex=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   return regex.test(val); 
