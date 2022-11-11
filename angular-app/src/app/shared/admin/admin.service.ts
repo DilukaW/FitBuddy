@@ -22,13 +22,13 @@ export class AdminService {
     let headers={
       'Authorization':"Bearer "+sessionStorage.getItem('token')
     }
-    return this.http.post('admin/login',data);
+    return this.http.post(environment.baseUrl+'admin/login',data);
   }
 
   getAdminProfile():Observable<any>{
     let headers={
       'Authorization':"Bearer "+sessionStorage.getItem('token')
     }
-    return this.http.get('admin/profile',{headers:headers});
+    return this.http.get(environment.baseUrl+'admin/profile',{headers:headers});
   }
 }

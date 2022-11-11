@@ -27,7 +27,7 @@ export class UserService {
   constructor(private http:HttpClient) { }
 
   registerUser(user:regUser):Observable<any>{
-    return this.http.post(environment.baseUrl+'users/register',user);
+    return this.http.post('users/register',user);
   }
   
   loginUser(data: any):Observable<any>{

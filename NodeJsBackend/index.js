@@ -12,11 +12,11 @@ import { connectDb } from './database/connection.js';
 
 import cors from 'cors';
 
-const port=process.env.PORT||8080
+const port=process.env.PORT|| 3000
 
 var app=express();
 app.use(bodyParser.json());
-app.use(cors({origin:'https://fitbuddyweb.herokuapp.com'}));
+app.use(cors({origin:'http://localhost:4200'}));
 
 
 //initializing the database connection
