@@ -16,7 +16,7 @@ var trainerSchema = new mongoose.Schema({
   },
     area:{
         type: String,
-        required: "Area cannot be empty", 
+        required: "Training area cannot be empty", 
     },
     description:{
         type: String,
