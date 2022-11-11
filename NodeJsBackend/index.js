@@ -12,6 +12,7 @@ import { connectDb } from './database/connection.js';
 
 import cors from 'cors';
 
+const port=process.env.PORT||8080
 
 var app=express();
 app.use(bodyParser.json());
@@ -39,6 +40,6 @@ app.use((err,req,res,next)=>{
 });
 
 //start server
-app.listen(3000,()=>console.log('started at port:3000'));
+app.listen(port,()=>console.log('started at port:'+port));
 
 
