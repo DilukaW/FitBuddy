@@ -34,17 +34,17 @@ export class UserService {
     let headers={
       'Authorization':"Bearer "+sessionStorage.getItem('token')
     }
-    return this.http.post(environment.baseUrl+'users/login',data);
+    return this.http.post('users/login',data);
   }
 
   getUserProfile():Observable<any>{
     let headers={
       'Authorization':"Bearer "+sessionStorage.getItem('token')
     }
-    return this.http.get(environment.baseUrl+'users/profile',{headers:headers});
+    return this.http.get('users/profile',{headers:headers});
   }
   updateUserById(id:string,data: any):Observable<any>{
   
-    return this.http.put(environment.baseUrl+'users/'+id,data);
+    return this.http.put('users/'+id,data);
   }
 }

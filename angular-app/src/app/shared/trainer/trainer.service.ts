@@ -20,39 +20,39 @@ export class TrainerService {
 
   constructor(private http:HttpClient) { }
   registerTrainer(trainer:Trainer):Observable<any>{
-    return this.http.post(environment.baseUrl+'trainer/register',trainer);
+    return this.http.post('trainer/register',trainer);
   }
   
   loginTrainer(data: any):Observable<any>{
     let headers={
       'Authorization':"Bearer "+sessionStorage.getItem('token')
     }
-    return this.http.post(environment.baseUrl+'trainer/login',data);
+    return this.http.post('trainer/login',data);
   }
 
   getTrainerProfile():Observable<any>{
     let headers={
       'Authorization':"Bearer "+sessionStorage.getItem('token')
     }
-    return this.http.get(environment.baseUrl+'trainer/profile',{headers:headers});
+    return this.http.get('trainer/profile',{headers:headers});
   }
 
   getAllTrainers():Observable<any>{
    
-    return this.http.get(environment.baseUrl+'trainer/all',);
+    return this.http.get('trainer/all',);
 
   }
   getTrainerById(id:string):Observable<any>{
   
-    return this.http.get(environment.baseUrl+'trainer/'+id);
+    return this.http.get('trainer/'+id);
   }
   updateTrainerById(id:string,data: any):Observable<any>{
   
-    return this.http.put(environment.baseUrl+'trainer/'+id,data);
+    return this.http.put('trainer/'+id,data);
   }
   deleteTrainerById(id:string):Observable<any>{
   
-    return this.http.delete(environment.baseUrl+'trainer/'+id);
+    return this.http.delete('trainer/'+id);
   }
 
 }
