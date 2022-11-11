@@ -27,7 +27,7 @@ adminSchema.path('email').validate((val)=>{
     return regex.test(val); 
   },'invalid email');
   
-
+// Password encryption
   adminSchema.pre("save", function (next) {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(this.password, salt, (err, hash) => {
