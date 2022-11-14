@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-light navbar-expand-md py-3 sticky-top">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center" routerLink="" routerLinkActive="active-link"
@@ -51,7 +52,23 @@
           >
         </li>
       </ul>
-      <button class="btn btn-primary" type="button" routerLink="login">Log In</button>
+      
+      
+          <div ngbDropdown class="dropdown" *ngIf="userSession || adminSession else default">
+            <button ngbDropdownToggle class="btn " type="button" id="dropdownMenuButton1" aria-expanded="false">
+          {{data.uname}}
+          </button>
+            <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+              <li><a class="font-weight-bold" ngbDropdownItem routerLink={{path}}><i class="bi bi-speedometer2 "></i> Dashboard</a></li>
+              <li><a class="font-weight-bold" ngbDropdownItem (click)="logOut()" routerLink=""><i class="bi bi-box-arrow-in-left"></i> Log out</a></li>
+              
+            </ul>
+          </div>
+     
+      <ng-template #default>
+        <button class="btn btn-primary" type="button" routerLink="login">Log In</button>
+      </ng-template>
+      
      
     </div>
   </div>

@@ -1,21 +1,25 @@
+<!-- navbar -->
+<app-navbar></app-navbar>
+
 <router-outlet></router-outlet>
 <!-- <p>admin-profile works!</p>
 {{data | json}}
 <button (click)="logOut()">LogOut</button> -->
 
-<div class="container">
-    <!-- success message -->
-    <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
-        {{successMsg}}
-    </div>
-    <!-- error message -->
-    <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
-        {{errorMsg}}
-    </div>
-</div>
+
 
 <!-- profile -->
 <div class="container rounded bg-white mt-5 mb-5 py-2">
+    <div class="container pposition-fixed">
+        <!-- success message -->
+        <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
+            {{successMsg}}
+        </div>
+        <!-- error message -->
+        <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
+            {{errorMsg}}
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-3 border-end border-dark">
             <h1 class="text-center">Admin Dashboard</h1>
@@ -42,11 +46,14 @@
             <!-- Tabs navs -->
 
             <!-- Tabs content -->
+
+            <!-- add trainer form -->
             <div class="tab-content">
                 <div *ngIf=" activeTab =='add user' ">
                     <div class="col-md-8 mx-auto">
                         <div class="p-3 py-2">
                             <form [formGroup]="trainerUpdateForm" (ngSubmit)="onSubmit(trainerUpdateForm)">
+
 
                                 <div class="row mt-2">
                                     <div class="col">
@@ -115,35 +122,76 @@
                     </div>
                 </div>
             </div>
+
+            <!-- display all trainers -->
             <div *ngIf=" activeTab =='update user' ">
-                <div class="tab-content">
+                <div class="tab-content" *ngIf="trainers?.length">
                     <div class="row p-3">
                         <div class="col-md-5 border-end border-dark">
                             <div class="card my-2">
-                                <div class="card-body p-0 " (click)="getTrainer(trainers[0]._id,0)"
-                                    [ngClass]="{active1: isActive(0)}"><span><img class="rounded-circle mx-2"
-                                            width="40px"
-                                            src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                             
+                                <div class="card-body p-0 "   (click)="getTrainer(trainers[0]._id,0)"
+                                    [ngClass]="{active1: isActive(0)}"><span>
+                                        <img class="rounded-circle m-2 x" *ngIf="trainers[0].image!='undefined' && trainers[0].image else default" 
+                                        
+                                            src={{trainers[0].image}}>
+                                            <ng-template #default>
+                                
+                                                <img class="rounded-circle mt-0 "
+                                                width="40px"
+                                                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                            </ng-template>
                                         {{ trainers[0].uname }}
                                         <button class="btn text-dark bg-transparent float-end p-1 m-2"
                                             (click)="deleteTrainer(trainers[0]._id)"><i
                                                 class="bi bi-trash-fill"></i></button>
-                                    </span></div>
+                                    </span>
+                                </div>
                             </div>
+                           
+                    
                             <div class="card my-2" *ngFor="let trainer of trainers | slice:1"
                                 [ngClass]="{active1: isActive(trainer)}">
-                                <div class="card-body p-0 " (click)="getTrainer(trainer._id,trainer)"><span><img
-                                            class="rounded-circle mx-2" width="40px"
-                                            src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                <div class="card-body p-0 " (click)="getTrainer(trainer._id,trainer)">
+                                    <span><img *ngIf="trainer.image!='undefined' && trainer.image; else default" 
+                                            class="rounded-circle m-2 x" 
+                                            src={{trainer.image}}>
+                                            <ng-template #default>
+                                
+                                                <img class="rounded-circle mt-0 "
+                                                width="40px"
+                                                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                            </ng-template>
                                         {{ trainer.uname }}
                                         <button class="btn text-dark bg-transparent float-end p-1 m-2"
                                             (click)="deleteTrainer(trainer._id)"><i
                                                 class="bi bi-trash-fill"></i></button>
-                                    </span></div>
+                                    </span>
+                                </div>
                             </div>
+                        
                         </div>
+                        <!-- update trainer details form -->
                         <div class="col-md-7">
+                            <div  *ngIf="trainers?.length" >
                             <form [formGroup]="updateForm" (ngSubmit)="update(updateForm)">
+
+                                <div class="d-flex justify-content-center a mt-0">
+                                 
+                                    <img class="rounded-circle mt-0" id="selectedImg" *ngIf="updateTrainerImg!='undefined' && updateTrainerImg; else default" 
+                                    width="120px"
+                                    [src]="updateTrainerImg" alt="profile image">
+                                    <ng-template #default>
+                                
+                                    <img class="rounded-circle mt-0 "
+                                    width="120px"
+                                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                </ng-template>
+                                    <div class="btn rounded-circle b">
+                                        <label class="form-label text-white m-1" for="customFile2"><i class="bi bi-camera-fill"></i></label>
+                                        <input type="file" name="file" class="form-control d-none" id="customFile2" (change)="updateTrainerImage($event)"/>
+                                    </div>
+                                </div>
 
                                 <div class="row mt-2">
                                     <div class="col">
@@ -199,6 +247,7 @@
                                         Trainer</button>
                                 </div>
                             </form>
+                        </div>
                         </div>
                     </div>
                 </div>

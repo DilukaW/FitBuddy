@@ -29,7 +29,9 @@ age: {
    required: "password cannot be empty",
    minlength:[8,'Password must have al least 8 characters']
 },
-  saltSecret: String,
+image:{
+  type:String
+},
 });
 // user model
 /*

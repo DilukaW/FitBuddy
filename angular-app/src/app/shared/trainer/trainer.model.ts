@@ -4,5 +4,6 @@ export interface Trainer {
     email:string,
     area:string,
     description:string,
-    password:string
+    password:string,
+    image:string,
 }

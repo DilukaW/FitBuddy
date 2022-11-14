@@ -54,7 +54,7 @@ export class UserLoginComponent implements OnInit {
           if (res.success) {
             this.showSuccessMsg = true;
             setTimeout(() => (this.showSuccessMsg = false), 4000);
-            sessionStorage.setItem('token', res.token);
+            sessionStorage.setItem('user-token', res.token);
             this.router.navigate(['user/profile']);
           } else {
             this.errorMsg = res.message
@@ -113,7 +113,7 @@ export class UserLoginComponent implements OnInit {
           if (res.success) {
             this.showSuccessMsg = true;
             setTimeout(() => (this.showSuccessMsg = false), 4000);
-            sessionStorage.setItem('token', res.token);
+            sessionStorage.setItem('admin-token', res.token);
             
             this.router.navigate(['admin/profile']);
             

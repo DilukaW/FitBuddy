@@ -27,11 +27,17 @@ export class UserProfileComponent implements OnInit {
   uname:any;
   gender:any;
   age!:Number;
+  
+
+  //profile image
+  imageData!:string
+  profileImg!:string;
 
   constructor(private userService: UserService,private router:Router) {}
 
   ngOnInit(): void {
     this.getDetails();  
+   
 
     // form validation
     this.userUpdateForm = new FormGroup({
@@ -40,9 +46,12 @@ export class UserProfileComponent implements OnInit {
       age: new FormControl(Number(null), [Validators.required,]),
 
       gender: new FormControl(''),
+     
+
+      
     });
 
-    this.userUpdateForm.get('gender')?.setValue('Male');
+    //this.userUpdateForm.get('gender')?.setValue('Male');
    
   }
 
@@ -61,14 +70,21 @@ onTabClick(tab: string) {
 
 // update user data submit
   update(form: FormGroup) {
+    const formData=new FormData();
+    formData.append('file',this.imageData);
+    formData.append('uname',form.controls['uname'].value);
+    formData.append('email',form.controls['email'].value);
+    formData.append('age',form.controls['age'].value);
+    formData.append('gender',form.controls['gender'].value);
     console.log(this.userUpdateForm.value);
     this.userService
-      .updateUserById(this.selectedUserId, form.value)
+      .updateUserById(this.selectedUserId,formData,formData)
       .subscribe({
         next: (res) => {
           if (res.success) {
             this.successMsg = 'User Details Updated Successfully';
             this.showSuccessMsg = true;
+
             setTimeout(() => (this.showSuccessMsg = false), 4000);
         
           } else {
@@ -90,6 +106,27 @@ onTabClick(tab: string) {
       });
   }
 
+  //profile image upload function
+  onImageSelect(event:Event){
+    const file=(event.target as HTMLInputElement).files![0];
+    this.userUpdateForm.patchValue({image:file});
+    const allowedType=["image/png","image/jpeg","image/jpg"];
+
+   if(file &&allowedType.includes(file.type)){
+    const reader=new FileReader();
+    reader.onload=()=>{
+      this.imageData=reader.result as string;
+    }
+    reader.readAsDataURL(file);
+   }
+
+
+
+    
+
+  }
+
+  //get user details
   getDetails() {
     this.userService.getUserProfile().subscribe({
       next: (res) => {
@@ -100,8 +137,11 @@ onTabClick(tab: string) {
            this.uname=this.data.uname;
            this.gender=this.data.gender;
            this.age=this.data.age;
-
+           this.imageData=this.data.image
            this.selectedUserId=this.data._id;
+
+           this.userUpdateForm.get('gender')?.setValue(this.data.gender);
+           this.profileImg=this.data.image;
 
         }
         else{
@@ -116,11 +156,7 @@ onTabClick(tab: string) {
       },
     });
   }
-  logOut(){
-    
-    localStorage.clear();
-    this.router.navigate(['/login']);
-  }
+ 
 
     // reset form field values
     restForm(form: FormGroup) {
@@ -131,9 +167,10 @@ onTabClick(tab: string) {
         age:Number(null),
         email:" ",
         password:" ",
+        image:" "
       };
       form.reset();
       this.userUpdateForm.get('gender')?.setValue('Male');
-   
+      this.imageData="";
     }
 }

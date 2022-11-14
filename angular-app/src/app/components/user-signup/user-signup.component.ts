@@ -40,13 +40,13 @@ export class UserSignupComponent implements OnInit {
   }
 
   // form submit function
-  onSubmit(form: FormGroup) {
+ onSubmit(form: FormGroup) {
     console.log(form.value);
     this.userService.registerUser(form.value).subscribe({
       next: (res) => {
         this.showSuccessMsg = true;
-        setTimeout(() => (this.showSuccessMsg = false), 4000);
-        this.router.navigate(['/profile']);
+        setTimeout( () =>(this.showSuccessMsg = false), 4000);       
+        
       },
       error: (err) => {
         if (err.status == 422) {
@@ -63,6 +63,9 @@ export class UserSignupComponent implements OnInit {
       },
       complete: () => {
         this.restForm(form);
+       
+        
+        
       },
     });
     /*
@@ -95,6 +98,7 @@ export class UserSignupComponent implements OnInit {
     age:parseInt(""),
     email:" ",
     password:" ",
+    image:""
     };
     form.reset();
     this.signupForm.get('gender')?.setValue('Male');

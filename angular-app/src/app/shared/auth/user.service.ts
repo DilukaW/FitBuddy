@@ -22,7 +22,9 @@ export class UserService {
     gender:" ",
     age:Number(null),
     email:" ",
+    image:" ",
     password:" ",
+    
   };
   constructor(private http:HttpClient) { }
 
@@ -32,19 +34,21 @@ export class UserService {
   
   loginUser(data: any):Observable<any>{
     let headers={
-      'Authorization':"Bearer "+sessionStorage.getItem('token')
+      'Authorization':"Bearer "+sessionStorage.getItem('user-token')
     }
     return this.http.post('users/login',data);
   }
 
   getUserProfile():Observable<any>{
     let headers={
-      'Authorization':"Bearer "+sessionStorage.getItem('token')
+      'Authorization':"Bearer "+sessionStorage.getItem('user-token')
     }
     return this.http.get('users/profile',{headers:headers});
   }
-  updateUserById(id:string,data: any):Observable<any>{
+  updateUserById(id:string,image:any,data: any):Observable<any>{
   
-    return this.http.put('users/'+id,data);
+    return this.http.put('users/'+id,image,data);
   }
+ 
+  
 }

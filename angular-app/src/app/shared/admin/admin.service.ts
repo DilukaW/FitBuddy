@@ -19,16 +19,14 @@ export class AdminService {
   constructor(private http:HttpClient) { }
 
   loginAdmin(data: any):Observable<any>{
-    let headers={
-      'Authorization':"Bearer "+sessionStorage.getItem('token')
-    }
-    return this.http.post('admin/login',data);
+ 
+    return this.http.post('admins/login',data);
   }
 
   getAdminProfile():Observable<any>{
     let headers={
-      'Authorization':"Bearer "+sessionStorage.getItem('token')
+      'Authorization':"Bearer "+sessionStorage.getItem('admin-token')
     }
-    return this.http.get('admin/profile',{headers:headers});
+    return this.http.get('admins/profile',{headers:headers});
   }
 }

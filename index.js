@@ -3,10 +3,6 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import passport from 'passport';
 
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 
 import  apiRoutes  from './controllers/apiControllers.js';
@@ -17,7 +13,11 @@ import { connectDb } from './database/connection.js';
 
 import cors from 'cors';
 import path from 'path';
-import e from 'cors';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 
 const port=process.env.PORT|| 3000
 
@@ -32,8 +32,8 @@ connectDb();
 //routes
 app.use('/',apiRoutes);
 app.use('/users/',userRoutes);
-app.use('/admin/',adminRoutes);
-app.use('/trainer/',trainerRoutes);
+app.use('/admins/',adminRoutes);
+app.use('/trainers/',trainerRoutes);
 
 //error handler
 app.use((err,req,res,next)=>{
@@ -58,3 +58,4 @@ app.get('*',(req,res)=>{
 app.listen(port,()=>console.log('started at port:'+port));
 
 
+export{app}

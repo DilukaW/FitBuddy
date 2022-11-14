@@ -10,5 +10,6 @@ export interface regUser{
     gender:string,
     age:number,
     email:string,
+    image:string,
     password:string
 }

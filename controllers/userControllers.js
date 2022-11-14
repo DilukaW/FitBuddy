@@ -4,13 +4,15 @@ import passport from "passport";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { checkAuth } from "../middleware/checkAuth.js";
-
+import multer from 'multer';
 import mongoose, { Types } from "mongoose";
+
+const upload=multer({dest:'image'})
 
 const router = express.Router();
 
 // create user
-router.post("/register", (req, res, next) => {
+router.post("/register",async  (req, res, next) => {
   //new user
   var user = new User({
     uname: req.body.uname,
@@ -21,6 +23,7 @@ router.post("/register", (req, res, next) => {
   });
 
   //save user
+
   user.save((err, doc) => {
     if (!err) {
       res.send(doc);
@@ -72,6 +75,7 @@ router.get("/profile",checkAuth,(req,res)=>{
   .exec().then((result)=>{
 
     res.json({success:true,data:result});
+    console.log(result)
 
   }).catch(err=>{
     res.json({success:false,message:"server error"});
@@ -85,7 +89,7 @@ router.get("/all", (req, res) => {
     return res.json({success:false,message:"Users not found"});
    }
    else{
-    res.json({success:true,data:result});
+    res.status(200).json({success:true,data:result});
 
    }
  }).catch(err=>{
@@ -117,6 +121,7 @@ router.get("/:id", (req, res) => {
      }
      else{
       res.json({success:true,data:result});
+      console.log(result)
   
      }
    }).catch(err=>{
@@ -125,8 +130,8 @@ router.get("/:id", (req, res) => {
   });
 });
 
-//update user
-router.put("/:id", (req, res) => {
+//update user and add profile with multer
+router.put("/:id", upload.single('file'),(req, res) => {
   
   if (!Types.ObjectId.isValid(req.params.id)) {
     return res.json({success:false,message:"User not found"});
@@ -137,10 +142,12 @@ router.put("/:id", (req, res) => {
     email: req.body.email,
     gender:req.body.gender,
     age:req.body.age,
+    image:req.body.file
   };
   User.findByIdAndUpdate(req.params.id,{ $set: user },{ new: true },(err, doc) => {
       if (!err) {
         res.json({success:true,data:doc});
+       
       } else {
         return res.json({success:false,message:"Duplicate Email"});
       }

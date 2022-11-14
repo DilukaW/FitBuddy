@@ -15,3 +15,35 @@ li{
 .active1{
     border-bottom:4px solid var(--secondary-color) ;
 }
+.a{
+    position: relative;
+}
+.b{
+  position: absolute;
+  top: 90px;
+  margin-left: 70px;
+  
+}
+.x{
+    min-width: 40px !important;
+    max-width: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+  
+}
+#selectedImg{
+    min-width: 120px !important;
+    max-width: 120px !important;
+    min-height: 120px !important;
+    max-height: 120px !important;
+  
+}
+@media (max-width:767px) {
+
+    .border
+    {
+      border: none !important;
+      }
+
+
+    }

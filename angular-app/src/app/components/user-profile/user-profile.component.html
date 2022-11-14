@@ -1,3 +1,6 @@
+<!-- navbar -->
+<app-navbar></app-navbar>
+    
 <router-outlet></router-outlet>
 <!-- <p>admin-profile works!</p>
 {{data | json}}
@@ -21,11 +24,17 @@
             <h1 class="text-center">My Dashboard</h1>
             <div class="d-flex flex-column align-items-center text-center p-3 py-5"
            >
-            <img class="rounded-circle mt-5"
-                    width="150px"
-                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+           <img class="rounded-circle mt-0" id="selectedImg" *ngIf="profileImg; else default" 
+           width="120px"
+           [src]="profileImg" alt="profile image">
+           <ng-template #default>
+       
+           <img class="rounded-circle mt-0 "
+           width="120px"
+           src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+       </ng-template>
                     <span
-                    class="font-weight-bold" >Name:{{uname}}
+                    class="font-weight-bold mt-2" >Name:{{uname}}
                 </span>
                 <span
                     class="text-black-50" >Email:{{email}}</span>
@@ -66,20 +75,26 @@
                                 
 
                                 <div class="d-flex justify-content-center a mt-0">
+                                 
+                                    <img class="rounded-circle mt-0" id="selectedImg" *ngIf="imageData; else default" 
+                                    width="120px"
+                                    [src]="imageData" alt="profile image">
+                                    <ng-template #default>
+                                
                                     <img class="rounded-circle mt-0 "
                                     width="120px"
                                     src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                                
+                                </ng-template>
                                     <div class="btn rounded-circle b">
                                         <label class="form-label text-white m-1" for="customFile2"><i class="bi bi-camera-fill"></i></label>
-                                        <input type="file" class="form-control d-none" id="customFile2" />
+                                        <input type="file" name="file" class="form-control d-none" id="customFile2" (change)="onImageSelect($event)"/>
                                     </div>
                                 </div>
            
 
                                 <div class="row">
                                     <div class="col">
-                                        <label class="form-label">Name</label>
+                                        <label class="form-label ">Name</label>
                                         <input type="text" class="form-control" name="uname" placeholder="Enter Name" [ngModel]="uname" 
                                             formControlName="uname" [ngClass]="(userUpdateForm.get('uname')!.touched || userUpdateForm.get('uname')!.dirty)&&
                                         userUpdateForm.get('uname')!.errors? 'is-invalid':'' ">

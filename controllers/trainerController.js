@@ -4,8 +4,10 @@ import passport from "passport";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { checkAuth } from "../middleware/checkAuth.js";
+import multer from "multer";
 
 import mongoose, { Types } from "mongoose";
+const upload=multer({dest:'image'})
 
 const router = express.Router();
 
@@ -23,6 +25,7 @@ router.post("/register", (req, res, next) => {
       area:req.body.area,
       description:req.body.description,
       password: req.body.password,
+      
     });
   
     //save trainer
@@ -119,7 +122,7 @@ router.get("/:id", (req, res) => {
 
 
 //update trainer
-router.put("/:id", (req, res) => {
+router.put("/:id",upload.single('file'), (req, res) => {
   
   if (!Types.ObjectId.isValid(req.params.id)) {
     return res.json({success:false,message:"User not found"});
@@ -130,6 +133,7 @@ router.put("/:id", (req, res) => {
     email: req.body.email,
     area:req.body.area,
     description:req.body.description,
+    image:req.body.file
   };
   Trainer.findByIdAndUpdate(req.params.id,{ $set: trainer },{ new: true },(err, doc) => {
       if (!err) {

@@ -27,6 +27,9 @@ var trainerSchema = new mongoose.Schema({
      required: "password cannot be empty",
      minlength:[8,'Password must have al least 8 characters']
   },
+  image:{
+    type:String
+  },
 });
 
 //Validation

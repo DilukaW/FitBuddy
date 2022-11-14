@@ -3,6 +3,7 @@ import { Admin } from "../models/admin.js";
 import passport from "passport";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+
 import { checkAuth } from "../middleware/checkAuth.js";
 
 import mongoose, { Types } from "mongoose";
@@ -70,6 +71,7 @@ router.post("/login", (req, res) => {
   //login admin profile
 router.get("/profile",checkAuth,(req,res)=>{
     const adminId=req.userData.adminId;
+    console.log(adminId)
     Admin.findById(adminId)
     .exec().then((result)=>{
   
