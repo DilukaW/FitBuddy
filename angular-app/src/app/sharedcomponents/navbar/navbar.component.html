@@ -1,74 +1,55 @@
-
 <nav class="navbar navbar-light navbar-expand-md py-3 sticky-top">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center" routerLink="" routerLinkActive="active-link"
-      ><span
-        class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"
-        ><svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          fill="currentColor"
-          viewBox="0 0 16 16"
-          class="bi bi-bezier"
-        ></svg></span
-      ><span>Gym Buddy</span></a
-    ><button
-      data-bs-toggle="collapse"
-      class="navbar-toggler"
-      data-bs-target="#navcol-3"
-    >
-      <span class="visually-hidden">Toggle navigation</span
-      ><span class="navbar-toggler-icon"></span>
+    <a class="navbar-brand d-flex align-items-center" routerLink="" routerLinkActive="active-link"><span
+        class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"><svg
+          xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16"
+          class="bi bi-bezier"></svg></span><span>Gym Buddy</span></a><button data-bs-toggle="collapse"
+      class="navbar-toggler" data-bs-target="#navcol-3">
+      <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navcol-3">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLink=""
-            routerLinkActive="active-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <a class="nav-link" routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
             Home
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            routerLinkActive="active-link"
-            routerLink="trainers"
-            >Trainers</a
-          >
+          <a class="nav-link" routerLinkActive="active-link" routerLink="trainersDetails" [routerLinkActiveOptions]="{ exact: true }">Trainers</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" routerLinkActive="active-link"
-            >Exercises</a
-          >
+          <a class="nav-link" href="#" routerLinkActive="active-link">Exercises</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" routerLinkActive="active-link"
-            >About Us</a
-          >
+          <a class="nav-link" href="#" routerLinkActive="active-link">About Us</a>
         </li>
       </ul>
-      
-          <div ngbDropdown class="dropdown" *ngIf="userSession || adminSession else default">
-            <button ngbDropdownToggle class="btn " type="button" id="dropdownMenuButton1" aria-expanded="false">
+
+      <div ngbDropdown class="dropdown" *ngIf="userSession || adminSession || trainerSession else default">
+        <button ngbDropdownToggle class="btn p-0  bg-transparent" type="button" id="dropdownMenuButton1" aria-expanded="false">
+          <img class="rounded-circle x" *ngIf="data.image!='undefined' && data.image else default"
+            src={{data.image}}>
+          <ng-template #default>
+
+            <img class="rounded-circle " width="40px"
+              src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+          </ng-template>
           {{data.uname}}
-          </button>
-            <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
-              <li><a class="font-weight-bold" ngbDropdownItem routerLink={{path}}><i class="bi bi-speedometer2 "></i> Dashboard</a></li>
-              <li><a class="font-weight-bold" ngbDropdownItem (click)="logOut()" routerLink=""><i class="bi bi-box-arrow-in-left"></i> Log out</a></li>
-              
-            </ul>
-          </div>
-     
+        </button>
+        <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+          <li><a class="font-weight-bold" ngbDropdownItem routerLink={{path}}><i class="bi bi-speedometer2 "></i>
+              Dashboard</a></li>
+          <li><a class="font-weight-bold" ngbDropdownItem (click)="logOut()" routerLink=""><i
+                class="bi bi-box-arrow-in-left"></i> Log out</a></li>
+
+        </ul>
+      </div>
+
       <ng-template #default>
         <button class="btn btn-primary" type="button" routerLink="login">Log In</button>
       </ng-template>
-      
-     
+
+
     </div>
   </div>
 </nav>

@@ -26,14 +26,14 @@ export class TrainerService {
   
   loginTrainer(data: any):Observable<any>{
     let headers={
-      'Authorization':"Bearer "+sessionStorage.getItem('token')
+      'Authorization':"Bearer "+sessionStorage.getItem('trainer-token')
     }
     return this.http.post('trainers/login',data);
   }
 
   getTrainerProfile():Observable<any>{
     let headers={
-      'Authorization':"Bearer "+sessionStorage.getItem('token')
+      'Authorization':"Bearer "+sessionStorage.getItem('trainer-token')
     }
     return this.http.get('trainers/profile',{headers:headers});
   }

@@ -12,7 +12,7 @@ import { TrainerProfileComponent } from './components/trainer-profile/trainer-pr
 const routes: Routes = [
 
   {path:"",component:HomeComponent},
-  {path:"trainers",component:TrainersComponent},
+  {path:"trainersDetails",component:TrainersComponent},
   {path:"login",component:UserLoginComponent},
   {path:"register",component:UserSignupComponent},
   {path:"user/profile",component:UserProfileComponent},

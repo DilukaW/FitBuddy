@@ -33,9 +33,12 @@ export class UserProfileComponent implements OnInit {
   imageData!:string
   profileImg!:string;
 
+  loaded:boolean=false;
+
   constructor(private userService: UserService,private router:Router) {}
 
   ngOnInit(): void {
+  
     this.getDetails();  
    
 
@@ -128,6 +131,7 @@ onTabClick(tab: string) {
 
   //get user details
   getDetails() {
+    
     this.userService.getUserProfile().subscribe({
       next: (res) => {
         if (res.success) {
