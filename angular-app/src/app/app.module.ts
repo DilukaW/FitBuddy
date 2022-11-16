@@ -18,6 +18,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { TrainerProfileComponent } from './components/trainer-profile/trainer-profile.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
+import { ExerciseComponent } from './components/home/exercise/exercise/exercise.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { TrainersComponent } from './components/trainers/trainers.component';
     AdminProfileComponent,
     TrainerProfileComponent,
     TrainersComponent,
+    ExerciseComponent,
     
   ],
   imports: [

@@ -6,15 +6,15 @@ const router=express.Router();
 
  
   //get List of bodyparts
-  //http://localhost:3000/exercises/
+  
 router.get('/bodyPartList',(req,res)=>{
     console.log("/ called"); 
     (async()=>{
         try{
             const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises/bodyPartList',options);
+            res.json({success:true,data:response.data});
             console.log(response.data);
     
-            res.send(response.data);
         }catch{
             console.log(error);
         }
