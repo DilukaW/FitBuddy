@@ -1,0 +1,44 @@
+<div class="container p-4 ">
+    <h1 id="heading">Target Body Area</h1>
+
+
+    <div class="mt-3 mb-5 ms-2 row  row-cols-8  row-cols-xs-3 row-cols-sm-8 row-col-md-10 g-2">
+
+        <div class="col" *ngFor="let bodyPart of bodyParts"  >
+            <div class="card rounded card-b"[ngClass]="{active1: isActive(bodyPart)}"(click)="getSpecificExercise(bodyPart)" >
+                <div class="card-body d-flex align-items-center justify-content-center" >
+                    <p class="card-text text-uppercase ">{{bodyPart}} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mb-5 " >
+    <h1 id="heading">Explore Exercisers</h1>
+    <div class="card rounded mx-4 mb-3 mt-3 p-4"id="exercise">
+       <h5 id="heading" class="text-uppercase">{{type}}</h5> 
+      <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+        <div class="col"  *ngFor="let exercise of allExercises | slice :0:8">
+          <div class="card gif rounded" id="exercise-card">
+            <div class="row">
+                <img [src]="exercise.gifUrl" alt="">
+            </div>
+            <div class="row" id="row">
+                <div class="card-body" >
+                    
+                    
+                        <div class="card-text text-center text-uppercase" >{{exercise.name}}</div>
+                        
+                    
+                  </div>
+            </div>
+         
+
+          
+          </div>
+        </div>
+    </div>
+    </div>
+

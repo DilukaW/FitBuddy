@@ -18,7 +18,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { TrainerProfileComponent } from './components/trainer-profile/trainer-profile.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
-import { ExerciseComponent } from './components/home/exercise/exercise/exercise.component';
+
+import { ExercisesComponent } from './components/exercises/exercises.component';
+import { ExerciseSectionComponent } from './components/home/exercise-section/exercise-section.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { ExerciseComponent } from './components/home/exercise/exercise/exercise.
     AdminProfileComponent,
     TrainerProfileComponent,
     TrainersComponent,
-    ExerciseComponent,
+ 
+    ExercisesComponent,
+    ExerciseSectionComponent,
     
   ],
   imports: [

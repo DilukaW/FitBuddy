@@ -13,4 +13,16 @@ export class ApiService {
   
     return this.http.get('bodyPartList');
   }
+
+  getAllExercises():Observable<any>{
+  
+    return this.http.get('exercises');
+  }
+ getExercisesByBodyPart(part:string):Observable<any>{
+  
+   return this.http.get('part/'+part);
+ }
+
+ 
+ 
 }

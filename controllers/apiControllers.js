@@ -23,17 +23,16 @@ router.get('/bodyPartList',(req,res)=>{
 });
 
 //get List of exercises by bodyPart
-router.get('/part',(req,res)=>{
+router.get('/part/:part',(req,res)=>{
     console.log("/ called"); 
     (async()=>{
         try{
             let part="chest";
-            const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises/bodyPart/'+part,options);
+            const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises/bodyPart/'+req.params.part,options);
+            res.json({success:true,data:response.data});
             console.log(response.data);
-    
-            res.send(response.data);
         }catch{
-            console.log(error);
+            res.json({success:false,message:"Server Error"});
         }
         
     })();
@@ -113,9 +112,9 @@ router.get('/exercises',(req,res)=>{
     (async()=>{
         try{
             const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises',options);
+          res.json({success:true,data:response.data});
             console.log(response.data);
     
-            res.send(response.data);
         }catch{
             console.log(error);
         }
