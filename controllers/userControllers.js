@@ -155,6 +155,38 @@ router.put("/:id", upload.single('file'),(req, res) => {
   );
 });
 
+router.put("/trainers/:id", (req, res) => {
+  
+  if (!Types.ObjectId.isValid(req.params.id)) {
+    return res.json({success:false,message:"User not found"});
+  }
+
+  User.updateOne({_id:req.params.id},{ $push:{trainersId:req.body.trainersId }}
+  ,(err, doc) => {
+      if (!err) {
+        
+        User.findById(req.params.id).exec().then((result) => {
+          if(result.length<1){
+            
+            return res.json({success:false,message:"User not found"});
+            
+           }
+           else{
+            res.json({success:true,data:result});
+        
+           }
+         }).catch(err=>{
+          res.json({success:false,message:"server error"});
+      
+        });
+      } 
+      else{
+        return res.json({success:false,message:"User all ready enrolled"});
+      }
+    }
+  );
+});
+
 //delete user
 router.delete("/:id", (req, res) => {
   if (!Types.ObjectId.isValid(req.params.id)) {

@@ -122,25 +122,60 @@ router.get("/:id", (req, res) => {
 
 
 //update trainer
-router.put("/:id",upload.single('file'), (req, res) => {
+ router.put("/:id",upload.single('file'), (req, res) => {
+  
+   if (!Types.ObjectId.isValid(req.params.id)) {
+     return res.json({success:false,message:"User not found"});
+   }
+  
+   var trainer = {
+     uname: req.body.uname,
+     email: req.body.email,
+     area:req.body.area,
+     description:req.body.description,
+     image:req.body.file,
+    
+   };
+  
+   Trainer.findByIdAndUpdate(req.params.id,{ $set: trainer },{ new: true },(err, doc) => {
+       if (!err) {
+        
+         res.json({success:true,data:doc});
+       } else {
+         return res.json({success:false,message:"Duplicate Email"});
+       }
+     }
+   );
+ });
+
+ //add trainees
+router.put("/trainees/:id", (req, res) => {
   
   if (!Types.ObjectId.isValid(req.params.id)) {
     return res.json({success:false,message:"User not found"});
   }
-  //new trainer
-  var trainer = {
-    uname: req.body.uname,
-    email: req.body.email,
-    area:req.body.area,
-    description:req.body.description,
-    image:req.body.file
-  };
-  Trainer.findByIdAndUpdate(req.params.id,{ $set: trainer },{ new: true },(err, doc) => {
+
+  Trainer.updateOne({_id:req.params.id},{ $push:{traineesId:req.body.traineesId }},(err, doc) => {
       if (!err) {
-        res.json({success:true,data:doc});
-      } else {
-        return res.json({success:false,message:"Duplicate Email"});
+        
+        Trainer.findById(req.params.id).exec().then((result) => {
+          if(result.length<1){
+            
+            return res.json({success:false,message:"User not found"});
+            
+           }
+           else{
+            res.json({success:true,data:result});
+        
+           }
+         }).catch(err=>{
+          res.json({success:false,message:"server error"});
+      
+        });
+      } else{
+        return res.json({success:false,message:err});
       }
+
     }
   );
 });

@@ -51,12 +51,13 @@ export class UserLoginComponent implements OnInit {
       const data = form.value;
       delete data['type'];
       this.userService.loginUser(data).subscribe({
-        next: (res) => {
+        next: async(res) => {
           if (res.success) {
             this.showSuccessMsg = true;
             setTimeout(() => (this.showSuccessMsg = false), 4000);
             sessionStorage.setItem('user-token', res.token);
-            
+            await this.router.navigate(['user/profile']);
+            window.location.reload()
           } else {
             this.errorMsg = res.message
             this.showErrorsMsg = true;
@@ -70,8 +71,7 @@ export class UserLoginComponent implements OnInit {
         },
         complete: async() => {
           this.restForm(form)
-          await this.router.navigate(['user/profile']);
-          window.location.reload()
+   
 
 
         },
@@ -84,12 +84,13 @@ export class UserLoginComponent implements OnInit {
       const data = form.value;
       delete data['type'];
       this.trainerService.loginTrainer(data).subscribe({
-        next: (res) => {
+        next:async (res) => {
           if (res.success) {
             this.showSuccessMsg = true;
             setTimeout(() => (this.showSuccessMsg = false), 4000);
             sessionStorage.setItem('trainer-token', res.token);
-            this.router.navigate(['trainer/profile']);
+            await this.router.navigate(['trainer/profile']);
+            window.location.reload()
           } else {
             this.errorMsg = res.message;
             this.showErrorsMsg = true;
@@ -101,11 +102,9 @@ export class UserLoginComponent implements OnInit {
           this.showErrorsMsg = true;
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         },
-        complete:async () => {
+        complete: () => {
           this.restForm(form)
-          await this.router.navigate(['trainer/profile']);
-          window.location.reload()
-
+      
         },
       });
       
@@ -117,13 +116,15 @@ export class UserLoginComponent implements OnInit {
       const data = form.value;
       delete data['type'];
       this.adminService.loginAdmin(data).subscribe({
-        next: (res) => {
+        next: async (res) => {
           if (res.success) {
             this.showSuccessMsg = true;
             setTimeout(() => (this.showSuccessMsg = false), 4000);
             sessionStorage.setItem('admin-token', res.token);
             
-     
+            await this.router.navigate(['admin/profile']);
+            window.location.reload()
+            
             
           } else {
             this.errorMsg = res.message;
@@ -136,10 +137,9 @@ export class UserLoginComponent implements OnInit {
           this.showErrorsMsg = true;
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         },
-        complete: async() => {
+        complete: () => {
           this.restForm(form)
-         await this.router.navigate(['admin/profile']);
-          window.location.reload();
+          
         },
       });
     }

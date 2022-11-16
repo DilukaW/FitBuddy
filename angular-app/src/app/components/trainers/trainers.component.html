@@ -1,2 +1,85 @@
+<div class="container">
+    <!-- success message -->
+    <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
+        {{successMsg}}
+    </div>
+    <!-- error message -->
+    <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
+        {{errorMsg}}
+    </div>
+</div>
+<!-- <div class="wrap">
+    <div class="container rounded bg-white mt-5 mb-2 py-2"  *ngFor="let trainer of trainers">
+        <div class="row" *ngIf="trainers.indexOf(trainer)%2!=0; else default">
+            <div class="col-md-8 ">
+                <h1>{{trainer.uname}}</h1>
+            </div>
+            <div class="col-md-4 text-center">
+                <h1>sdfsda</h1>
+            </div>
+
+        </div>
+        <ng-template #default>
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <h1>sdfsda</h1>
+                </div>
+                <div class="col-md-8 ">
+                    <h1>{{trainer.uname}}</h1>
+                </div>
+               
+            </div>
+            
+            
+
+        </ng-template>
+      
+    </div>
+</div> -->
+<div class="container mt-5 ">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 g-5">
+        <div class="col" *ngFor="let trainer of trainers">
+            <div class="card ">
+                <div class="row">
+                    <div class="col-md-4 p-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <img class="rounded-circle" *ngIf="trainer.image!='undefined' && trainer.image; else default"
+                                width="100px" height="100px"
+                                src={{trainer.image}}>
+
+                                <ng-template #default>
+    
+                                    <img class="rounded-circle"
+                                    width="100px" height="100px"
+                                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                </ng-template>
+                            <span class="font-weight-bold">
+                                <h4>{{trainer.uname}}</h4>
+                            </span>
+                            <span class="font-weight-bold">
+                                Training Area: {{trainer.area}}
+                            </span>
+                        
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <p class="card-text overflow-auto">
+                                {{trainer.description}}
+                            </p>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="enroll(trainer._id)">Enroll Now !</button>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
 
 
+
+
+        </div>
+
+
+
+    </div>
+</div>

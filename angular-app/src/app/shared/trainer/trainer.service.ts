@@ -55,5 +55,8 @@ export class TrainerService {
   
     return this.http.delete('trainers/'+id);
   }
-
+  addTrainees(id:string,data: any):Observable<any>{
+  
+    return this.http.put('trainers/trainees/'+id,data);
+  }
 }

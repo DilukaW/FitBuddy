@@ -30,6 +30,9 @@ var trainerSchema = new mongoose.Schema({
   image:{
     type:String
   },
+  traineesId:{
+    type:Array
+  }
 });
 
 //Validation

@@ -45,10 +45,18 @@ export class UserService {
     }
     return this.http.get('users/profile',{headers:headers});
   }
+  getUserById(id:string):Observable<any>{
+  
+    return this.http.get('users/'+id);
+  }
   updateUserById(id:string,image:any,data: any):Observable<any>{
   
     return this.http.put('users/'+id,image,data);
   }
  
+  addTrainers(id:string,data: any):Observable<any>{
+  
+    return this.http.put('users/trainers/'+id,data);
+  }
   
 }

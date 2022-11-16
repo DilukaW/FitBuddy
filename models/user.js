@@ -32,6 +32,10 @@ age: {
 image:{
   type:String
 },
+trainersId: {
+  type:Array,
+  
+}
 });
 // user model
 /*

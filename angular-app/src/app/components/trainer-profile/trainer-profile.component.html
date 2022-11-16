@@ -1,5 +1,3 @@
-
-
 <router-outlet></router-outlet>
 
 
@@ -19,28 +17,21 @@
     <div class="row">
         <div class="col-md-3 border-end border-dark">
             <h1 class="text-center">Trainer Dashboard</h1>
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"
-           >
-           <img class="rounded-circle mt-0" id="selectedImg" *ngIf="profileImg; else default" 
-           width="120px"
-           [src]="profileImg" alt="profile image">
-           <ng-template #default>
-       
-           <img class="rounded-circle mt-0 "
-           width="120px"
-           src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-       </ng-template>
-                    <span
-                    class="font-weight-bold mt-2" >Name:{{data.uname}}
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-0" id="selectedImg" *ngIf="profileImg; else default" width="120px"
+                    [src]="profileImg" alt="profile image">
+                <ng-template #default>
+
+                    <img class="rounded-circle mt-0 " width="120px"
+                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                </ng-template>
+                <span class="font-weight-bold mt-2">Name:{{data.uname}}
                 </span>
-                <span
-                    class="text-black-50" >Email:{{data.email}}</span>
-                
-                <span
-                    class="text-black-50" >Area:{{data.area}}</span>
-                <span
-                    class="text-black-50">Description:{{data.description}}
-                    
+                <span class="text-black-50">Email:{{data.email}}</span>
+
+                <span class="text-black-50">Area:{{data.area}}</span>
+                <span class="text-black-50">Description:{{data.description}}
+
                 </span>
             </div>
         </div>
@@ -51,11 +42,11 @@
                     [class.active]="activeTab=='enrolled trainees'">
                     Enrolled Trainees
                 </li>
-               
+
                 <li class="nav-item" role="presentation" (click)="onTabClick('chat')"
-                [class.active]="activeTab=='chat' ">
-                Chat
-            </li>
+                    [class.active]="activeTab=='chat' ">
+                    Chat
+                </li>
 
             </ul>
             <!-- Tabs navs -->
@@ -63,24 +54,91 @@
             <!-- Tabs content -->
             <div class="tab-content">
                 <div *ngIf=" activeTab =='enrolled trainees' ">
-                    <div class="col-md-8 mx-auto">
-                        <div class="p-2 py-1">
-                            trainers
-                        </div>
+                    <div class="tab-content" *ngIf="users?.length">
+                        <div class="row p-3">
+                            <div class="col-md-5 border-end border-dark">
+                                <div class="card my-2">
 
+                                    <div class="card-body p-0 " (click)="getUser(users[0]._id,0)"
+                                        [ngClass]="{active1: isActive(0)}"><span>
+                                            <img class="rounded-circle m-2 x"
+                                                *ngIf="users[0].image!='undefined' && users[0].image else default"
+                                                src={{users[0].image}}>
+                                            <ng-template #default>
+
+                                                <img class="rounded-circle m-2 " width="40px"
+                                                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                            </ng-template>
+                                            {{ users[0].uname }}
+
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div class="card my-2" *ngFor="let user of users | slice:1"
+                                    [ngClass]="{active1: isActive(user)}">
+                                    <div class="card-body p-0 " (click)="getUser(user._id,user)">
+                                        <span><img *ngIf="user.image!='undefined' && user.image; else default"
+                                                class="rounded-circle m-2 x" src={{user.image}}>
+                                            <ng-template #default>
+
+                                                <img class="rounded-circle m-2 " width="40px"
+                                                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                            </ng-template>
+                                            {{ user.uname }}
+
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- user details -->
+                            <div class="col-md-7">
+                                <div *ngIf="users?.length">
+                                    <h1 class="text-center">User Details</h1>
+                                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                        <img class="rounded-circle mt-0" id="selectedImg"
+                                            *ngIf="userImg!='undefined' && userImg; else default" width="120px"
+                                            [src]="userImg" alt="profile image">
+                                        <ng-template #default>
+
+                                            <img class="rounded-circle mt-0 " width="120px"
+                                                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                                        </ng-template>
+                                        <span class="font-weight-bold mt-2">Name: {{uname}}
+                                        </span>
+                                        <span class="text-black-50">Email: {{email}}</span>
+
+                                        <span class="text-black-50">Gender: {{gender}}</span>
+                                        <span class="text-black-50">Age: {{age}}
+
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
                 </div>
+
+
+
+
             </div>
-          
+
             <div *ngIf=" activeTab =='chat' ">
                 <div class="tab-content">
                     chat
+                    sdfasdf
+                    asdfsadf
                 </div>
 
 
             </div>
-
         </div>
 
+
     </div>
-</div>

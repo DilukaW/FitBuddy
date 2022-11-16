@@ -1,0 +1,31 @@
+
+.card {
+    box-shadow: 6px 6px 18px var(--secondary-color);
+    background-color: var(--primary-color);
+    color: white;
+}
+.card-text{
+    max-height: 200px;
+   
+}
+.card-body{
+    min-height: 200px;
+}
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background:#292b2c;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background:#292b2c;
+  }

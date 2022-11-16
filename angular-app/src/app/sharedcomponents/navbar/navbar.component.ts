@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   adminSession: any;
   data: any;
   path: any;
+  collapsed = true;
 
   constructor(
     private userService: UserService,
@@ -40,6 +41,10 @@ export class NavbarComponent implements OnInit {
       this.getTrainerDetails();
       this.path = 'trainer/profile';
     }
+  }
+  
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
   }
   // get admin details
   getAdminDetails() {
