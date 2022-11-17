@@ -22,6 +22,10 @@ export class ApiService {
   
    return this.http.get('part/'+part);
  }
+ getExerciseById(id:any):Observable<any>{
+  
+  return this.http.get('exerciseId/'+id);
+}
 
  
  

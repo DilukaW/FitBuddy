@@ -1,1 +1,32 @@
-<p>exercises works!</p>
+<router-outlet></router-outlet>
+<div class="container">
+   
+    <!-- error message -->
+    <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
+        {{errorMsg}}
+    </div>
+</div>
+<!-- specific Exercisers -->
+<div class="container-fluid mb-5 " >
+    <div class="card rounded mx-4 mb-3 mt-3 p-2 overflow-auto" id="exercise">
+        <h5 id="heading" class="text-uppercase">{{type}}</h5>
+        <h6 class="ms-2">Total Results:{{allExercises.length}}</h6>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
+            <div class="col" *ngFor="let exercise of allExercises ">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> 
+
+

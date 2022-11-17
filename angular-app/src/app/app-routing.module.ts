@@ -8,6 +8,9 @@ import { UserSignupComponent } from './components/user-signup/user-signup.compon
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { TrainerProfileComponent } from './components/trainer-profile/trainer-profile.component';
+import { ExercisesComponent } from './components/exercises/exercises.component';
+import { NavExercisesComponent } from './components/nav-exercises/nav-exercises.component';
+import { ExerciseDetailsComponent } from './components/exercise-details/exercise-details.component';
 
 const routes: Routes = [
 
@@ -18,6 +21,9 @@ const routes: Routes = [
   {path:"user/profile",component:UserProfileComponent},
   {path:"admin/profile",component:AdminProfileComponent},
   {path:"trainer/profile",component:TrainerProfileComponent},
+  {path:"allExercises",component:ExercisesComponent},
+  {path:"exercise",component:NavExercisesComponent},
+  {path:"exerciseDetails",component:ExerciseDetailsComponent},
 ];
 
 @NgModule({

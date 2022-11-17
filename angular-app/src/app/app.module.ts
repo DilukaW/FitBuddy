@@ -21,6 +21,8 @@ import { TrainersComponent } from './components/trainers/trainers.component';
 
 import { ExercisesComponent } from './components/exercises/exercises.component';
 import { ExerciseSectionComponent } from './components/home/exercise-section/exercise-section.component';
+import { NavExercisesComponent } from './components/nav-exercises/nav-exercises.component';
+import { ExerciseDetailsComponent } from './components/exercise-details/exercise-details.component';
 
 
 @NgModule({
@@ -40,6 +42,8 @@ import { ExerciseSectionComponent } from './components/home/exercise-section/exe
  
     ExercisesComponent,
     ExerciseSectionComponent,
+    NavExercisesComponent,
+    ExerciseDetailsComponent,
     
   ],
   imports: [

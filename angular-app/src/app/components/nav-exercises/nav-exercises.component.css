@@ -49,7 +49,7 @@
     background-color: var(--primary-color);
     box-shadow: 6px 6px 18px var(--secondary-color);
     color: white;
-    max-height: 650px;
+ 
 }
 #exercise-card:hover{
     background-color:var(--secondary-color) ;
@@ -62,21 +62,3 @@
 max-width: 100%;
    }
 }
-::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background:#292b2c;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background:#292b2c;
-  }
