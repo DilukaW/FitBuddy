@@ -7,13 +7,13 @@
     </div>
 </div>
 
-<div class="container">
-    <h5 id="heading" class="text-uppercase">Exercise Details</h5>
+<div class="container mb-9">
+    <h5 id="heading" class="text-uppercase mt-5">Exercise Details</h5>
     <div class="card rounded mx-4 mb-3 mt-3 p-2" id="exercise">
         
         <div class="row">
-            <div class="col-md-6  p-4 ">
-                <div class="d-flex flex-column align-items-center text-center">
+            <div class="col-md-9 p-4 ">
+                <div class="d-flex bg-white flex-column align-items-center text-center">
 
                     <div class="row rounded">
                         <img [src]="exercise.gifUrl">
@@ -22,28 +22,15 @@
 
                 </div>
             </div>
-            <div class="col-md-3 d-flex flex-column text-center  p-4 ">
-                
-                <div class="row ">
-                    <div class="col-1"><img src="../assets/part.png" class=" vector" ></div>
-                    <div class="col">{{exercise.bodyPart}}</div>
-                   
-                </div>
-                <div class="row ">
-                    <div class="col-1"><img src="../assets/part.png" class=" vector" ></div>
-                    <div class="col">{{exercise.bodyPart}}</div>
-                </div>
-                <div class="row ">
-                    <div class="col-1"><img src="../assets/part.png" class=" vector" ></div>
-                    <div class="col">{{exercise.bodyPart}}</div>
-                </div>
-
-            </div>
+           
             <div class="col-md-3 d-flex flex-column align-items-center text-center  p-4 ">
                 <h5 id="heading" class="text-uppercase mb-5 ">{{exercise.name}}</h5>
                 <p>{{exercise.name}} is one of the best exercise to target your {{exercise.target}} mussel using 
                     {{exercise.equipment}}.
                 </p>
+                <p>Target mussel: {{exercise.target}}</p>
+                <p>Equipment: {{exercise.equipment}}</p>
+                <p>Body: {{exercise.bodyPart}}</p>
 
             </div>
 
@@ -51,3 +38,47 @@
 
     </div>
 </div>
+
+<div class="container mb-5 " >
+    <h5 id="heading" class="text-uppercase mt-5">Exercise Videos</h5>
+    <div class="card rounded mx-4 mb-3 mt-3 p-2 overflow-auto" id="exercise">
+        
+      
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
+            <div class="col">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="container mb-5 " >
+    <h5 id="heading" class="text-uppercase mt-5">Similar Equipment Exercise</h5>
+    <div class="card rounded mx-4 mb-3 mt-3 p-2 overflow-auto" id="exercise">
+        
+      
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
+            <div class="col">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+    
