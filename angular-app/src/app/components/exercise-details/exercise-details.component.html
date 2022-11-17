@@ -1,0 +1,53 @@
+<router-outlet></router-outlet>
+<div class="container">
+
+    <!-- error message -->
+    <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
+        {{errorMsg}}
+    </div>
+</div>
+
+<div class="container">
+    <h5 id="heading" class="text-uppercase">Exercise Details</h5>
+    <div class="card rounded mx-4 mb-3 mt-3 p-2" id="exercise">
+        
+        <div class="row">
+            <div class="col-md-6  p-4 ">
+                <div class="d-flex flex-column align-items-center text-center">
+
+                    <div class="row rounded">
+                        <img [src]="exercise.gifUrl">
+                    </div>
+                    
+
+                </div>
+            </div>
+            <div class="col-md-3 d-flex flex-column text-center  p-4 ">
+                
+                <div class="row ">
+                    <div class="col-1"><img src="../assets/part.png" class=" vector" ></div>
+                    <div class="col">{{exercise.bodyPart}}</div>
+                   
+                </div>
+                <div class="row ">
+                    <div class="col-1"><img src="../assets/part.png" class=" vector" ></div>
+                    <div class="col">{{exercise.bodyPart}}</div>
+                </div>
+                <div class="row ">
+                    <div class="col-1"><img src="../assets/part.png" class=" vector" ></div>
+                    <div class="col">{{exercise.bodyPart}}</div>
+                </div>
+
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-center text-center  p-4 ">
+                <h5 id="heading" class="text-uppercase mb-5 ">{{exercise.name}}</h5>
+                <p>{{exercise.name}} is one of the best exercise to target your {{exercise.target}} mussel using 
+                    {{exercise.equipment}}.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

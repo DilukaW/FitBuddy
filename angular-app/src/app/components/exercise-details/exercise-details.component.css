@@ -1,0 +1,15 @@
+#exercise{
+    background-color: var(--primary-color);
+    box-shadow: 6px 6px 18px var(--secondary-color);
+    color: white;
+    
+}
+#heading {
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+.vector{
+    max-width: 100px;
+    max-height: 100px;
+}
