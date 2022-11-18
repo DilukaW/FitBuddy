@@ -61,9 +61,8 @@ router.get('/exerciseName',(req,res)=>{
         try{
             let name="assisted lying calves stretch";
             const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises/name/'+name,options);
+            res.json({success:true,data:response.data});
             console.log(response.data);
-    
-            res.send(response.data);
         }catch{
             res.json({success:false,message:"api request limit exceeded"});
         }
@@ -78,9 +77,8 @@ router.get('/targetMussels',(req,res)=>{
         try{
             
             const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises/targetList',options);
+            res.json({success:true,data:response.data});
             console.log(response.data);
-    
-            res.send(response.data);
         }catch{
             res.json({success:false,message:"api request limit exceeded"});
         }
@@ -89,15 +87,14 @@ router.get('/targetMussels',(req,res)=>{
 });
 
 //get list of exercises by target mussel
-router.get('/targetMussel',(req,res)=>{
+router.get('/targetMussel/:mussel',(req,res)=>{
     console.log("/ called"); 
     (async()=>{
         try{
             let mussel="abs";
-            const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises/target/'+mussel,options);
+            const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises/target/'+req.params.mussel,options);
+            res.json({success:true,data:response.data});
             console.log(response.data);
-    
-            res.send(response.data);
         }catch{
             res.json({success:false,message:"api request limit exceeded"});
         }
@@ -122,15 +119,15 @@ router.get('/exercises',(req,res)=>{
 });
 
 //get List of exercise by equipment
-router.get('/equipmentName',(req,res)=>{
+router.get('/equipmentName/:equipment',(req,res)=>{
     console.log("/ called"); 
     (async()=>{
         try{
             let equipment="band"
-            const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises/equipment/'+equipment,options);
+            const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises/equipment/'+req.params.equipment,options);
+            res.json({success:true,data:response.data});
             console.log(response.data);
     
-            res.send(response.data);
         }catch{
             res.json({success:false,message:"api request limit exceeded"});
         }
@@ -144,9 +141,8 @@ router.get('/equipments',(req,res)=>{
     (async()=>{
         try{
             const response=await axios.get('https://exercisedb.p.rapidapi.com/exercises/equipmentList',options);
+            res.json({success:true,data:response.data});
             console.log(response.data);
-    
-            res.send(response.data);
         }catch{
             res.json({success:false,message:"api request limit exceeded"});
         }

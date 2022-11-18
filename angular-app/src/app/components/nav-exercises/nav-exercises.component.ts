@@ -9,11 +9,11 @@ import { ApiService } from 'src/app/shared/api/api.service';
 export class NavExercisesComponent implements OnInit {
   backExercises: any[] = [];
   cardioExercises: any[] = [];
-  upperlegsExercises: any[] = [];
-  upperarmsExercises: any[] = [];
+  upperLegsExercises: any[] = [];
+  upperArmsExercises: any[] = [];
   shouldersExercises: any[] = [];
-  lowerlegsExercises: any[] = [];
-  lowerarmsExercises: any[] = [];
+  lowerLegsExercises: any[] = [];
+  lowerArmsExercises: any[] = [];
   chestExercises: any[] = [];
   neckExercises: any[] = [];
   waistExercises: any[] = [];
@@ -115,7 +115,7 @@ export class NavExercisesComponent implements OnInit {
         if (res.success) {
           console.log(res.data);
 
-          this.upperarmsExercises = res.data;
+          this.upperArmsExercises = res.data;
         }
         else{
           this.showErrorsMsg = true;
@@ -131,7 +131,7 @@ export class NavExercisesComponent implements OnInit {
         if (res.success) {
           console.log(res.data);
 
-          this.upperlegsExercises = res.data;
+          this.upperLegsExercises = res.data;
         }
         else{
           this.showErrorsMsg = true;
@@ -147,7 +147,7 @@ export class NavExercisesComponent implements OnInit {
         if (res.success) {
           console.log(res.data);
 
-          this.lowerarmsExercises = res.data;
+          this.lowerArmsExercises = res.data;
         }
         else{
           this.showErrorsMsg = true;
@@ -163,7 +163,7 @@ export class NavExercisesComponent implements OnInit {
         if (res.success) {
           console.log(res.data);
 
-          this.lowerlegsExercises = res.data;
+          this.lowerLegsExercises = res.data;
         }
         else{
           this.showErrorsMsg = true;

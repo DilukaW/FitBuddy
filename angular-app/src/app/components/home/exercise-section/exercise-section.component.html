@@ -29,7 +29,7 @@
     <div class="card rounded mx-4 mb-3 mt-3 p-4" id="exercise">
         <h5 id="heading" class="text-uppercase">{{type}}</h5>
         <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-            <div class="col" *ngFor="let exercise of allExercises | slice :0:8" [routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
+            <div class="col" *ngFor="let exercise of allExercises | slice :0:8" [routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}" >
                 <div class="card gif rounded" id="exercise-card" >
                     <div class="row">
                         <img [src]="exercise.gifUrl" alt="">

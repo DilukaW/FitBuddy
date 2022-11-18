@@ -12,7 +12,7 @@
         <h5 id="heading" class="text-uppercase">{{type}}</h5>
         <h6 class="ms-2">Total Results:{{allExercises.length}}</h6>
         <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-            <div class="col" *ngFor="let exercise of allExercises ">
+            <div class="col" *ngFor="let exercise of allExercises " [routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
                 <div class="card gif rounded" id="exercise-card">
                     <div class="row">
                         <img [src]="exercise.gifUrl" alt="">

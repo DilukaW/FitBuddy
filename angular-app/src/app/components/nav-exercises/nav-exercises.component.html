@@ -12,7 +12,7 @@
 <div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
     <h5 id="heading" class="text-uppercase">Back Exercisers</h5>
     <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of backExercises |slice :0:6">
+        <div class="col" *ngFor="let exercise of backExercises |slice :0:6" [routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
             <div class="card gif rounded" id="exercise-card">
                 <div class="row">
                     <img [src]="exercise.gifUrl" alt="">
@@ -31,7 +31,7 @@
 <div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
     <h5 id="heading" class="text-uppercase">Cardio Exercisers</h5>
     <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of cardioExercises |slice :0:6">
+        <div class="col" *ngFor="let exercise of cardioExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
             <div class="card gif rounded" id="exercise-card">
                 <div class="row">
                     <img [src]="exercise.gifUrl" alt="">
@@ -50,7 +50,7 @@
 <div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
     <h5 id="heading" class="text-uppercase">Chest Exercisers</h5>
     <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of chestExercises |slice :0:6">
+        <div class="col" *ngFor="let exercise of chestExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
             <div class="card gif rounded" id="exercise-card">
                 <div class="row">
                     <img [src]="exercise.gifUrl" alt="">
@@ -69,7 +69,7 @@
 <div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
     <h5 id="heading" class="text-uppercase">Waist Exercisers</h5>
     <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of waistExercises |slice :0:6">
+        <div class="col" *ngFor="let exercise of waistExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
             <div class="card gif rounded" id="exercise-card">
                 <div class="row">
                     <img [src]="exercise.gifUrl" alt="">
@@ -88,7 +88,7 @@
 <div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
     <h5 id="heading" class="text-uppercase">Lower Arms Exercisers</h5>
     <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of lowerarmsExercises |slice :0:6">
+        <div class="col" *ngFor="let exercise of lowerArmsExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
             <div class="card gif rounded" id="exercise-card">
                 <div class="row">
                     <img [src]="exercise.gifUrl" alt="">
@@ -107,7 +107,7 @@
 <div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
     <h5 id="heading" class="text-uppercase">Lower Legs Exercisers</h5>
     <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of lowerlegsExercises |slice :0:6">
+        <div class="col" *ngFor="let exercise of lowerLegsExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
             <div class="card gif rounded" id="exercise-card">
                 <div class="row">
                     <img [src]="exercise.gifUrl" alt="">
@@ -126,7 +126,7 @@
 <div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
     <h5 id="heading" class="text-uppercase">Upper Arms Exercisers</h5>
     <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of upperarmsExercises |slice :0:6">
+        <div class="col" *ngFor="let exercise of upperArmsExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
             <div class="card gif rounded" id="exercise-card">
                 <div class="row">
                     <img [src]="exercise.gifUrl" alt="">
@@ -145,7 +145,7 @@
 <div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
     <h5 id="heading" class="text-uppercase">Upper Legs Exercisers</h5>
     <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of upperlegsExercises |slice :0:6">
+        <div class="col" *ngFor="let exercise of upperLegsExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
             <div class="card gif rounded" id="exercise-card">
                 <div class="row">
                     <img [src]="exercise.gifUrl" alt="">
@@ -164,7 +164,7 @@
 <div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
     <h5 id="heading" class="text-uppercase">Neck Exercisers</h5>
     <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of neckExercises |slice :0:6">
+        <div class="col" *ngFor="let exercise of neckExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
             <div class="card gif rounded" id="exercise-card">
                 <div class="row">
                     <img [src]="exercise.gifUrl" alt="">
@@ -183,7 +183,7 @@
 <div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
     <h5 id="heading" class="text-uppercase">Shoulder Exercisers</h5>
     <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of shouldersExercises |slice :0:6">
+        <div class="col" *ngFor="let exercise of shouldersExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
             <div class="card gif rounded" id="exercise-card">
                 <div class="row">
                     <img [src]="exercise.gifUrl" alt="">

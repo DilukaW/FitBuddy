@@ -4,10 +4,19 @@
     color: white;
     
 }
+#row{
+    min-height: 85px;
+}
 #heading {
     font-weight: bold;
     color: white;
     text-align: center;
+}
+.gif{
+    background-color: var(--card-color);
+    box-shadow: 6px 6px 10px var(--secondary-color);
+    color: white;
+    cursor: pointer;
 }
 .vector{
     max-width: 70px;

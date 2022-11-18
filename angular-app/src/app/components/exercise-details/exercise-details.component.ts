@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { query } from 'express';
 import { ApiService } from 'src/app/shared/api/api.service';
 
 @Component({
@@ -9,10 +10,12 @@ import { ApiService } from 'src/app/shared/api/api.service';
 })
 export class ExerciseDetailsComponent implements OnInit {
 
-  constructor(private api:ApiService,private aRoute:ActivatedRoute) { }
+  constructor(private api:ApiService,private aRoute:ActivatedRoute,private router:Router) { }
   sub:any;
   id:any; 
   exercise:any;
+  exerciseByEquipment:any[]=[];
+  exerciseByMussel:any[]=[];
    //messages
    showErrorsMsg!: boolean;
    errorMsg!: String;
@@ -22,13 +25,21 @@ export class ExerciseDetailsComponent implements OnInit {
       //getting params from previous route
       this.sub=this.aRoute.queryParams.subscribe(params => { 
       
-        this.id = params['id']; 
+      this.id = params['id']; 
         
    });
 
    this.getExercise();
   }
 
+  refresh(){
+    
+    setTimeout(
+      function(){ 
+      location.reload(); 
+      }, 1000);
+    
+  }
   getExercise(){
     this.api.getExerciseById(this.id).subscribe({
       next: (res) => {
@@ -44,7 +55,53 @@ export class ExerciseDetailsComponent implements OnInit {
         }
       },
       error: (err) => {},
-      complete: () => {},
+      complete: () => {
+        this.getEquipmentExercises()
+        this.getTargetExercises()
+      },
+    });
+  }
+
+  getEquipmentExercises(){
+    this.api.getExercisesByEquipment(this.exercise.equipment).subscribe({
+      next: (res) => {
+        if (res.success) {
+          console.log(res.data)
+          this.exerciseByEquipment=res.data;
+
+       
+        } else {
+          this.showErrorsMsg = true;
+          this.errorMsg = res.message;
+          setTimeout(() => (this.showErrorsMsg = false), 4000);
+        }
+      },
+      error: (err) => {},
+      complete: () => {
+       
+       
+      },
+    });
+  }
+  getTargetExercises(){
+    this.api.getExercisesByMussel(this.exercise.target).subscribe({
+      next: (res) => {
+        if (res.success) {
+          console.log(res.data)
+          this.exerciseByMussel=res.data;
+
+       
+        } else {
+          this.showErrorsMsg = true;
+          this.errorMsg = res.message;
+          setTimeout(() => (this.showErrorsMsg = false), 4000);
+        }
+      },
+      error: (err) => {},
+      complete: () => {
+       
+       
+      },
     });
   }
 

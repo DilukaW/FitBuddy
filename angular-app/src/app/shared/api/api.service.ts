@@ -26,6 +26,14 @@ export class ApiService {
   
   return this.http.get('exerciseId/'+id);
 }
+getExercisesByEquipment(equipment:any):Observable<any>{
+  
+  return this.http.get('equipmentName/'+equipment);
+}
+getExercisesByMussel(mussel:any):Observable<any>{
+  
+  return this.http.get('targetMussel/'+mussel);
+}
 
  
  
