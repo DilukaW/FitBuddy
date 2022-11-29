@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerService } from 'src/app/shared/trainer/trainer.service';
 import { UserService } from 'src/app/shared/auth/user.service';
-
+import { ChatService } from 'src/app/shared/chat/chat.service';
 @Component({
   selector: 'app-trainer-profile',
   templateUrl: './trainer-profile.component.html',
@@ -18,12 +18,15 @@ export class TrainerProfileComponent implements OnInit {
   //profile image
   imageData!:string
   profileImg!:string;
+  
 
   // tab controls
   tab: any;
   activeTab: string = 'enrolled trainees';
 
+  //trainer
   data:any
+  selectedTrainerId!:string
 
   //user
   users:any[]=[];
@@ -39,7 +42,13 @@ export class TrainerProfileComponent implements OnInit {
   userImg:any;
 
 
-  constructor(private trainerService:TrainerService,private userService:UserService) { }
+  //chat
+  newMessage = '';
+  userMsgs:any=[];
+  trainerMsgs:any=[];
+
+
+  constructor(private trainerService:TrainerService,private userService:UserService,private chatService:ChatService,) { }
 
   ngOnInit(): void {
     
@@ -58,7 +67,7 @@ onTabClick(tab: string) {
   
  
 }
-//get user details
+//get trainer details
  getDetails() {
   this.trainerService.getTrainerProfile().subscribe({
     next: (res) => {
@@ -66,6 +75,8 @@ onTabClick(tab: string) {
         this.data = res.data;
         this.profileImg=this.data.image;
         this.ids = this.data.traineesId;
+
+        this.selectedTrainerId = this.data._id;
         console.log("ids"+this.ids);
 
       }
@@ -89,7 +100,7 @@ onTabClick(tab: string) {
   return this.selected === item;
 }
 
-//get selected trainer details
+//get selected user  details
 getUser(_id: string, item: any) {
   this.selectedUserId = _id;
 
@@ -114,6 +125,7 @@ getUser(_id: string, item: any) {
    
     },
   });
+  this.displayMessage(this.selectedUserId)
 }
 
  //get user enrolled trainers
@@ -136,6 +148,8 @@ getUser(_id: string, item: any) {
           this.age = this.users[0].age;
           this.gender = this.users[0].gender;
           this.userImg = this.users[0].image;
+
+          this.selectedUserId=this.users[0]._id;
         }
       },
       error: (err) => {
@@ -144,11 +158,112 @@ getUser(_id: string, item: any) {
         setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {
-       
+        this.displayMessage(this.selectedUserId)
       },
     });
   }
 
 
 }
+
+//chat
+sendMessage() {
+  alert(this.newMessage);
+  console.log('user '+this.selectedUserId)
+  console.log('trainer'+this.selectedTrainerId)
+
+  //add to trainer chat
+  const data2={
+    'senderId':this.selectedTrainerId,
+    'receiverId':this.selectedUserId,
+    'messages':this.newMessage
+  }
+  this.chatService.addTrainerChat(data2).subscribe({
+    next: (res) => {
+      if (res.success) {
+          console.log(res.data)
+      }
+    },
+    error: (err) => {
+      this.errorMsg = 'Server Error';
+      this.showErrorsMsg = true;
+      setTimeout(() => (this.showErrorsMsg = false), 4000);
+    },
+    complete: () => {
+      this.newMessage='';
+    },
+  });
+
+  //add to user chat
+
+  this.chatService.addUserChat(data2).subscribe({
+    next: (res) => {
+      if (res.success) {
+          console.log(res.data)
+      }
+    },
+    error: (err) => {
+      this.errorMsg = 'Server Error';
+      this.showErrorsMsg = true;
+      setTimeout(() => (this.showErrorsMsg = false), 4000);
+    },
+    complete: () => {
+      this.newMessage='';
+    },
+  });
+
+  
+}
+//display msgs from database
+displayMessage(userId:string){
+  this.chatService.getTChat(this.selectedTrainerId,userId).subscribe({
+    next: (res) => {
+      if (res.success) {
+          
+          this.trainerMsgs=res.data;
+          //console.log(this.trainerMsgs[0].messages)
+      }
+    },
+    error: (err) => {
+      this.errorMsg = 'Server Error';
+      this.showErrorsMsg = true;
+      setTimeout(() => (this.showErrorsMsg = false), 4000);
+    },
+    complete: () => {
+      
+    },
+  });
+
+  this.chatService.getUChat(this.selectedTrainerId,userId).subscribe({
+    next: (res) => {
+      if (res.success) {
+          
+          this.userMsgs=res.data;
+          //console.log(this.trainerMsgs[0].messages)
+      }
+    },
+    error: (err) => {
+      this.errorMsg = 'Server Error';
+      this.showErrorsMsg = true;
+      setTimeout(() => (this.showErrorsMsg = false), 4000);
+    },
+    complete: () => {
+      
+    },
+  });
+}
+  //convert data and time
+  stringAsDate(dateStr: string) {
+    let h=""
+    const d=new Date(dateStr);
+    if(d.getTime()>=12){
+      h="pm";
+    }
+    else{
+      h="am"
+    }
+
+
+    return d.getDay()+" "+d.toLocaleString('default', { month: 'short' })+" "+d.getHours()+":"+d.getMinutes()+" "+h
+  }
 }

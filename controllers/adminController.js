@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 import { checkAuth } from "../middleware/checkAuth.js";
 
 import mongoose, { Types } from "mongoose";
+import { app } from "../index.js";
 
 const router = express.Router();
 

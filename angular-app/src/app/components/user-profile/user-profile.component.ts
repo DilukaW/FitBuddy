@@ -3,6 +3,7 @@ import { UserService } from '../../shared/auth/user.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TrainerService } from 'src/app/shared/trainer/trainer.service';
+import { ChatService } from 'src/app/shared/chat/chat.service';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -10,6 +11,7 @@ import { TrainerService } from 'src/app/shared/trainer/trainer.service';
 })
 export class UserProfileComponent implements OnInit {
   userUpdateForm!: FormGroup;
+
 
   // messages
   showSuccessMsg!: boolean;
@@ -47,11 +49,19 @@ export class UserProfileComponent implements OnInit {
   desTrainer: any;
   updateTrainerImg: any;
 
+  //chat
+  newMessage = '';
+  userMsgs:any=[];
+  trainerMsgs:any=[];
+
   constructor(
     private userService: UserService,
     private trainerService: TrainerService,
+    private chatService:ChatService,
     private router: Router
-  ) {}
+  ) {
+    this.chatService.getNewMessage().subscribe(message=>this.userMsgs.push(message))
+  }
 
   ngOnInit(): void {
     this.getDetails();
@@ -67,6 +77,7 @@ export class UserProfileComponent implements OnInit {
     });
 
     //this.userUpdateForm.get('gender')?.setValue('Male');
+
   }
 
   changeType(e: any) {
@@ -80,6 +91,7 @@ export class UserProfileComponent implements OnInit {
     this.activeTab = tab;
     this.getDetails();
     this.getTrainers();
+    
   }
 
   // update user data submit
@@ -180,7 +192,11 @@ export class UserProfileComponent implements OnInit {
         setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {},
+      
+
     });
+    this.displayMessage(this.selectedTrainerId);
+   
   }
 
   //get user enrolled trainers
@@ -202,6 +218,8 @@ export class UserProfileComponent implements OnInit {
             this.areaTrainer = this.trainers[0].area;
             this.desTrainer = this.trainers[0].description;
             this.updateTrainerImg = this.trainers[0].image;
+
+            this.selectedTrainerId=this.trainers[0]._id
           }
         },
         error: (err) => {
@@ -209,15 +227,114 @@ export class UserProfileComponent implements OnInit {
           this.showErrorsMsg = true;
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         },
-        complete: () => {},
+        complete: () => {
+          this.displayMessage(this.selectedTrainerId)
+        },
       });
     }
+
+    
 
     console.log('trainersIds ' + this.trainersIds);
     console.log('trainers ' + this.trainers);
     console.log('uname' + this.unameTrainer);
   }
 
+  //chat
+  sendMessage() {
+    alert(this.newMessage);
+
+    console.log('user '+this.selectedUserId)
+    console.log('trainer'+this.selectedTrainerId)
+
+    this.chatService.sendMessage(this.newMessage)
+    
+    //add to user chat
+    const data1={
+      'senderId':this.selectedUserId,
+      'receiverId':this.selectedTrainerId,
+      'messages':this.newMessage
+    }
+
+    this.chatService.addUserChat(data1).subscribe({
+      next: (res) => {
+        if (res.success) {
+            console.log(res.data)
+        }
+      },
+      error: (err) => {
+        this.errorMsg = 'Server Error';
+        this.showErrorsMsg = true;
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
+      },
+      complete: () => {
+        this.newMessage='';
+      },
+    });
+
+    //add to trainer chat
+    const data2={
+      'senderId':this.selectedUserId,
+      'receiverId':this.selectedTrainerId,
+      'messages':this.newMessage
+    }
+    this.chatService.addTrainerChat(data2).subscribe({
+      next: (res) => {
+        if (res.success) {
+            console.log(res.data)
+        }
+      },
+      error: (err) => {
+        this.errorMsg = 'Server Error';
+        this.showErrorsMsg = true;
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
+      },
+      complete: () => {
+        this.newMessage='';
+      },
+    });
+
+
+}
+
+//display msgs from database
+displayMessage(trainerId:string){
+  this.chatService.getUserChat(this.selectedUserId,trainerId).subscribe({
+    next: (res) => {
+      if (res.success) {
+          
+          this.userMsgs=res.data;
+          //console.log(this.userMsgs[0].messages)
+      }
+    },
+    error: (err) => {
+      this.errorMsg = 'Server Error';
+      this.showErrorsMsg = true;
+      setTimeout(() => (this.showErrorsMsg = false), 4000);
+    },
+    complete: () => {
+      
+    },
+  })
+
+  this.chatService.getTrainerChat(this.selectedUserId,trainerId).subscribe({
+    next: (res) => {
+      if (res.success) {
+          
+          this.trainerMsgs=res.data;
+          //console.log(this.trainerMsgs[0].messages)
+      }
+    },
+    error: (err) => {
+      this.errorMsg = 'Server Error';
+      this.showErrorsMsg = true;
+      setTimeout(() => (this.showErrorsMsg = false), 4000);
+    },
+    complete: () => {
+      
+    },
+  })
+}
   // reset form field values
   restForm(form: FormGroup) {
     this.userService.selectedRegUser = {
@@ -236,5 +353,21 @@ export class UserProfileComponent implements OnInit {
   // function for style selected trainer
   isActive(item: any) {
     return this.selected === item;
+  }
+
+
+  //convert data and time
+  stringAsDate(dateStr: string) {
+    let h=""
+    const d=new Date(dateStr);
+    if(d.getTime()>=12){
+      h="pm";
+    }
+    else{
+      h="am"
+    }
+
+
+    return d.getDay()+" "+d.toLocaleString('default', { month: 'short' })+" "+d.getHours()+":"+d.getMinutes()+" "+h
   }
 }

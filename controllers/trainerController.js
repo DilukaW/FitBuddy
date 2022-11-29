@@ -93,7 +93,7 @@ router.get("/all", (req, res) => {
     }
     else{
      res.json({success:true,data:result});
-     console.log(result);
+     //console.log(result);
  
     }
   }).catch(err=>{

@@ -49,6 +49,7 @@ export class UserLoginComponent implements OnInit {
     //login for user
    if (form.get('type')?.value == 1) {
       const data = form.value;
+      console.log(data)
       delete data['type'];
       this.userService.loginUser(data).subscribe({
         next: async(res) => {

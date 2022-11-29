@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerService } from 'src/app/shared/trainer/trainer.service';
 import { UserService } from 'src/app/shared/auth/user.service';
+
 @Component({
   selector: 'app-trainers',
   templateUrl: './trainers.component.html',
   styleUrls: ['./trainers.component.css'],
+
 })
 export class TrainersComponent implements OnInit {
   //users
@@ -20,7 +22,8 @@ export class TrainersComponent implements OnInit {
 
   constructor(
     private trainerService: TrainerService,
-    private userService: UserService
+    private userService: UserService,
+   
   ) {}
 
   ngOnInit(): void {
