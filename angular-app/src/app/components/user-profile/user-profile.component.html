@@ -250,6 +250,7 @@
                                     <div class="card-body overflow-auto" style="position: relative; height: 370px">
 
                                         <div *ngIf="trainerMsgs.length>0 || userMsgs.length>0; else default2">
+                                            <div *ngIf="userMsgs.length>=trainerMsgs.length; else default4">
                                             <div *ngFor="let msg of userMsgs; let i=index">
                                                 <h1>{{i}}</h1>
 
@@ -310,7 +311,6 @@
                                                     </ng-template>
                                                 </div>
                                                 <ng-template #a>
-                                                 <div *ngIf="trainerMsgs[i-1].createdAt>msg.createdAt">
                                                     <div class="d-flex flex-row justify-content-end">
                                                         <p class="small mb-1">{{uname}}: (
                                                             {{stringAsDate(msg.createdAt)}})
@@ -322,39 +322,137 @@
                                                             {{msg.messages}}
                                                         </p>
                                                     </div>
-                                                    <div class="d-flex justify-content-between">
-                                                        <p class="small mb-1">{{unameTrainer}}: (
-                                                            {{stringAsDate(trainerMsgs[i-1].createdAt)}})</p>
-                                                    </div>
+                                                    <div *ngIf="trainerMsgs[i-1].createdAt>msg.createdAt">
+                                                        <div class="d-flex flex-row justify-content-end">
+                                                            <p class="small mb-1">{{uname}}: (
+                                                                {{stringAsDate(msg.createdAt)}})
+                                                            </p>
+                                                        </div>
+                                                        <div class="d-flex flex-row justify-content-end">
+                                                            <p class="small p-2 mb-3 text-white rounded-3 "
+                                                                style="background-color:#373d41">
+                                                                {{msg.messages}}
+                                                            </p>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="small mb-1">{{unameTrainer}}: (
+                                                                {{stringAsDate(trainerMsgs[i-1].createdAt)}})</p>
+                                                        </div>
 
-                                                    <div class="d-flex flex-row justify-content-start">
-                                                        <p class="small text-white p-2 mb-3 rounded-3"
-                                                            style="background-color: #5e4d4a">
-                                                            {{trainerMsgs[i-1].messages}}
-                                                        </p>
-                                                    </div>
+                                                        <div class="d-flex flex-row justify-content-start">
+                                                            <p class="small text-white p-2 mb-3 rounded-3"
+                                                                style="background-color: #5e4d4a">
+                                                                {{trainerMsgs[i-1].messages}}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </ng-template>
                                             </div>
+                                            </div>
+                                            <ng-template #default4>
+                                                <div *ngFor="let tmsg of trainerMsgs; let i=index">
+                                                    <h1>{{i}}</h1>
+                                                    <div *ngIf="i<userMsgs.length else a">
+                                                        <div *ngIf="userMsgs[i].createdAt>=tmsg.createdAt; else default">
+                                                            <div class="d-flex justify-content-between">
+                                                                <p class="small mb-1">{{unameTrainer}}: (
+                                                                    {{stringAsDate(tmsg.createdAt)}})</p>
+                                                            </div>
+    
+                                                            <div class="d-flex flex-row justify-content-start">
+                                                                <p class="small text-white p-2 mb-3 rounded-3"
+                                                                    style="background-color: #5e4d4a">
+                                                                    {{tmsg.messages}}
+                                                                </p>
+                                                            </div>
 
 
+                                                            <div class="d-flex flex-row justify-content-end">
+                                                                <p class="small mb-1">{{uname}}: (
+                                                                    {{stringAsDate(userMsgs[i].createdAt)}})
+                                                                </p>
+                                                            </div>
+                                                            <div class="d-flex flex-row justify-content-end">
+                                                                <p class="small p-2 mb-3 text-white rounded-3 "
+                                                                    style="background-color:#373d41">
+                                                                    {{userMsgs[i].messages}}
+                                                                </p>
+                                                            </div>
+    
+                                    
+                                                        </div>
+    
+                                                        <ng-template #default>
+                                             
+    
+                                                            <div class="d-flex flex-row justify-content-end">
+                                                                <p class="small mb-1">{{uname}}: (
+                                                                    {{stringAsDate(userMsgs[i].createdAt)}})
+                                                                </p>
+                                                            </div>
+                                                            <div class="d-flex flex-row justify-content-end">
+                                                                <p class="small p-2 mb-3 text-white rounded-3 "
+                                                                    style="background-color:#373d41">
+                                                                    {{userMsgs[i].messages}}
+                                                                </p>
+                                                            </div>
+                                                            <div class="d-flex justify-content-between">
+                                                                <p class="small mb-1">{{unameTrainer}}: (
+                                                                    {{stringAsDate(tmsg.createdAt)}})</p>
+                                                            </div>
+    
+                                                            <div class="d-flex flex-row justify-content-start">
+                                                                <p class="small text-white p-2 mb-3 rounded-3"
+                                                                    style="background-color: #5e4d4a">
+                                                                    {{tmsg.messages}}
+                                                                </p>
+                                                            </div>
 
-                                            <!-- <div *ngFor="let msg of userMsgs">
 
-                                                <div class="d-flex flex-row justify-content-end">
-                                                    <p class="small mb-1">{{uname}}: ( {{stringAsDate(msg.createdAt)}})
-                                                    </p>
+                                                        </ng-template>
+                                                    </div>
+                                                    <ng-template #a>
+                                                        <div class="d-flex justify-content-between">
+                                                            <p class="small mb-1">{{unameTrainer}}: (
+                                                                {{stringAsDate(tmsg.createdAt)}})</p>
+                                                        </div>
+
+                                                        <div class="d-flex flex-row justify-content-start">
+                                                            <p class="small text-white p-2 mb-3 rounded-3"
+                                                                style="background-color: #5e4d4a">
+                                                                {{tmsg.messages}}
+                                                            </p>
+                                                        </div>
+                                                        
+                                                        <div *ngIf="userMsgs[i-1].createdAt>tmsg.createdAt">
+                                                            
+                                                            <div class="d-flex justify-content-between">
+                                                                <p class="small mb-1">{{unameTrainer}}: (
+                                                                    {{stringAsDate(tmsg.createdAt)}})</p>
+                                                            </div>
+    
+                                                            <div class="d-flex flex-row justify-content-start">
+                                                                <p class="small text-white p-2 mb-3 rounded-3"
+                                                                    style="background-color: #5e4d4a">
+                                                                    {{tmsg.messages}}
+                                                                </p>
+                                                            </div>
+                                                            <div class="d-flex flex-row justify-content-end">
+                                                                <p class="small mb-1">{{uname}}: (
+                                                                    {{stringAsDate(userMsgs[i-1].createdAt)}})
+                                                                </p>
+                                                            </div>
+                                                            <div class="d-flex flex-row justify-content-end">
+                                                                <p class="small p-2 mb-3 text-white rounded-3 "
+                                                                    style="background-color:#373d41">
+                                                                    {{userMsgs[i-1].messages}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </ng-template>
+
                                                 </div>
-                                                <div class="d-flex flex-row justify-content-end">
-                                                    <p class="small p-2 mb-3 text-white rounded-3 "
-                                                        style="background-color:#373d41">
-                                                        {{msg.messages}}
-                                                    </p>
-                                                </div>
-
-
-                                            </div> -->
-
+                                            </ng-template>
 
                                         </div>
                                         <ng-template #default2>
