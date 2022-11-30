@@ -38,3 +38,6 @@ li{
     max-height: 40px !important;
   
 }
+.tab{
+    cursor: pointer !important; 
+}

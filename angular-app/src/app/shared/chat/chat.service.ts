@@ -10,26 +10,27 @@ import { Chat } from './chat.model';
 export class ChatService {
 
  
-  socket=io('');
+ 
   constructor(private http:HttpClient) { }
 
-  sendMessage(message: any) {
-    console.log('sendMessage: ', message)
-    this.socket.emit('message', message);
-  }
+  // sendMessage(message: any) {
+  //   // console.log('sendMessage: ', message)
+  //   // this.socket.emit('message', message);
+  //   this.socket.on('chatAdd')
+  // }
 
-  getNewMessage (){
-    let observable=new Observable<{message:String}>(Observer=>{
-      this.socket.on('message', (message) =>{
-        Observer.next(message)
+  // getNewMessage (){
+  //   let observable=new Observable<{message:String}>(Observer=>{
+  //     this.socket.on('message', (message) =>{
+  //       Observer.next(message)
 
-      });
-      return()=>{this.socket.disconnect();}
-    })
+  //     });
+  //     return()=>{this.socket.disconnect();}
+  //   })
 
   
-    return observable;
-  }
+  //   return observable;
+  // }
  
   //add user chats
   addUserChat(data:any):Observable<any>{

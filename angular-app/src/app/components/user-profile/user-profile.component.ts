@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../shared/auth/user.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TrainerService } from 'src/app/shared/trainer/trainer.service';
 import { ChatService } from 'src/app/shared/chat/chat.service';
+import { io } from 'socket.io-client';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -11,7 +12,6 @@ import { ChatService } from 'src/app/shared/chat/chat.service';
 })
 export class UserProfileComponent implements OnInit {
   userUpdateForm!: FormGroup;
-
 
   // messages
   showSuccessMsg!: boolean;
@@ -51,21 +51,31 @@ export class UserProfileComponent implements OnInit {
 
   //chat
   newMessage = '';
-  userMsgs:any=[];
-  trainerMsgs:any=[];
+  userMsgs: any = [];
+  trainerMsgs: any = [];
+
+  socket: any;
+  @ViewChild('scrollMe') private myScrollContainer: any;
 
   constructor(
     private userService: UserService,
     private trainerService: TrainerService,
-    private chatService:ChatService,
+    private chatService: ChatService,
     private router: Router
   ) {
-    this.chatService.getNewMessage().subscribe(message=>this.userMsgs.push(message))
+    this.socket = io('');
+    //this.chatService.getNewMessage().subscribe(message=>this.userMsgs.push(message))
   }
 
   ngOnInit(): void {
     this.getDetails();
     this.getTrainers();
+
+    //using web socket to update chat
+    this.socket.on('chatUserAdd', () => {
+      this.displayMessage(this.selectedTrainerId);
+      this.scrollToBottom();
+    });
 
     // form validation
     this.userUpdateForm = new FormGroup({
@@ -77,13 +87,24 @@ export class UserProfileComponent implements OnInit {
     });
 
     //this.userUpdateForm.get('gender')?.setValue('Male');
-
+  }
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
+  //getting default value from dropdown
   changeType(e: any) {
     this.userUpdateForm.get('gender')!.setValue(e.target.value, {
       onlySelf: true,
     });
+  }
+
+  // scroll to end of the chat
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop =
+        this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {}
   }
 
   // tab function
@@ -91,7 +112,6 @@ export class UserProfileComponent implements OnInit {
     this.activeTab = tab;
     this.getDetails();
     this.getTrainers();
-    
   }
 
   // update user data submit
@@ -192,11 +212,8 @@ export class UserProfileComponent implements OnInit {
         setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {},
-      
-
     });
     this.displayMessage(this.selectedTrainerId);
-   
   }
 
   //get user enrolled trainers
@@ -219,7 +236,7 @@ export class UserProfileComponent implements OnInit {
             this.desTrainer = this.trainers[0].description;
             this.updateTrainerImg = this.trainers[0].image;
 
-            this.selectedTrainerId=this.trainers[0]._id
+            this.selectedTrainerId = this.trainers[0]._id;
           }
         },
         error: (err) => {
@@ -228,12 +245,10 @@ export class UserProfileComponent implements OnInit {
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         },
         complete: () => {
-          this.displayMessage(this.selectedTrainerId)
+          this.displayMessage(this.selectedTrainerId);
         },
       });
     }
-
-    
 
     console.log('trainersIds ' + this.trainersIds);
     console.log('trainers ' + this.trainers);
@@ -242,24 +257,22 @@ export class UserProfileComponent implements OnInit {
 
   //chat
   sendMessage() {
-    alert(this.newMessage);
+    console.log('user ' + this.selectedUserId);
+    console.log('trainer' + this.selectedTrainerId);
 
-    console.log('user '+this.selectedUserId)
-    console.log('trainer'+this.selectedTrainerId)
+    //this.chatService.sendMessage(this.newMessage)
 
-    this.chatService.sendMessage(this.newMessage)
-    
     //add to user chat
-    const data1={
-      'senderId':this.selectedUserId,
-      'receiverId':this.selectedTrainerId,
-      'messages':this.newMessage
-    }
+    const data1 = {
+      senderId: this.selectedUserId,
+      receiverId: this.selectedTrainerId,
+      messages: this.newMessage,
+    };
 
     this.chatService.addUserChat(data1).subscribe({
       next: (res) => {
         if (res.success) {
-            console.log(res.data)
+          console.log(res.data);
         }
       },
       error: (err) => {
@@ -268,20 +281,20 @@ export class UserProfileComponent implements OnInit {
         setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {
-        this.newMessage='';
+        this.newMessage = '';
       },
     });
 
     //add to trainer chat
-    const data2={
-      'senderId':this.selectedUserId,
-      'receiverId':this.selectedTrainerId,
-      'messages':this.newMessage
-    }
+    const data2 = {
+      senderId: this.selectedUserId,
+      receiverId: this.selectedTrainerId,
+      messages: this.newMessage,
+    };
     this.chatService.addTrainerChat(data2).subscribe({
       next: (res) => {
         if (res.success) {
-            console.log(res.data)
+          console.log(res.data);
         }
       },
       error: (err) => {
@@ -290,51 +303,43 @@ export class UserProfileComponent implements OnInit {
         setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {
-        this.newMessage='';
+        this.newMessage = '';
       },
     });
+  }
 
-
-}
-
-//display msgs from database
-displayMessage(trainerId:string){
-  this.chatService.getUserChat(this.selectedUserId,trainerId).subscribe({
-    next: (res) => {
-      if (res.success) {
-          
-          this.userMsgs=res.data;
+  //display msgs from database
+  displayMessage(trainerId: string) {
+    this.chatService.getUserChat(this.selectedUserId, trainerId).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.userMsgs = res.data;
           //console.log(this.userMsgs[0].messages)
-      }
-    },
-    error: (err) => {
-      this.errorMsg = 'Server Error';
-      this.showErrorsMsg = true;
-      setTimeout(() => (this.showErrorsMsg = false), 4000);
-    },
-    complete: () => {
-      
-    },
-  })
+        }
+      },
+      error: (err) => {
+        this.errorMsg = 'Server Error';
+        this.showErrorsMsg = true;
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
+      },
+      complete: () => {},
+    });
 
-  this.chatService.getTrainerChat(this.selectedUserId,trainerId).subscribe({
-    next: (res) => {
-      if (res.success) {
-          
-          this.trainerMsgs=res.data;
+    this.chatService.getTrainerChat(this.selectedUserId, trainerId).subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.trainerMsgs = res.data;
           //console.log(this.trainerMsgs[0].messages)
-      }
-    },
-    error: (err) => {
-      this.errorMsg = 'Server Error';
-      this.showErrorsMsg = true;
-      setTimeout(() => (this.showErrorsMsg = false), 4000);
-    },
-    complete: () => {
-      
-    },
-  })
-}
+        }
+      },
+      error: (err) => {
+        this.errorMsg = 'Server Error';
+        this.showErrorsMsg = true;
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
+      },
+      complete: () => {},
+    });
+  }
   // reset form field values
   restForm(form: FormGroup) {
     this.userService.selectedRegUser = {
@@ -355,19 +360,26 @@ displayMessage(trainerId:string){
     return this.selected === item;
   }
 
-
   //convert data and time
   stringAsDate(dateStr: string) {
-    let h=""
-    const d=new Date(dateStr);
-    if(d.getTime()>=12){
-      h="pm";
-    }
-    else{
-      h="am"
+    let h = '';
+    const d = new Date(dateStr);
+    if (d.getTime() >= 12) {
+      h = 'pm';
+    } else {
+      h = 'am';
     }
 
-
-    return d.getDay()+" "+d.toLocaleString('default', { month: 'short' })+" "+d.getHours()+":"+d.getMinutes()+" "+h
+    return (
+      d.getDay() +
+      ' ' +
+      d.toLocaleString('default', { month: 'short' }) +
+      ' ' +
+      d.getHours() +
+      ':' +
+      d.getMinutes() +
+      ' ' +
+      h
+    );
   }
 }

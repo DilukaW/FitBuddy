@@ -19,7 +19,9 @@ router.post("/addUser", (req, res, next) => {
   
     //save
     chat.save((err, doc) => {
+      
         if (!err) {
+          io.emit('chatUserAdd');
           
           res.json({success:true,data:doc});
         } else {
@@ -72,7 +74,7 @@ router.post("/addTrainer", (req, res, next) => {
   //save trainer
   chat.save((err, doc) => {
       if (!err) {
-        
+        io.emit('chatTrainerAdd');
         res.json({success:true,data:doc});
       } else {
         res.json({success:false,message:"Error Sending message"});
