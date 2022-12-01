@@ -44,7 +44,7 @@ router.post("/login", (req, res) => {
     Admin.find({ email:req.body.email }).exec().then((result)=>{
       if(result.length<1){
         
-       return res.json({success:false,message:"Admin user not found"});
+       return res.status(404).json({success:false,message:"Admin user not found"});
        
       }
       const admin=result[0];
@@ -55,7 +55,7 @@ router.post("/login", (req, res) => {
             adminId:admin._id
           }
           const token= jwt.sign(payload,"secret");
-          return res.json({success:true,message:"Login Successful", token:token});
+          return res.status(200).json({success:true,message:"Login Successful", token:token});
         }
         else{
           
@@ -76,10 +76,10 @@ router.get("/profile",checkAuth,(req,res)=>{
     Admin.findById(adminId)
     .exec().then((result)=>{
   
-      res.json({success:true,data:result});
+      res.status(200).json({success:true,data:result});
   
     }).catch(err=>{
-      res.json({success:false,message:"server error"});
+      res.status(404).json({success:false,message:"server error"});
     })
   });
 

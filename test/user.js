@@ -104,7 +104,7 @@ describe('Test user api endpoints', () => {
     })
 
     //Test the user registration route
-    describe('POSt users/register', () => {
+    describe('POST users/register', () => {
         it('It Should give a error for duplicate emails', (done) => {
             const user = {
                 uname: "tom",
