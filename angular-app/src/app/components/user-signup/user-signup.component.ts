@@ -15,6 +15,7 @@ export class UserSignupComponent implements OnInit {
   showSuccessMsg!: boolean;
   showErrorsMsg!: boolean;
   errorMsg!: String;
+  successMsg!: string;
 
   constructor(private userService: UserService,private router:Router) {}
 
@@ -44,8 +45,12 @@ export class UserSignupComponent implements OnInit {
     console.log(form.value);
     this.userService.registerUser(form.value).subscribe({
       next: (res) => {
-        this.showSuccessMsg = true;
-        setTimeout( () =>(this.showSuccessMsg = false), 4000);       
+        if(res.success){
+          this.showSuccessMsg = true;
+          this.successMsg="Registered Successfully"
+          setTimeout( () =>(this.showSuccessMsg = false), 4000);      
+        }
+        
         
       },
       error: (err) => {

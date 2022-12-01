@@ -12,7 +12,7 @@ const upload=multer({dest:'image'})
 const router = express.Router();
 
 // create user
-router.post("/register",async  (req, res, next) => {
+router.post("/register", (req, res, next) => {
   //new user
   var user = new User({
     uname: req.body.uname,
@@ -24,17 +24,18 @@ router.post("/register",async  (req, res, next) => {
 
   //save user
 
-  user.save((err, doc) => {
-    if (!err) {
-      res.send(doc);
-    } else {
-      if (err.code == 11000) {
-        res.status(422).send(["Duplicate email address found."]);
-      } else {
-        return next(err);
-      }
-    }
-  });
+user.save( (err, doc) => {
+   if (!err) {
+     return res.status(200).json({success:true,data:doc});
+   } else {
+     if (err.code == 11000) {
+       res.status(422).send(["Duplicate email address found."]);
+     } else {
+       return next(err);
+     }
+   }
+ });
+  
 });
 
 //login user
@@ -53,7 +54,7 @@ router.post("/login", (req, res) => {
           userId:user._id
         }
         const token= jwt.sign(payload,"secret");
-        return res.json({success:true,message:"Login Successful", token:token});
+        return res.status(200).json({success:true,message:"Login Successful", token:token});
       }
       else{
         
@@ -69,31 +70,33 @@ router.post("/login", (req, res) => {
 
 
 //login user profile
-router.get("/profile",checkAuth,(req,res)=>{
+router.get("/profile",checkAuth,async(req,res)=>{
   const userId=req.userData.userId;
-  User.findById(userId)
+ await User.findById(userId)
   .exec().then((result)=>{
 
-    res.json({success:true,data:result});
+    res.status(200).json({success:true,data:result});
     console.log(result)
 
   }).catch(err=>{
-    res.json({success:false,message:"server error"});
+    res.status(404).json({success:false,message:"server error"});
   })
 });
 
 // get all users
-router.get("/all", (req, res) => {
- User.find().exec().then((result)=>{
+router.get("/all", async(req, res) => {
+ await User.find().exec().then((result)=>{
   if(result.length<1){
+    
     return res.json({success:false,message:"Users not found"});
    }
    else{
+    
     res.status(200).json({success:true,data:result});
 
    }
  }).catch(err=>{
-  res.json({success:false,message:"server error"});
+  res.status(404).json({success:false,message:"server error"});
  })
 });
 
@@ -111,17 +114,17 @@ router.get("/all", (req, res) => {
 // });
 
 //get user by id
-router.get("/:id", (req, res) => {
+router.get("/:id",async (req, res) => {
  
-  User.findById(req.params.id).exec().then((result) => {
+  await User.findById(req.params.id).exec().then((result) => {
     if(result.length<1){
       
-      return res.json({success:false,message:"User not found"});
+      return res.status(404).json({success:false,message:"User not found"});
       
      }
      else{
-      res.json({success:true,data:result});
-      console.log(result)
+      res.status(200).json({success:true,data:result});
+      //console.log(result)
   
      }
    }).catch(err=>{
@@ -144,17 +147,19 @@ router.put("/:id", upload.single('file'),(req, res) => {
     age:req.body.age,
     image:req.body.file
   };
-  User.findByIdAndUpdate(req.params.id,{ $set: user },{ new: true },(err, doc) => {
+User.findByIdAndUpdate(req.params.id,{ $set: user },{ new: true },(err, doc) => {
       if (!err) {
-        res.json({success:true,data:doc});
+        res.status(200).json({success:true,data:doc});
        
       } else {
-        return res.json({success:false,message:"Duplicate Email"});
+        return res.status(404).json({success:false,message:"Duplicate Email"});
       }
     }
   );
 });
 
+
+// add enroll trainer
 router.put("/trainers/:id", (req, res) => {
   
   if (!Types.ObjectId.isValid(req.params.id)) {
