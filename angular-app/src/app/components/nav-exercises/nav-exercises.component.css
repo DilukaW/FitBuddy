@@ -6,7 +6,7 @@
     margin-right: 10px;
     
     background-color: var(--primary-color);
-    box-shadow: 6px 6px 10px var(--secondary-color);
+    box-shadow: 6px 6px 10px var(--outline-color);
     color: white;
     font-size: small;
     cursor: pointer;

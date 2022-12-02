@@ -1,6 +1,6 @@
 
 .card {
-    box-shadow: 6px 6px 18px var(--secondary-color);
+    box-shadow: 6px 6px 18px var(--outline-color);
     background-color: var(--primary-color);
     color: white;
 }

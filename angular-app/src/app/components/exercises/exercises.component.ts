@@ -64,7 +64,9 @@ getExercises(){
         }
       },
       error: (err) => {
-        
+        this.showErrorsMsg = true;
+        this.errorMsg = "Server Error";
+        setTimeout(() => (this.showErrorsMsg = false), 4000)
       },
       complete: () => {
        
@@ -89,7 +91,9 @@ getExercises(){
       }
     },
     error: (err) => {
-         
+      this.showErrorsMsg = true;
+      this.errorMsg = "Server Error";
+      setTimeout(() => (this.showErrorsMsg = false), 4000)
     },
     complete: () => {
         

@@ -54,7 +54,9 @@ export class ExerciseDetailsComponent implements OnInit {
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         }
       },
-      error: (err) => {},
+      error: (err) => { this.showErrorsMsg = true;
+        this.errorMsg = "Server Error";
+        setTimeout(() => (this.showErrorsMsg = false), 4000)},
       complete: () => {
         this.getEquipmentExercises()
         this.getTargetExercises()
@@ -76,7 +78,9 @@ export class ExerciseDetailsComponent implements OnInit {
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         }
       },
-      error: (err) => {},
+      error: (err) => { this.showErrorsMsg = true;
+        this.errorMsg = "Server Error";
+        setTimeout(() => (this.showErrorsMsg = false), 4000)},
       complete: () => {
        
        

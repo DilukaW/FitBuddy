@@ -58,7 +58,7 @@ router.post("/login", (req, res) => {
             trainerId:trainer._id
           }
           const token= jwt.sign(payload,"secret");
-          return res.json({success:true,message:"Login Successful", token:token});
+          return res.status(200).json({success:true,message:"Login Successful", token:token});
         }
         else{
           
@@ -78,7 +78,7 @@ router.get("/profile",checkAuth,(req,res)=>{
     Trainer.findById(trainerId)
     .exec().then((result)=>{
   
-      res.json({success:true,data:result});
+      res.status(200).json({success:true,data:result});
   
     }).catch(err=>{
       res.json({success:false,message:"server error"});
@@ -92,7 +92,7 @@ router.get("/all", (req, res) => {
      return res.json({success:false,message:"Trainers not found"});
     }
     else{
-     res.json({success:true,data:result});
+     res.status(200).json({success:true,data:result});
      //console.log(result);
  
     }
@@ -107,11 +107,11 @@ router.get("/:id", (req, res) => {
   Trainer.findById(req.params.id).exec().then((result) => {
     if(result.length<1){
       
-      return res.json({success:false,message:"User not found"});
+      return res.status(500).json({success:false,message:"User not found"});
       
      }
      else{
-      res.json({success:true,data:result});
+      res.status(200).json({success:true,data:result});
   
      }
    }).catch(err=>{
@@ -125,7 +125,7 @@ router.get("/:id", (req, res) => {
  router.put("/:id",upload.single('file'), (req, res) => {
   
    if (!Types.ObjectId.isValid(req.params.id)) {
-     return res.json({success:false,message:"User not found"});
+     return res.status(404).json({success:false,message:"User not found"});
    }
   
    var trainer = {
@@ -140,7 +140,7 @@ router.get("/:id", (req, res) => {
    Trainer.findByIdAndUpdate(req.params.id,{ $set: trainer },{ new: true },(err, doc) => {
        if (!err) {
         
-         res.json({success:true,data:doc});
+         res.status(200).json({success:true,data:doc});
        } else {
          return res.json({success:false,message:"Duplicate Email"});
        }
@@ -161,11 +161,11 @@ router.put("/trainees/:id", (req, res) => {
         Trainer.findById(req.params.id).exec().then((result) => {
           if(result.length<1){
             
-            return res.json({success:false,message:"User not found"});
+            return res.status(404).json({success:false,message:"User not found"});
             
            }
            else{
-            res.json({success:true,data:result});
+            res.status(200).json({success:true,data:result});
         
            }
          }).catch(err=>{

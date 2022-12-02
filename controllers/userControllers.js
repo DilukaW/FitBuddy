@@ -75,7 +75,7 @@ router.get("/profile",checkAuth,async(req,res)=>{
  await User.findById(userId)
   .exec().then((result)=>{
 
-    res.status(200).json({success:true,data:result});
+    res.status(200).send({success:true,data:result});
     console.log(result)
 
   }).catch(err=>{
@@ -119,11 +119,11 @@ router.get("/:id",async (req, res) => {
   await User.findById(req.params.id).exec().then((result) => {
     if(result.length<1){
       
-      return res.status(404).json({success:false,message:"User not found"});
+      return res.status(404).send({success:false,message:"User not found"});
       
      }
      else{
-      res.status(200).json({success:true,data:result});
+      res.status(200).send({success:true,data:result});
       //console.log(result)
   
      }
@@ -137,7 +137,7 @@ router.get("/:id",async (req, res) => {
 router.put("/:id", upload.single('file'),(req, res) => {
   
   if (!Types.ObjectId.isValid(req.params.id)) {
-    return res.json({success:false,message:"User not found"});
+    return res.status(404).send({success:false,message:"User not found"});
   }
   //new user
   var user = {
@@ -149,10 +149,10 @@ router.put("/:id", upload.single('file'),(req, res) => {
   };
 User.findByIdAndUpdate(req.params.id,{ $set: user },{ new: true },(err, doc) => {
       if (!err) {
-        res.status(200).json({success:true,data:doc});
+        res.status(200).send({success:true,data:doc});
        
       } else {
-        return res.status(404).json({success:false,message:"Duplicate Email"});
+        return res.status(404).send({success:false,message:"Duplicate Email"});
       }
     }
   );

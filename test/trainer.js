@@ -9,27 +9,26 @@ import { User } from '../models/user.js'
 chai.should();
 chai.use(chaiHttp);
 
-
-describe('Test user api endpoints', () => {
+describe('Test trainer api endpoints', () => {
 
 
 
     //Test the login route
-    describe('GET users/login', () => {
-        it('It Should login the user', (done) => {
-            chai.request(app).get('/users/login').send({ email: "dt.w1j@gmail.com" }).end((err, response) => {
+    describe('GET trainers/login', () => {
+        it('It Should login the trainer', (done) => {
+            chai.request(app).get('/trainers/login').send({ email: "dt.w1j@gmail.com" }).end((err, response) => {
                 response.should.have.status(200)
                 done();
             })
         })
 
-    })
+    });
 
-    //Test the login user profile route
-    describe('GET users/profile/', () => {
-        it('It Should redirect to user profile', (done) => {
-            const id = '636f9f50c3fdd3d2836a002e';
-            chai.request(app).get('/users/profile' + id).end((err, response) => {
+     //Test the login trainer profile route
+     describe('GET trainers/profile/', () => {
+        it('It Should redirect to trainer profile', (done) => {
+            const id = '636f9f50c3fdd3d2836a008e';
+            chai.request(app).get('/trainers/profile' + id).end((err, response) => {
                 response.should.have.status(200);
                 response.body.should.be.a('object');
                 response.body.should.have.property('success');
@@ -38,12 +37,28 @@ describe('Test user api endpoints', () => {
         })
 
 
-    })
+    });
 
     //Test get all users route
-    describe('GET users/all', () => {
-        it('It Should get all the users', (done) => {
-            chai.request(app).get('/users/all').end((err, response) => {
+    describe('GET trainers/all', () => {
+        it('It Should get all the trainers', (done) => {
+            chai.request(app).get('/trainers/all').end((err, response) => {
+                response.should.have.status(200);
+                response.body.should.be.a('object');
+                response.body.should.have.property('success');
+                response.body.should.have.property('data');
+                response.body.should.have.property('success').eq(true);
+                done();
+            })
+        })
+
+    });
+
+    //Test get user by id route
+    describe('GET trainers/:id', () => {
+        it('It Should get trainer by id', (done) => {
+            const id = '6371bd406aa2f1cb20a6a945';
+            chai.request(app).get('/trainers/' + id).end((err, response) => {
                 response.should.have.status(200);
                 response.body.should.be.a('object');
                 response.body.should.have.property('success');
@@ -54,27 +69,9 @@ describe('Test user api endpoints', () => {
                 done();
             })
         })
-
-    })
-
-    //Test get user by id route
-    describe('GET users/:id', () => {
-        it('It Should get user by id', (done) => {
-            const id = '636f9f50c3fdd3d2836a002e';
-            chai.request(app).get('/users/' + id).end((err, response) => {
-                response.should.have.status(200);
-                response.body.should.be.a('object');
-                response.body.should.have.property('success');
-                response.body.should.have.property('data');
-                response.body.should.have.property('success').eq(true);
-
-
-                done();
-            })
-        });
-        it('It Should give error for wrong user id', (done) => {
+        it('It Should give error for wrong trainer id', (done) => {
             const id = '6371bd406aa2f1cb20a6a94';
-            chai.request(app).get('/users/' + id).end((err, response) => {
+            chai.request(app).get('/trainers/' + id).end((err, response) => {
                 response.body.should.be.a('object');
                 response.body.should.have.property('success');
                 response.body.should.have.property('message');
@@ -85,31 +82,29 @@ describe('Test user api endpoints', () => {
                 done();
             })
         })
+    });
 
-
-    })
-
-    //Test update user route
-    describe('PUT users/:id', () => {
-        it('It Should give error update user with wrong id', (done) => {
-            const id = '636f9f50c3fdd3d2836a002';
-            const user = {
+     //Test update trainer route
+     describe('PUT trainers/:id', () => {
+        it('It Should give error update trainer with wrong id', (done) => {
+            const id = '6371bd406aa2f1cb20a6a94';
+            const trainer = {
                 uname: "tom",
             };
-            chai.request(app).post('/users/'+id).send(user).end((err, response) => {
+            chai.request(app).post('/trainers/'+id).send(trainer).end((err, response) => {
                 response.should.have.status(404);
-               
+             
                 done();
             })
         })
 
-    })
+    });
 
-    //Test add enroll trainer route
-    describe('PUT /trainers/:id', () => {
+    //Test add enroll user route
+    describe('PUT /trainees/:id', () => {
         it('It Should give error if update user all ready enrolled ', (done) => {
             const id = '636f9f50c3fdd3d2836a002';
-            chai.request(app).post('/users/trainers/'+id).end((err, response) => {
+            chai.request(app).post('/trainers/trainees/'+id).end((err, response) => {
                 response.should.have.status(404);
                 done();
             })
@@ -117,19 +112,20 @@ describe('Test user api endpoints', () => {
 
     })
 
-    //Test the user registration route
-    describe('POST users/register', () => {
+    //Test the trainer registration route
+    describe('POST trainers/register', () => {
         it('It Should give a error for duplicate emails', (done) => {
-            const user = {
+            const trainer = {
                 uname: "tom",
                 email: "tom@gmail.com",
-                gender: "Male",
-                age: "20",
+                are:"yoga",
+                description:"new",
                 password: "123478",
             };
-            chai.request(app).post('/users/register').send(user).end((err, response) => {
+            chai.request(app).post('/trainers/register').send(trainer).end((err, response) => {
                 response.should.have.status(422);
-                response.body.should.be.a('array')
+                response.body.should.be.a('array');
+               
 
                 done();
             })
@@ -137,14 +133,4 @@ describe('Test user api endpoints', () => {
 
     })
 
-    //
-    // it('GET all users',function(done){
-    //    chai.request(app)
-    //    .get("/user/all")
-    //    .end((err,response)=>{
-    //     chai.expect(response.status).to.be.equal(200)
-
-    //     done();
-    //    })
-    // })
-})
+});

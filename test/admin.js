@@ -3,8 +3,7 @@ import chai, { expect } from 'chai'
 import chaiHttp from 'chai-http'
 import { response } from 'express';
 import { app } from '../index.js'
-import bcrypt from "bcryptjs";
-import { User } from '../models/user.js'
+
 
 chai.should();
 chai.use(chaiHttp);
@@ -50,6 +49,8 @@ describe('Test admin api endpoints', () => {
             };
             chai.request(app).post('/admins/register').send(user).end((err, response) => {
                 response.should.have.status(422);
+                response.body.should.be.a('array');
+                
 
                 done();
             })

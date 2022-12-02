@@ -17,7 +17,7 @@
     display: flex;
     justify-content:space-evenly;
     height: 520px;     
-    box-shadow: 6px 6px 18px var(--secondary-color);
+    box-shadow: 6px 6px 18px var(--outline-color);
 }
 .left_div{
     width: 50%;

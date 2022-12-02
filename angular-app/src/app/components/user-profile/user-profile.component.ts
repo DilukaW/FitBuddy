@@ -138,7 +138,7 @@ export class UserProfileComponent implements OnInit {
             setTimeout(() => (this.showErrorsMsg = false), 4000);
           }
         },
-        error: () => {
+        error: (res) => {
           this.errorMsg = 'Server Error';
           this.showErrorsMsg = true;
           setTimeout(() => (this.showErrorsMsg = false), 4000);

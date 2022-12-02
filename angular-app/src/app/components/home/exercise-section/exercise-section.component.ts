@@ -37,13 +37,18 @@ export class ExerciseSectionComponent implements OnInit {
         if (res.success) {
           this.bodyParts = res.data;
           console.log(res.data);
-        } else {
+        } 
+        else{
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 4000)
         }
       },
-      error: (err) => {},
+      error: (err) => {
+        this.showErrorsMsg = true;
+        this.errorMsg = "Server Error";
+        setTimeout(() => (this.showErrorsMsg = false), 4000)
+      },
       complete: () => {},
     });
   }
@@ -61,7 +66,11 @@ export class ExerciseSectionComponent implements OnInit {
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         }
       },
-      error: (err) => {},
+      error: (err) => {
+        this.showErrorsMsg = true;
+        this.errorMsg = "Server Error";
+        setTimeout(() => (this.showErrorsMsg = false), 4000)
+      },
       complete: () => {},
     });
   }
@@ -85,7 +94,11 @@ export class ExerciseSectionComponent implements OnInit {
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         }
       },
-      error: (err) => {},
+      error: (err) => {
+        this.showErrorsMsg = true;
+        this.errorMsg = "Server Error";
+        setTimeout(() => (this.showErrorsMsg = false), 4000)
+      },
       complete: () => {},
     });
   }

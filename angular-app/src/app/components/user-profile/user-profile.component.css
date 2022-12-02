@@ -13,7 +13,7 @@ li{
     border-radius: 10px;
 }
 .active1{
-    border-bottom:4px solid var(--secondary-color) ;
+    border-bottom:4px solid var(--outline-color) ;
 }
 .a{
     position: relative;

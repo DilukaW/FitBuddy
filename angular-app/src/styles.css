@@ -4,16 +4,19 @@
     margin: 0;
 }
 :root{
-    --primary-color:#5e4d4a;
+    /* --primary-color:#5e4d4a;
     --secondary-color:#f48e16;
     --card-color:#373d41;
     --shadow-color:#f8a03c;
-    --row-color:#393d43;
+    --row-color:#393d43; */
+    --primary-color: #11002c;
+    --secondary-color: #6610f2;
+    --outline-color: #0d6efd;
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
     
-    background-color: var(--card-color);
+    background: linear-gradient(120deg, #162a46, #11002c);
 }
 
 .btn{
@@ -21,15 +24,15 @@ body{
     color: white;
     font-weight: bold;
     border: none;
-    outline: color #f48e16 !important;
+    outline: var(--secondary-color)!important;
 }
 .btn:hover{
-    background-color: orangered;
+    background-color: var(--outline-color);
     color: white;
 }
 .btn:focus{
-    background-color:#f48e16 ;
-    outline: color #f48e16 !important;
+    background-color: var(--secondary-color) ;
+    outline: var(--secondary-color) !important;
     box-shadow: none;
 }
 
