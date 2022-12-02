@@ -3,10 +3,11 @@
     box-shadow: 6px 6px 18px var(--outline-color);
   
 }
-.nav-link, p {
+a, p {
     color: white!important;
+    text-decoration: none;
 }
-.nav-link:hover{
+a:hover{
     font-weight: bold;
     text-decoration: underline;
     text-decoration-thickness:4px;

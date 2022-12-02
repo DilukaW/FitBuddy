@@ -1,29 +1,70 @@
 import { Component, OnInit } from '@angular/core';
 import * as jQuery from 'jquery';
-
+import { UserService } from 'src/app/shared/auth/user.service';
+import { TrainerService } from 'src/app/shared/trainer/trainer.service';
 
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.css']
+  styleUrls: ['./banner.component.css'],
 })
 export class BannerComponent implements OnInit {
+  //user array
+  user: any[] = [];
+  // trainer array
+  trainer: any[] = [];
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private trainerService: TrainerService
+  ) {}
 
   ngOnInit(): void {
+    this.getTrainers();
+    this.getUsers();
+
+    // jquery for counter
     $('.count').each(function () {
-      $(this).prop('Counter',0).animate({
-          Counter: $(this).text()
-      }, {
-          duration: 4000,
-          easing: 'swing',
-          step: function (now) {
+      $(this)
+        .prop('Counter', 0)
+        .animate(
+          {
+            Counter: $(this).text(),
+          },
+          {
+            duration: 4000,
+            easing: 'swing',
+            step: function (now) {
               $(this).text(Math.ceil(now));
+            },
           }
-      });
-  });
-   
+        );
+    });
   }
 
+  //get all users
+  async getUsers() {
+    this.userService.getAllUsers().subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.user = res.data;
+        }
+      },
+      error: (err) => {},
+      complete: () => {},
+    });
+  }
+
+  //get all trainers
+  getTrainers() {
+    this.trainerService.getAllTrainers().subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.trainer = res.data;
+        }
+      },
+      error: (err) => {},
+      complete: () => {},
+    });
+  }
 }

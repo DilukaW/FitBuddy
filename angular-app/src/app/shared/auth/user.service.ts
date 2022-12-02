@@ -45,6 +45,10 @@ export class UserService {
     }
     return this.http.get('users/profile',{headers:headers});
   }
+  getAllUsers():Observable<any>{
+  
+    return this.http.get('users/all');
+  }
   getUserById(id:string):Observable<any>{
   
     return this.http.get('users/'+id);

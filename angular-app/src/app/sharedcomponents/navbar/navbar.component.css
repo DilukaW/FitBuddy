@@ -1,45 +1,53 @@
-.navbar{
+.navbar {
     background-color: var(--primary-color);
 }
 
-.navbar-light .navbar-nav .active-link.active-link{
+.navbar-light .navbar-nav .active-link.active-link {
     color: white;
     text-decoration: underline;
-    text-decoration-thickness:4px;
-    text-underline-offset:10px ;
-    text-decoration-color:var(--secondary-color) ;
+    text-decoration-thickness: 4px;
+    text-underline-offset: 10px;
+    text-decoration-color: var(--secondary-color);
     font-weight: bold;
 }
-.navbar-light .navbar-nav .nav-link{
-   color:whitesmoke;
+
+.navbar-light .navbar-nav .nav-link {
+    color: whitesmoke;
 }
+
 .nav-link:hover {
     font-weight: bold;
     text-decoration: underline;
-    text-decoration-thickness:4px;
-    text-underline-offset:10px ;
-    text-decoration-color:var(--secondary-color) ;
+    text-decoration-thickness: 4px;
+    text-underline-offset: 10px;
+    text-decoration-color: var(--secondary-color);
 }
+
 .navbar-brand {
-    color: white ;
+    color: white;
     font-family: serif;
     font-weight: bold;
 }
-.navbar-brand:hover,.navbar-brand:visited{
+
+.navbar-brand:hover,
+.navbar-brand:visited {
     color: white;
 }
+
 .navbar-toggler {
-    background-color:var(--secondary-color);
+    background-color: var(--secondary-color);
 }
-.x{
+
+.x {
     min-width: 40px !important;
     max-width: 40px !important;
     min-height: 40px !important;
     max-height: 40px !important;
-  
+
 }
+
 @media (max-width: 767px) {
-    button{
+    button {
         margin-left: 0px !important;
         margin-top: 5px !important;
     }
