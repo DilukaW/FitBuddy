@@ -1,218 +1,250 @@
-// import assert from 'assert'
-// import chai, { expect } from 'chai'
-// import chaiHttp from 'chai-http'
-// import { response } from 'express';
+
+// import request from "supertest";
+// import { expect } from "chai";
+// import dotenv from "dotenv";
+// dotenv.config();
 // import { app } from '../index.js'
-// import bcrypt from "bcryptjs";
-// import { User } from '../models/user.js'
 
-// chai.should();
-// chai.use(chaiHttp);
 
-// describe('Test exercises api endpoints', () => {
-
-//     //get List of bodyparts
-//     describe('GET /bodyPartList', () => {
-//         // it('It Should get all the body parts', (done) => {
-//         //     chai.request(app).get('/bodyPartList').end((err, response) => {
-//         //         response.should.have.status(200);
-//         //         response.body.should.have.property('data');
-//         //         response.body.should.have.property('success').eq(true);
-//         //         done();
-//         //     })
-//         // });
-//         it('It Should give error when api call failing', (done) => {
-//             chai.request(app).get('/bodyPartList').end((err, response) => {
-           
-               
-//                 response.body.should.have.property('success').eq(false);
-//                 response.body.should.have.property('message').eq("api request limit exceeded");
-//                 done();
-//             })
+// describe('Test exercise api end points', () => {
+//     describe('GET exercise', () => {
+//         //get List of bodyparts
+//         it("Should get all the body parts", (done) => {
+//             request(app)
+//                 .get('/bodyPartList')
+//                 .expect(200)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(true);
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
 //         });
+
+//         //get List of bodyparts
+//         it("Shouldn't get all the body parts if api request limit exceeded", (done) => {
+//             request(app)
+//                 .get('/bodyPartList')
+//                 .expect(201)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(false);
+//                     expect(res.body.message).to.be.eql("api request limit exceeded");
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//          //get list of exercises by bodyPart
+//          it("Should get list of exercises by bodyPart", (done) => {
+//             const part = "chest"
+//             request(app)
+//                 .get('/part/' + part)
+//                 .expect(200)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(true);
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get list of exercises by bodyPart
+//         it("Shouldn't get list of exercises by bodyPart if api request limit exceeded", (done) => {
+//             const part = "chest"
+//             request(app)
+//                 .get('/part/' + part)
+//                 .expect(201)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(false);
+//                     expect(res.body.message).to.be.eql("api request limit exceeded");
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get exercise by exercise id
+//         it("Should get exercise by exercise id ", (done) => {
+//             const id = "0001"
+//             request(app)
+//                 .get('/exerciseId/' + id)
+//                 .expect(200)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(true);
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get exercise by exercise id
+//         it("Shouldn't get exercise by exercise id if api request limit exceeded", (done) => {
+//             const id = "0001"
+//             request(app)
+//                 .get('/exerciseId/' + id)
+//                 .expect(201)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(false);
+//                     expect(res.body.message).to.be.eql("api request limit exceeded");
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//          //get exercise by exercise name
+//          it("Should get exercise by exercise name", (done) => {
+//             const name = "assisted lying calves stretch";
+//             request(app)
+//                 .get('/exerciseName/' + name)
+//                 .expect(200)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(true);
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get exercise by exercise name
+//         it("Shouldn't get exercise by exercise name if api request limit exceeded", (done) => {
+//             const name = "assisted lying calves stretch";
+//             request(app)
+//                 .get('/exerciseName/' + name)
+//                 .expect(201)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(false);
+//                     expect(res.body.message).to.be.eql("api request limit exceeded");
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get list of target mussels
+//         it("Should get list of target mussels", (done) => {
+//             request(app)
+//                 .get('/targetMussels')
+//                 .expect(200)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(true);
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get list of target mussels
+//         it("Shouldn't get list of target mussels if api request limit exceeded", (done) => {
+//             request(app)
+//                 .get('/targetMussels')
+//                 .expect(201)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(false);
+//                     expect(res.body.message).to.be.eql("api request limit exceeded");
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//          //get list of exercises by target mussel
+//          it("Should get list of exercises by target mussel", (done) => {
+//             const mussel = "abs"
+//             request(app)
+//                 .get('/targetMussel/' + mussel)
+//                 .expect(200)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(true);
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//             });
+
+//         //get list of exercises by target mussel
+//         it("Shouldn't get list of exercises by target mussel if api request limit exceeded", (done) => {
+//             const mussel = "abs"
+//             request(app)
+//                 .get('/targetMussel/' + mussel)
+//                 .expect(201)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(false);
+//                     expect(res.body.message).to.be.eql("api request limit exceeded");
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//          //get list of exercises
+//          it("Should get list of exercises", (done) => {
+//             request(app)
+//                 .get('/exercises')
+//                 .expect(200)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(true);
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get list of exercises
+//         it("Shouldn't get list of exercises if api request limit exceeded", (done) => {
+//             request(app)
+//                 .get('/exercises')
+//                 .expect(201)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(false);
+//                     expect(res.body.message).to.be.eql("api request limit exceeded");
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get list of exercise by equipment
+//         it("Should get list of exercise by equipment", (done) => {
+//             const equipment = "band"
+//             request(app)
+//                 .get('/equipmentName/' + equipment)
+//                 .expect(200)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(true);
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get list of exercise by equipment
+//         it("Shouldn't get list of exercise by equipment if api request limit exceeded", (done) => {
+//             const equipment = "band"
+//             request(app)
+//                 .get('/equipmentName/' + equipment)
+//                 .expect(201)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(false);
+//                     expect(res.body.message).to.be.eql("api request limit exceeded");
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get List of equipments
+//         it("Should get list of equipments", (done) => {
+//             request(app)
+//                 .get('/equipments')
+//                 .expect(200)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(true);
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+//         //get List of equipments
+//         it("Shouldn't get list of equipments if api request limit exceeded", (done) => {
+//             request(app)
+//                 .get('/equipments')
+//                 .expect(201)
+//                 .then((res) => {
+//                     expect(res.body.success).to.be.eql(false);
+//                     expect(res.body.message).to.be.eql("api request limit exceeded");
+//                     done();
+//                 })
+//                 .catch((err) => done(err));
+//         });
+
+
 //     });
 
-// //get List of exercises by bodyPart
-// describe('GET /part/:part', () => {
-//     const part="chest"
-//     // it('It Should get list of exercises by bodyPart', (done) => {
-//     //     chai.request(app).get('/part/'+part').end((err, response) => {
-//     //         response.should.have.status(200);
-//     //         response.body.should.have.property('data');
-//     //         response.body.should.have.property('success').eq(true);
-//     //         done();
-//     //     })
-//     // });
-//     it('It Should give error when api call failing', (done) => {
-//         const part="chest"
-//         chai.request(app).get('/part/'+part).end((err, response) => {
-       
-           
-//             response.body.should.have.property('success').eq(false);
-//             response.body.should.have.property('message').eq("api request limit exceeded");
-//             done();
-//         })
-//     });
-// });
-
-// //get exercise by exercise id
-// describe('GET /exerciseId/:id', () => {
-//     const id="0001"
-//     // it('It Should get exercise by exercise id', (done) => {
-//     //     chai.request(app).get('/exerciseId/'+id').end((err, response) => {
-//     //         response.should.have.status(200);
-//     //         response.body.should.have.property('data');
-//     //         response.body.should.have.property('success').eq(true);
-//     //         done();
-//     //     })
-//     // });
-//     it('It Should give error when api call failing', (done) => {
-//         const id="0001"
-//         chai.request(app).get('/exerciseId/'+id).end((err, response) => {
-           
-//             response.body.should.have.property('success').eq(false);
-//             response.body.should.have.property('message').eq("api request limit exceeded");
-//             done();
-//         })
-//     });
-// });
-
-// //get exercise by exercise name
-// describe('GET /exerciseName/:name', () => {
-//     const name="assisted lying calves stretch";
-//     // it('It Should get exercise by exercise name', (done) => {
-//     //     chai.request(app).get('/exerciseName/'+name').end((err, response) => {
-//     //         response.should.have.status(200);
-//     //         response.body.should.have.property('data');
-//     //         response.body.should.have.property('success').eq(true);
-//     //         done();
-//     //     })
-//     // });
-//     it('It Should give error when api call failing', (done) => {
-//         const name="assisted lying calves stretch";
-//         chai.request(app).get('/exerciseName/'+name).end((err, response) => {
-     
-           
-//             response.body.should.have.property('success').eq(false);
-//             response.body.should.have.property('message').eq("api request limit exceeded");
-//             done();
-//         })
-//     });
-// });
-
-// //get list of target mussels
-// describe('GET /targetMussels', () => {
-  
-//     // it('It Should get list of target mussels', (done) => {
-//     //     chai.request(app).get('/targetMussels').end((err, response) => {
-//     //         response.should.have.status(200);
-//     //         response.body.should.have.property('data');
-//     //         response.body.should.have.property('success').eq(true);
-//     //         done();
-//     //     })
-//     // });
-//     it('It Should give error when api call failing', (done) => {
-
-//         chai.request(app).get('/targetMussels').end((err, response) => {
-          
-//             response.body.should.have.property('success').eq(false);
-//             response.body.should.have.property('message').eq("api request limit exceeded");
-//             done();
-//         })
-//     });
-// });
-
-// //get list of exercises by target mussel
-// describe('GET /targetMussel/:mussel', () => {
-//   const mussel="chest"
-//     // it('It Should get list of exercises by target mussel', (done) => {
-//     //     chai.request(app).get('/targetMussel/'+mussel).end((err, response) => {
-//     //         response.should.have.status(200);
-//     //         response.body.should.have.property('data');
-//     //         response.body.should.have.property('success').eq(true);
-//     //         done();
-//     //     })
-//     // });
-//     it('It Should give error when api call failing', (done) => {
-//         const mussel="chest"
-//         chai.request(app).get('/targetMussel/'+mussel).end((err, response) => {
-    
-           
-//             response.body.should.have.property('success').eq(false);
-//             response.body.should.have.property('message').eq("api request limit exceeded");
-//             done();
-//         })
-//     });
-// });
-
-// //get List of exercises
-// describe('GET /exercises', () => {
-  
-//       // it('It Should get list of exercises', (done) => {
-//       //     chai.request(app).get('/exercises').end((err, response) => {
-//       //         response.should.have.status(200);
-//       //         response.body.should.have.property('data');
-//       //         response.body.should.have.property('success').eq(true);
-//       //         done();
-//       //     })
-//       // });
-//       it('It Should give error when api call failing', (done) => {
-         
-//           chai.request(app).get('/exercises').end((err, response) => {
-             
-             
-//               response.body.should.have.property('success').eq(false);
-//               response.body.should.have.property('message').eq("api request limit exceeded");
-//               done();
-//           })
-//       });
-//   });
-
-//   //get List of exercise by equipment
-//   describe('GET /equipmentName/:equipment', () => {
-//     let equipment="band"
-  
-//     // it('It Should get list of exercises by equipment', (done) => {
-//     //     chai.request(app).get('/equipmentName/+equipment).end((err, response) => {
-//     //         response.should.have.status(200);
-//     //         response.body.should.have.property('data');
-//     //         response.body.should.have.property('success').eq(true);
-//     //         done();
-//     //     })
-//     // });
-//     it('It Should give error when api call failing', (done) => {
-//         let equipment="band"
-//         chai.request(app).get('/equipmentName/'+equipment).end((err, response) => {
-          
-//             response.body.should.have.property('success').eq(false);
-//             response.body.should.have.property('message').eq("api request limit exceeded");
-//             done();
-//         })
-//     });
-// });
-
-// //get List of equipments
-// describe('GET /equipments', () => {
-  
-  
-//     // it('It Should get list of equipments', (done) => {
-//     //     chai.request(app).get('/equipments).end((err, response) => {
-//     //         response.should.have.status(200);
-//     //         response.body.should.have.property('data');
-//     //         response.body.should.have.property('success').eq(true);
-//     //         done();
-//     //     })
-//     // });
-//     it('It Should give error when api call failing', (done) => {
-        
-//         chai.request(app).get('/equipments').end((err, response) => {
-        
-           
-//             response.body.should.have.property('success').eq(false);
-//             response.body.should.have.property('message').eq("api request limit exceeded");
-//             done();
-//         })
-//     });
-// });
 
 // });

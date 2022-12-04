@@ -15,7 +15,7 @@ router.get('/bodyPartList', (req, res) => {
             res.status(200).send({ success: true, data: response.data });
             //console.log(response.data);
         } catch {
-            res.json({ success: false, message: "api request limit exceeded" });
+            res.status(201).json({ success: false, message: "api request limit exceeded" });
         }
     })();
 });
@@ -31,7 +31,7 @@ router.get('/part/:part', (req, res) => {
             res.status(200).json({ success: true, data: response.data });
             //console.log(response.data);
         } catch {
-            res.json({ success: false, message: "api request limit exceeded" });
+            res.status(201).json({ success: false, message: "api request limit exceeded" });
         }
 
     })();
@@ -47,7 +47,7 @@ router.get('/exerciseId/:id', (req, res) => {
             res.status(200).json({ success: true, data: response.data });
             //console.log(response.data);
         } catch {
-            res.json({ success: false, message: "api request limit exceeded" });
+            res.status(201).json({ success: false, message: "api request limit exceeded" });
         }
     })();
 });
@@ -63,7 +63,7 @@ router.get('/exerciseName/:name', (req, res) => {
             res.status(200).json({ success: true, data: response.data });
             //console.log(response.data);
         } catch {
-            res.json({ success: false, message: "api request limit exceeded" });
+            res.status(201).json({ success: false, message: "api request limit exceeded" });
         }
     })();
 });
@@ -78,7 +78,7 @@ router.get('/targetMussels', (req, res) => {
             res.status(200).json({ success: true, data: response.data });
             //console.log(response.data);
         } catch {
-            res.json({ success: false, message: "api request limit exceeded" });
+            res.status(201).json({ success: false, message: "api request limit exceeded" });
         }
     })();
 });
@@ -94,7 +94,7 @@ router.get('/targetMussel/:mussel', (req, res) => {
             res.status(200).json({ success: true, data: response.data });
             //console.log(response.data);
         } catch {
-            res.json({ success: false, message: "api request limit exceeded" });
+            res.status(201).json({ success: false, message: "api request limit exceeded" });
         }
     })();
 });
@@ -109,7 +109,7 @@ router.get('/exercises', (req, res) => {
             res.status(200).json({ success: true, data: response.data });
             //console.log(response.data);
         } catch {
-            res.json({ success: false, message: "api request limit exceeded" });
+            res.status(201).json({ success: false, message: "api request limit exceeded" });
         }
     })();
 });
@@ -125,7 +125,7 @@ router.get('/equipmentName/:equipment', (req, res) => {
             res.status(200).json({ success: true, data: response.data });
             //console.log(response.data);
         } catch {
-            res.json({ success: false, message: "api request limit exceeded" });
+            res.status(201).json({ success: false, message: "api request limit exceeded" });
         }
     })();
 });
@@ -137,10 +137,10 @@ router.get('/equipments', (req, res) => {
     (async () => {
         try {
             const response = await axios.get('https://exercisedb.p.rapidapi.com/exercises/equipmentList', options);
-            res.json({ success: true, data: response.data });
+            res.status(200).json({ success: true, data: response.data });
             //console.log(response.data);
         } catch {
-            res.json({ success: false, message: "api request limit exceeded" });
+            res.status(201).json({ success: false, message: "api request limit exceeded" });
         }
     })();
 });

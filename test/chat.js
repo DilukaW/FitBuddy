@@ -21,7 +21,7 @@ before((done) => {
     trainerChat.deleteMany({}, function (err) { });
     done()
 });
-describe('Test chats end points', () => {
+describe('Test chats endpoints', () => {
 
     describe("POST chats", () => {
         //add to user chat

@@ -23,9 +23,6 @@ export class BannerComponent implements OnInit {
     this.getTrainers();
     this.getUsers();
     this.counter();
-    
-
-    
   }
 
   //get all users
@@ -38,7 +35,7 @@ export class BannerComponent implements OnInit {
       },
       error: (err) => {},
       complete: () => {
-        //this.hideSpinner()
+        this.hideSpinner();
       },
     });
   }
@@ -52,12 +49,14 @@ export class BannerComponent implements OnInit {
         }
       },
       error: (err) => {},
-      complete: () => {},
+      complete: () => {
+        this.hideSpinner();
+      },
     });
   }
 
   // jquery for counter
-counter(){
+  counter() {
     $('.count').each(function () {
       $(this)
         .prop('Counter', 0)
@@ -76,9 +75,9 @@ counter(){
     });
   }
 
- hideSpinner() {
-    $('#loading').css('display','none')
-          
-} 
- 
+  //hide loading spinner
+  hideSpinner() {
+    $('#loading').css('display', 'none');
+    $('.spinner').remove()
+  }
 }

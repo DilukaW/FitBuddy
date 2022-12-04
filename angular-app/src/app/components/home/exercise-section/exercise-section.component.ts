@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/shared/api/api.service';
 import { Router } from '@angular/router';
+import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-exercise-section',
@@ -22,6 +23,7 @@ export class ExerciseSectionComponent implements OnInit {
   ngOnInit(): void {
     this.getAllBodyParts();
     this.getAllExercise();
+
     console.log('selected ' + this.selectedBodyPart);
   }
 
@@ -49,7 +51,9 @@ export class ExerciseSectionComponent implements OnInit {
         this.errorMsg = "Server Error";
         setTimeout(() => (this.showErrorsMsg = false), 4000)
       },
-      complete: () => {},
+      complete: () => {
+        this.hideBodyPartsSpinner();
+      },
     });
   }
 
@@ -71,7 +75,9 @@ export class ExerciseSectionComponent implements OnInit {
         this.errorMsg = "Server Error";
         setTimeout(() => (this.showErrorsMsg = false), 4000)
       },
-      complete: () => {},
+      complete: () => {
+        this.hideExercisesSpinner()
+      },
     });
   }
 
@@ -103,5 +109,15 @@ export class ExerciseSectionComponent implements OnInit {
     });
   }
 
+  //hide loading BodyParts spinner
+  hideBodyPartsSpinner() {
+    $('#loadingBodyParts').css('display', 'none');
+    $('.spinnerBody').remove()
+  }
+//hide loading Exercises spinner
+  hideExercisesSpinner(){
+    $('#loadingExercises').css('display', 'none');
+    $('.spinnerExercises').remove()
+  }
 
 }
