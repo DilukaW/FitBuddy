@@ -1,5 +1,7 @@
+
 <div class="container">
-  <div class="card mx-4 mb-3 sticky">
+ 
+  <div class="card mx-4 mb-3 sticky position-relative">
     <div class="card-body">
       <div class="container">
         <div class="row" id="banner">
@@ -56,7 +58,7 @@
             <button class="btn btn-primary" type="button" routerLink="login">Get Started</button>
           </div>
           <!-- content div -->
-          
+
           <!-- image div -->
           <div class="col" id="banner-img">
             <div class="row">
@@ -73,5 +75,11 @@
         </div>
       </div>
     </div>
+    <div class="position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+      <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status" id="loading">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+   
   </div>
 </div>

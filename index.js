@@ -22,6 +22,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const port=process.env.PORT|| 3000
 
+
 var app=express();
 const httpServer = http.createServer(app);
 const io = new Server(httpServer);
@@ -30,6 +31,7 @@ app.use(cors({origin:'http://localhost:4200'}));
 
 
 //initializing the database connection
+
 connectDb();
 
 //routes

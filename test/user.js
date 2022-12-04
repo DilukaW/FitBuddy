@@ -1,150 +1,247 @@
-import assert from 'assert'
-import chai, { expect } from 'chai'
-import chaiHttp from 'chai-http'
-import { response } from 'express';
+import request from "supertest";
+import { expect } from "chai";
+import dotenv from "dotenv";
+dotenv.config();
 import { app } from '../index.js'
-import bcrypt from "bcryptjs";
-import { User } from '../models/user.js'
+import { User } from "../models/user.js";
+import { checkAuth } from '../middleware/checkAuth.js'
 
-chai.should();
-chai.use(chaiHttp);
+let id;
+let token;
 
+const tempUser = {
+    uname: "tom",
+    email: "t8@gmail.com",
+    gender: "Male",
+    age: 20,
+    password: "12345678",
+};
 
-describe('Test user api endpoints', () => {
-
-
-
-    //Test the login route
-    describe('GET users/login', () => {
-        it('It Should login the user', (done) => {
-            chai.request(app).get('/users/login').send({ email: "dt.w1j@gmail.com" }).end((err, response) => {
-                response.should.have.status(200)
-                done();
-            })
-        })
-
-    })
-
-    //Test the login user profile route
-    describe('GET users/profile/', () => {
-        it('It Should redirect to user profile', (done) => {
-            const id = '636f9f50c3fdd3d2836a002e';
-            chai.request(app).get('/users/profile' + id).end((err, response) => {
-                response.should.have.status(200);
-                response.body.should.be.a('object');
-                response.body.should.have.property('success');
-                done();
-            })
-        })
-
-
-    })
-
-    //Test get all users route
-    describe('GET users/all', () => {
-        it('It Should get all the users', (done) => {
-            chai.request(app).get('/users/all').end((err, response) => {
-                response.should.have.status(200);
-                response.body.should.be.a('object');
-                response.body.should.have.property('success');
-                response.body.should.have.property('data');
-                response.body.should.have.property('success').eq(true);
-
-
-                done();
-            })
-        })
-
-    })
-
-    //Test get user by id route
-    describe('GET users/:id', () => {
-        it('It Should get user by id', (done) => {
-            const id = '636f9f50c3fdd3d2836a002e';
-            chai.request(app).get('/users/' + id).end((err, response) => {
-                response.should.have.status(200);
-                response.body.should.be.a('object');
-                response.body.should.have.property('success');
-                response.body.should.have.property('data');
-                response.body.should.have.property('success').eq(true);
-
-
-                done();
-            })
+before((done) => {
+    User.deleteMany({}, function (err) { });
+    done()
+});
+describe('Test user end points', () => {
+    describe("POST users", () => {
+        //register user
+        it("should register new user with valid credentials", (done) => {
+            request(app)
+                .post("/users/register")
+                .send(tempUser)
+                .expect(200)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    expect(res.body.data.uname).to.be.eql("tom");
+                    expect(res.body.data.email).to.be.eql("t8@gmail.com");
+                    id = res.body.data._id
+                    done();
+                })
+                .catch((err) => done(err));
         });
-        it('It Should give error for wrong user id', (done) => {
-            const id = '6371bd406aa2f1cb20a6a94';
-            chai.request(app).get('/users/' + id).end((err, response) => {
-                response.body.should.be.a('object');
-                response.body.should.have.property('success');
-                response.body.should.have.property('message');
-                response.body.should.have.property('success').eq(false);
-                response.body.should.have.property('message').eq("server error");
+        // register failed
+        it("shouldn't accept the user email that already exists in the database", (done) => {
+            request(app)
+                .post("/users/register")
+                .send(tempUser)
+                .expect(422)
+                .then((res) => {
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+
+        //login user
+        it("should login user with valid credentials", (done) => {
+            request(app)
+                .post("/users/login")
+                .send(tempUser)
+                .expect(200)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    expect(res.body.message).to.be.eql('Login Successful');
+                    token = res.body.token
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+
+        //login with invalid email 
+        it("shouldn't login with invalid email", (done) => {
+            request(app)
+                .post("/users/login")
+                .send({ email: "d@gmail.com" })
+                .expect(201)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(false);
+                    expect(res.body.message).to.be.eql('User not found');
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+
+        //login with invalid password
+        it("shouldn't login with invalid password", (done) => {
+            request(app)
+                .post("/users/login")
+                .send({ email: "t8@gmail.com", password: "1234" })
+                .expect(201)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(false);
+                    expect(res.body.message).to.be.eql('Password do not matched');
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+    });
+
+    describe("GET users", () => {
+
+        // redirect authenticated user to profile 
+        it("should get user profile if authenticated", (done) => {
+            request(app)
+                .get("/users/profile")
+                .set('Authorization', 'Bearer ' + token)
+                .expect(200)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+
+        //get users
+        it("should get all users if available", (done) => {
+            request(app)
+                .get("/users/all")
+                .expect(200)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+
+        //get user by id
+        it("should get user by id", (done) => {
+            request(app)
+                .get("/users/" + id)
+                .expect(200)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(true);
+
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+
+        //invalid user id
+        it("shouldn't get user with invalid id", (done) => {
+            request(app)
+                .get("/users/" + "11")
+                .expect(404)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(false);
+                    expect(res.body.message).to.be.eql('server error');
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+    });
 
 
-                done();
-            })
-        })
+    describe("PUT users", () => {
+
+        //update user
+        it("should update user by id", (done) => {
+            request(app)
+                .put("/users/" + id)
+                .send({ uname: "new tom" })
+                .expect(200)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    expect(res.body.data.uname).to.be.eql("new tom");
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+
+        //update user with invalid id
+        it("shouldn't update user with invalid id", (done) => {
+            request(app)
+                .put("/users/" + "11")
+                .send({ email: "t8@gmail.com" })
+                .expect(201)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(false);
+                    expect(res.body.message).to.be.eql("User not found");
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+
+        //update user details by adding enrolled trainer id
+        it("should update user details by adding enrolled trainer id", (done) => {
+            const trainerId = "1457dfd2se5"
+            request(app)
+                .put("/users/trainers/" + id)
+                .send({ trainersId: trainerId })
+                .expect(200)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+
+        //update user details by adding enrolled trainer id with invalid user id
+        it("shouldn't update user details by adding enrolled trainer id with invalid id", (done) => {
+            const trainerId = "1457dfd2se5"
+            request(app)
+                .put("/users/trainers/" + "11")
+                .send({ trainersId: trainerId })
+                .expect(200)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(false);
+                    expect(res.body.message).to.be.eql("User not found");
+                    done();
+                })
+                .catch((err) => done(err));
+        });
+
+    });
+
+    describe("DELETE users", () => {
 
 
-    })
+        //delete user by invalid id
+        it("shouldn't delete user by invalid id", (done) => {
+            request(app)
+                .delete("/users/" + "11")
+                .expect(200)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(false);
+                    expect(res.body.message).to.be.eql('User not found');
+                    done();
+                })
+                .catch((err) => done(err));
+        });
 
-    //Test update user route
-    describe('PUT users/:id', () => {
-        it('It Should give error update user with wrong id', (done) => {
-            const id = '636f9f50c3fdd3d2836a002';
-            const user = {
-                uname: "tom",
-            };
-            chai.request(app).post('/users/'+id).send(user).end((err, response) => {
-                response.should.have.status(404);
-               
-                done();
-            })
-        })
+        //delete user by id
+        it("should delete user by id", (done) => {
+            request(app)
+                .delete("/users/" + id)
+                .expect(200)
+                .then((res) => {
+                    expect(res.body.success).to.be.eql(true);
+                    done();
+                })
+                .catch((err) => done(err));
+        });
 
-    })
+    });
 
-    //Test add enroll trainer route
-    describe('PUT /trainers/:id', () => {
-        it('It Should give error if update user all ready enrolled ', (done) => {
-            const id = '636f9f50c3fdd3d2836a002';
-            chai.request(app).post('/users/trainers/'+id).end((err, response) => {
-                response.should.have.status(404);
-                done();
-            })
-        })
 
-    })
+});
 
-    //Test the user registration route
-    describe('POST users/register', () => {
-        it('It Should give a error for duplicate emails', (done) => {
-            const user = {
-                uname: "tom",
-                email: "tom@gmail.com",
-                gender: "Male",
-                age: "20",
-                password: "123478",
-            };
-            chai.request(app).post('/users/register').send(user).end((err, response) => {
-                response.should.have.status(422);
-                response.body.should.be.a('array')
 
-                done();
-            })
-        })
 
-    })
-
-    //
-    // it('GET all users',function(done){
-    //    chai.request(app)
-    //    .get("/user/all")
-    //    .end((err,response)=>{
-    //     chai.expect(response.status).to.be.equal(200)
-
-    //     done();
-    //    })
-    // })
-})

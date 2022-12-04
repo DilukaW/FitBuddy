@@ -22,8 +22,42 @@ export class BannerComponent implements OnInit {
   ngOnInit(): void {
     this.getTrainers();
     this.getUsers();
+    this.counter();
+    
 
-    // jquery for counter
+    
+  }
+
+  //get all users
+  async getUsers() {
+    this.userService.getAllUsers().subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.user = res.data;
+        }
+      },
+      error: (err) => {},
+      complete: () => {
+        //this.hideSpinner()
+      },
+    });
+  }
+
+  //get all trainers
+  getTrainers() {
+    this.trainerService.getAllTrainers().subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.trainer = res.data;
+        }
+      },
+      error: (err) => {},
+      complete: () => {},
+    });
+  }
+
+  // jquery for counter
+counter(){
     $('.count').each(function () {
       $(this)
         .prop('Counter', 0)
@@ -42,29 +76,9 @@ export class BannerComponent implements OnInit {
     });
   }
 
-  //get all users
-  async getUsers() {
-    this.userService.getAllUsers().subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.user = res.data;
-        }
-      },
-      error: (err) => {},
-      complete: () => {},
-    });
-  }
-
-  //get all trainers
-  getTrainers() {
-    this.trainerService.getAllTrainers().subscribe({
-      next: (res) => {
-        if (res.success) {
-          this.trainer = res.data;
-        }
-      },
-      error: (err) => {},
-      complete: () => {},
-    });
-  }
+ hideSpinner() {
+    $('#loading').css('display','none')
+          
+} 
+ 
 }
