@@ -5,51 +5,52 @@ var regex;
 
 //admin collection
 var trainerSchema = new mongoose.Schema({
-    uname: {
-      type: String,
-      required: "Name cannot be empty",
-    },
-    email: { 
-     type: String, 
-     required: "Email cannot be empty", 
-     unique: true 
+  uname: {
+    type: String,
+    required: "Name cannot be empty",
   },
-    area:{
-        type: String,
-        required: "Training area cannot be empty", 
-    },
-    description:{
-        type: String,
-        required: "Description cannot be empty", 
-    },
-    password: { 
-     type: String, 
-     required: "password cannot be empty",
-     minlength:[8,'Password must have al least 8 characters']
+  email: {
+    type: String,
+    required: "Email cannot be empty",
+    unique: true
   },
-  image:{
-    type:String
+  area: {
+    type: String,
+    required: "Training area cannot be empty",
   },
-  traineesId:{
-    type:Array
+  description: {
+    type: String,
+    required: "Description cannot be empty",
+  },
+  password: {
+    type: String,
+    required: "password cannot be empty",
+    minlength: [8, 'Password must have al least 8 characters']
+  },
+  image: {
+    type: String
+  },
+  traineesId: {
+    type: Array
   }
 });
 
 //Validation
-trainerSchema.path('email').validate((val)=>{
-    regex=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    return regex.test(val); 
-  },'invalid email');
-  
+trainerSchema.path('email').validate((val) => {
+  regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  return regex.test(val);
+}, 'invalid email');
 
-  trainerSchema.pre("save", function (next) {
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(this.password, salt, (err, hash) => {
-        this.password = hash;
-        next();
-      });
+//password hashing
+trainerSchema.pre("save", function (next) {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(this.password, salt, (err, hash) => {
+      this.password = hash;
+      next();
     });
   });
-  
-  var Trainer = mongoose.model("Trainer", trainerSchema);
-  export { Trainer };
+});
+
+var Trainer = mongoose.model("Trainer", trainerSchema);
+
+export { Trainer };

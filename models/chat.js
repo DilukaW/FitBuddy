@@ -1,28 +1,31 @@
 import mongoose from "mongoose";
+
 var userChatSchema = new mongoose.Schema({
-  senderId:{
-    type:String
+  senderId: {
+    type: String
   },
-  receiverId:{
-    type:String
+  receiverId: {
+    type: String
   },
-  messages:{
-    type:String
-  }, 
-},{timestamps:true});
+  messages: {
+    type: String
+  },
+}, { timestamps: true });
 
 var userChat = mongoose.model("userChat", userChatSchema);
 
 var trainerChatSchema = new mongoose.Schema({
-  senderId:{
-    type:String
+  senderId: {
+    type: String
   },
-  receiverId:{
-    type:String
+  receiverId: {
+    type: String
   },
-  messages:{
-    type:String
+  messages: {
+    type: String
   },
-},{timestamps:true});
+}, { timestamps: true });
+
 var trainerChat = mongoose.model("trainerChat", trainerChatSchema);
-export { userChat,trainerChat };
+
+export { userChat, trainerChat };

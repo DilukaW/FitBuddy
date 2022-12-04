@@ -260,7 +260,7 @@ export class TrainerProfileComponent implements OnInit {
     }
 
     return (
-      d.getDay() +
+      d.getUTCDate() +
       ' ' +
       d.toLocaleString('default', { month: 'short' }) +
       ' ' +

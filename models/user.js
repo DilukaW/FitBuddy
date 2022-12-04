@@ -9,49 +9,38 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: "Name cannot be empty",
   },
-  email: { 
-   type: String, 
-   required: "Email cannot be empty", 
-   unique: true 
-},
-gender: { 
-  type: String, 
-  required: "Gender cannot be empty", 
- 
-},
-age: { 
-  type: Number, 
-  required: "Age cannot be empty", 
- 
-},
-  password: { 
-   type: String, 
-   required: "password cannot be empty",
-   minlength:[8,'Password must have al least 8 characters']
-},
-image:{
-  type:String
-},
-trainersId: {
-  type:Array,
-  
-}
+  email: {
+    type: String,
+    required: "Email cannot be empty",
+    unique: true
+  },
+  gender: {
+    type: String,
+    required: "Gender cannot be empty",
+  },
+  age: {
+    type: Number,
+    required: "Age cannot be empty",
+  },
+  password: {
+    type: String,
+    required: "password cannot be empty",
+    minlength: [8, 'Password must have al least 8 characters']
+  },
+  image: {
+    type: String
+  },
+  trainersId: {
+    type: Array,
+  }
 });
-// user model
-/*
-var User=mongoose.model('UserDb',{
-   name:{ type: String },
-   email:{ type: String },
-   password:{type:String},
-   saltSecret:String
 
-});*/
 
 //validation
-userSchema.path('email').validate((val)=>{
-  regex=/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  return regex.test(val); 
-},'invalid email');
+userSchema.path('email').validate((val) => {
+  regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  return regex.test(val);
+}, 'invalid email');
 
 //Events
 userSchema.pre("save", function (next) {
@@ -65,6 +54,6 @@ userSchema.pre("save", function (next) {
 });
 
 
-
 var User = mongoose.model("User", userSchema);
+
 export { User };

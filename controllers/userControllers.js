@@ -89,7 +89,7 @@ router.get("/all", async (req, res) => {
       res.status(200).json({ success: true, data: result });
     }
   }).catch(err => {
-    res.status(404).json({ success: false, message: "server error" });
+    res.json({ success: false, message: "server error" });
   })
 });
 
@@ -166,6 +166,7 @@ router.put("/trainers/:id", (req, res) => {
 
 //delete user
 router.delete("/:id", (req, res) => {
+  
   if (!Types.ObjectId.isValid(req.params.id)) {
     return res.json({ success: false, message: "User not found" });
   }

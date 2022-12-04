@@ -371,7 +371,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     return (
-      d.getDay() +
+      d.getUTCDate() +
       ' ' +
       d.toLocaleString('default', { month: 'short' }) +
       ' ' +
