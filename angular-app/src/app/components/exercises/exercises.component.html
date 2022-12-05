@@ -1,15 +1,14 @@
 <router-outlet></router-outlet>
 
 <!-- specific Exercisers -->
-<div class="container-fluid p-2 bg-white">
     <div class="container-fluid">
         <!-- error message -->
         <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
             {{errorMsg}}
         </div>
 
-        <div class="card rounded mx-4 mb-3 mt-3 py-2 px-4 position-relative" id="exercise" style="min-height: 50px;">
-            <h5 class="text-uppercase text-white text-center fw-bolder">{{type}}</h5>
+        <div class="card rounded mx-4 mb-3 mt-3  px-4 position-relative" id="exercise" style="min-height: 100px;">
+            <h5 class="text-uppercase text-white text-center fw-bolder mt-1">{{type}}</h5>
             <h6>Total Results:{{allExercises.length}}</h6>
             <div class=" mt-1 row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3  overflow-auto" >
                 <div class="col" *ngFor="let exercise of allExercises " [routerLink]="['/exerciseDetails']"
@@ -40,4 +39,3 @@
 
         </div>
     </div>
-</div>

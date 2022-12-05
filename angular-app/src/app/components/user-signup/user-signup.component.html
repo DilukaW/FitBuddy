@@ -1,37 +1,37 @@
+<router-outlet></router-outlet>
 
-<router-outlet></router-outlet> 
 <div class="container">
     <!-- success message -->
-<div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
-  {{successMsg}}
-</div>
-<!-- error message -->
-<div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
-   {{errorMsg}}
-</div>
+    <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
+        {{successMsg}}
+    </div>
+    <!-- error message -->
+    <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
+        {{errorMsg}}
+    </div>
 </div>
 <!-- register form -->
-<div class="container" >
+<div class="container">
     <div class="card_register rounded">
         <div class="right_div overflow-auto">
             <form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm)">
                 <h2><b>Sign up</b></h2>
                 <hr>
-    
-                <div class="mb-2" >
+
+                <div class="mb-2">
                     <label for="Uname" class="form-label">User Name</label>
                     <input type="text" class="form-control " name="Uname" placeholder="Enter User Name"
-                    formControlName="uname" [ngClass]="(signupForm.get('uname')!.touched || signupForm.get('uname')!.dirty)&&
+                        formControlName="uname" [ngClass]="(signupForm.get('uname')!.touched || signupForm.get('uname')!.dirty)&&
                     signupForm.get('uname')!.errors? 'is-invalid':''">
-                   
+
                     <div class="invalid-feedback">
                         Please enter user name
                     </div>
                 </div>
-                <div class="mb-2" >
+                <div class="mb-2">
                     <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" name="email" placeholder="name@example.com" 
-                    formControlName="email" [ngClass]="(signupForm.get('email')!.touched || signupForm.get('email')!.dirty)&&
+                    <input type="email" class="form-control" name="email" placeholder="name@example.com"
+                        formControlName="email" [ngClass]="(signupForm.get('email')!.touched || signupForm.get('email')!.dirty)&&
                     signupForm.get('email')!.errors? 'is-invalid':''">
                     <div class="invalid-feedback">
                         Please enter a valid email
@@ -39,19 +39,19 @@
                 </div>
                 <div class="mb-2">
                     <label for="type" class="form-label">Gender</label>
-                    <select class="form-select" name="type"formControlName="gender" (change)=" changeType($event)" >
+                    <select class="form-select" name="type" formControlName="gender" (change)=" changeType($event)">
 
-                        <option value="Male" selected >Male</option>
+                        <option value="Male" selected>Male</option>
                         <option value="Female">Female</option>
-                        
+
                     </select>
                 </div>
-                <div class="mb-2" >
+                <div class="mb-2">
                     <label for="age" class="form-label">Age</label>
-                    <input type="number" class="form-control " name="age" placeholder="Enter Age"
-                    formControlName="age" [ngClass]="(signupForm.get('age')!.touched || signupForm.get('age')!.dirty)&&
+                    <input type="number" class="form-control " name="age" placeholder="Enter Age" formControlName="age"
+                        [ngClass]="(signupForm.get('age')!.touched || signupForm.get('age')!.dirty)&&
                     signupForm.get('age')!.errors? 'is-invalid':''">
-                   
+
                     <div class="invalid-feedback">
                         Please enter age
                     </div>
@@ -59,29 +59,30 @@
                 <div class="mb-2">
                     <label for="password" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password" placeholder="Enter Password"
-                    formControlName="password" [ngClass]="(signupForm.get('password')!.touched || signupForm.get('password')!.dirty)&&
+                        formControlName="password" [ngClass]="(signupForm.get('password')!.touched || signupForm.get('password')!.dirty)&&
                     signupForm.get('password')!.errors? 'is-invalid':'' ">
                     <div class="invalid-feedback">
                         Password must be at least 8 characters.
                     </div>
                 </div>
-                
+
                 <div>
-                    <p style="font-size: 10px;">By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy.</p>
+                    <p style="font-size: 10px;">By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies
+                        Policy.</p>
                 </div>
                 <div class="d-grid gap-2 mx-auto">
                     <button class="btn btn-custom" type="submit" [disabled]="signupForm.invalid">Sign Up</button>
                 </div>
                 <br>
                 <div>
-                    <p style="text-align: center;font-size: 14px;">All ready have an Account ? <a routerLink="/login">Log In</a></p>
+                    <p style="text-align: center;font-size: 14px;">All ready have an Account ? <a
+                            routerLink="/login">Log In</a></p>
                 </div>
-               
+
             </form>
         </div>
         <div class="left_div">
             <img src="../assets/signup.png">
         </div>
     </div>
-    </div>
-   
+</div>
