@@ -18,13 +18,13 @@ export class ExerciseSectionComponent implements OnInit {
   showErrorsMsg!: boolean;
   errorMsg!: String;
 
-  constructor(private api: ApiService,private router:Router) {}
+  constructor(private api: ApiService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getAllBodyParts();
-    this.getAllExercise();
+    //this.getAllBodyParts();
+    //this.getAllExercise();
 
-    console.log('selected ' + this.selectedBodyPart);
+    //console.log('selected ' + this.selectedBodyPart);
   }
 
   //style
@@ -38,18 +38,17 @@ export class ExerciseSectionComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.bodyParts = res.data;
-          console.log(res.data);
-        } 
-        else{
+          //console.log(res.data);
+        } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000)
+          setTimeout(() => (this.showErrorsMsg = false), 4000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
-        this.errorMsg = "Server Error";
-        setTimeout(() => (this.showErrorsMsg = false), 4000)
+        this.errorMsg = 'Server Error';
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {
         this.hideBodyPartsSpinner();
@@ -63,7 +62,7 @@ export class ExerciseSectionComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.allExercises = res.data;
-          console.log(res.data);
+          //console.log(res.data);
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
@@ -72,11 +71,11 @@ export class ExerciseSectionComponent implements OnInit {
       },
       error: (err) => {
         this.showErrorsMsg = true;
-        this.errorMsg = "Server Error";
-        setTimeout(() => (this.showErrorsMsg = false), 4000)
+        this.errorMsg = 'Server Error';
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
       complete: () => {
-        this.hideExercisesSpinner()
+        this.hideExercisesSpinner();
       },
     });
   }
@@ -85,12 +84,13 @@ export class ExerciseSectionComponent implements OnInit {
   getSpecificExercise(item: any) {
     this.allExercises = [];
 
+    this.showExercisesSpinner();
     //adding style for selected trainer
     this.selectedBodyPart = item;
     this.api.getExercisesByBodyPart(this.selectedBodyPart).subscribe({
       next: (res) => {
         if (res.success) {
-          console.log(res.data);
+          //console.log(res.data);
 
           this.allExercises = res.data;
           this.type = item + ' Exercises';
@@ -102,22 +102,32 @@ export class ExerciseSectionComponent implements OnInit {
       },
       error: (err) => {
         this.showErrorsMsg = true;
-        this.errorMsg = "Server Error";
-        setTimeout(() => (this.showErrorsMsg = false), 4000)
+        this.errorMsg = 'Server Error';
+        setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
-      complete: () => {},
+      complete: () => {
+        this.hideExercisesSpinner();
+      },
     });
   }
 
   //hide loading BodyParts spinner
   hideBodyPartsSpinner() {
-    $('#loadingBodyParts').css('display', 'none');
-    $('.spinnerBody').remove()
-  }
-//hide loading Exercises spinner
-  hideExercisesSpinner(){
-    $('#loadingExercises').css('display', 'none');
-    $('.spinnerExercises').remove()
+    $('.spinnerBody').css('visibility', 'hidden');
   }
 
+  //hide loading Exercises spinner
+  hideExercisesSpinner() {
+    $('.spinnerExercises').css('visibility', 'hidden');
+  }
+
+  //show loading BodyParts spinner
+  showBodyPartsSpinner() {
+    $('.spinnerBody').css('visibility', 'visible');
+  }
+
+  //show loading Exercises spinner
+  showExercisesSpinner() {
+    $('.spinnerExercises').css('visibility', 'visible');
+  }
 }

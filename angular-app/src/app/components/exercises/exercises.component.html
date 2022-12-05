@@ -1,32 +1,43 @@
 <router-outlet></router-outlet>
-<div class="container">
-   
-    <!-- error message -->
-    <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
-        {{errorMsg}}
-    </div>
-</div>
+
 <!-- specific Exercisers -->
-<div class="container-fluid mb-5 " >
-    <div class="card rounded mx-4 mb-3 mt-3 p-2 overflow-auto" id="exercise">
-        <h5 id="heading" class="text-uppercase">{{type}}</h5>
-        <h6 class="ms-2">Total Results:{{allExercises.length}}</h6>
-        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-            <div class="col" *ngFor="let exercise of allExercises " [routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-                <div class="card gif rounded" id="exercise-card">
-                    <div class="row">
-                        <img [src]="exercise.gifUrl" alt="">
-                    </div>
-                    <div class="row" id="row">
-                        <div class="card-body">
-                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+<div class="container-fluid p-2 bg-white">
+    <div class="container-fluid">
+        <!-- error message -->
+        <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
+            {{errorMsg}}
+        </div>
+
+        <div class="card rounded mx-4 mb-3 mt-3 py-2 px-4 position-relative" id="exercise" style="min-height: 50px;">
+            <h5 class="text-uppercase text-white text-center fw-bolder">{{type}}</h5>
+            <h6>Total Results:{{allExercises.length}}</h6>
+            <div class=" mt-1 row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3  overflow-auto" >
+                <div class="col" *ngFor="let exercise of allExercises " [routerLink]="['/exerciseDetails']"
+                    [queryParams]="{id:exercise.id}">
+                    <div class="card gif rounded" id="exercise-card">
+                        <div class="row">
+                            <img [src]="exercise.gifUrl" alt="">
+                        </div>
+                        <div class="row" id="row">
+                            <div class="card-body">
+                                <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+
+            <!-- spinner -->
+            <div
+                class="spinnerAllExercises position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary mt-2 " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingAllExercises">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
+
         </div>
-
     </div>
-</div> 
-
-
+</div>

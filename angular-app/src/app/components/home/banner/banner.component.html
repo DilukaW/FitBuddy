@@ -1,86 +1,89 @@
-<div class="container">
+<div class="container-fluid py-1" style="background: linear-gradient(120deg, #162a46, #11002c);">
 
-  <div class="card mx-4 mb-3 sticky position-relative">
-    <div class="card-body">
-      <div class="container">
-        <div class="row" id="banner">
-          <div class="col">
+  <div class="container mb-5">
+
+    <div class="card mx-4 mb-3 sticky position-relative">
+      <div class="card-body">
+        <div class="container">
+          <div class="row" id="banner">
+            <div class="col">
+              <!-- content div -->
+              <div class="row">
+                <p id="title"><span>THE BEST </span>FITNESS PLATFORM</p>
+              </div>
+
+              <div class="row" id="heading">
+                <p>
+                  BE <span style="color: #0d6efd">FIT</span><br />
+                  <span style="color:#0d6efd">STAY</span> HEALTHY
+                </p>
+              </div>
+              <div class="row">
+                <h5>
+                  We provide everything you need to transform your body & mindset !
+                </h5>
+              </div>
+              <div class="row" id="counter">
+                <div class="col">
+                  <div class="row">
+                    <div class="d-inline-flex">
+                      <h4 class="count">1000</h4><i class="bi bi-plus fa-10x " style="font-size: 20px;"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h4>Exercisers</h4>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="d-inline-flex">
+                      <h4 class="">{{user.length}}</h4><i class="bi bi-plus fa-10x " style="font-size:20px;"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h4>Members </h4>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <div class="d-inline-flex">
+                      <h4 class="">{{trainer.length}}</h4><i class="bi bi-plus fa-10x " style="font-size: 20px;"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <h4>Trainers</h4>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <button class="btn btn-primary" type="button" routerLink="login">Get Started</button>
+            </div>
             <!-- content div -->
-            <div class="row">
-              <p id="title"><span>THE BEST </span>FITNESS PLATFORM</p>
-            </div>
 
-            <div class="row" id="heading">
-              <p>
-                BE <span style="color: #0d6efd">FIT</span><br />
-                <span style="color:#0d6efd">STAY</span> HEALTHY
-              </p>
-            </div>
-            <div class="row">
-              <h5>
-                We provide everything you need to transform your body & mindset !
-              </h5>
-            </div>
-            <div class="row" id="counter">
-              <div class="col">
-                <div class="row">
-                  <div class="d-inline-flex">
-                    <h4 class="count">1000</h4><i class="bi bi-plus fa-10x " style="font-size: 20px;"></i>
-                  </div>
-                </div>
-                <div class="row">
-                  <h4>Exercisers</h4>
-                </div>
-              </div>
-              <div class="col">
-                <div class="row">
-                  <div class="d-inline-flex">
-                    <h4 class="">{{user.length}}</h4><i class="bi bi-plus fa-10x " style="font-size:20px;"></i>
-                  </div>
-                </div>
-                <div class="row">
-                  <h4>Members </h4>
-                </div>
-              </div>
-              <div class="col">
-                <div class="row">
-                  <div class="d-inline-flex">
-                    <h4 class="">{{trainer.length}}</h4><i class="bi bi-plus fa-10x " style="font-size: 20px;"></i>
-                  </div>
-                </div>
-                <div class="row">
-                  <h4>Trainers</h4>
-                </div>
-              </div>
-            </div>
-            <br>
-            <button class="btn btn-primary" type="button" routerLink="login">Get Started</button>
-          </div>
-          <!-- content div -->
-
-          <!-- image div -->
-          <div class="col" id="banner-img">
-            <div class="row">
-              <img class="h-100" id="img" src="../assets/image-removebg-preview.png" alt="banner image" style="
+            <!-- image div -->
+            <div class="col" id="banner-img">
+              <div class="row">
+                <img class="h-100" id="img" src="../assets/image-removebg-preview.png" alt="banner image" style="
                 background-position: center;
                 background-size: cover;
                 max-height: 500px;
                 max-width: 500px;
                 margin: auto;
               " />
+              </div>
             </div>
+            <!-- image div -->
           </div>
-          <!-- image div -->
         </div>
       </div>
-    </div>
-    <!-- spinner -->
-    <div
-      class="spinner position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
-      <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status" id="loading">
-        <span class="visually-hidden">Loading...</span>
+      <!-- spinner -->
+      <div
+        class="spinner position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+        <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status" id="loading">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </div>
+      <!-- spinner -->
     </div>
-    <!-- spinner -->
   </div>
 </div>

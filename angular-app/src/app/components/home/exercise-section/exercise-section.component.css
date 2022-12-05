@@ -1,5 +1,5 @@
 .card-b {
-    
+
     min-height: 100px;
     max-height: 100px;
     margin-right: 10px;
@@ -9,46 +9,51 @@
     font-size: small;
     cursor: pointer;
 
-    
+
 }
-.card-b:hover{
-    background-color:var(--secondary-color) ;
+
+.card-b:hover {
+    background-color: var(--secondary-color);
     box-shadow: 6px 6px 10px white;
     font-weight: bold;
 
 }
-#row{
+
+#row {
     min-height: 85px;
 }
+
 h1 {
     font-weight: bolder;
 }
- 
-.gif{
+
+.gif {
     background-color: var(--card-color);
     box-shadow: 6px 6px 10px var(--outline-color);
     color: white;
     cursor: pointer;
 }
+
 /* .active{
    
     background-color: var(--secondary-color);
     color: white;
     border-radius: 10px;
 } */
-.active1{
+.active1 {
     background-color: var(--secondary-color);
     box-shadow: none;
 }
-#exercise{
+
+#exercise {
     background-color: var(--primary-color);
     box-shadow: 6px 6px 18px var(--outline-color);
     color: white;
 }
-#exercise-card:hover{
-    background-color:var(--secondary-color) ;
+
+#exercise-card:hover {
+    background-color: var(--secondary-color);
     box-shadow: none;
     font-weight: bold;
 
 }
-
