@@ -23,6 +23,7 @@ export class UserService {
     age:Number(null),
     email:" ",
     image:" ",
+    trainersId:" ",
     password:" ",
     
   };

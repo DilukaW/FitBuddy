@@ -220,7 +220,7 @@ export class UserProfileComponent implements OnInit {
   getTrainers() {
     this.trainersIds = [];
 
-    for (let i = 0; i < this.ids.length; i++) {
+    for (let i = 1; i < this.ids.length; i++) {
       this.trainersIds.push(this.ids[i].split('_').pop());
     }
 
@@ -350,6 +350,7 @@ export class UserProfileComponent implements OnInit {
       email: ' ',
       password: ' ',
       image: ' ',
+      trainersId:''
     };
     form.reset();
     this.userUpdateForm.get('gender')?.setValue('Male');

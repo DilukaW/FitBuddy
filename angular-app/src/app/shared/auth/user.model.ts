@@ -11,5 +11,6 @@ export interface regUser{
     age:number,
     email:string,
     image:string,
+    trainersId:any,
     password:string
 }

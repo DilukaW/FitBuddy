@@ -21,6 +21,7 @@ router.post("/register", (req, res, next) => {
     gender: req.body.gender,
     age: req.body.age,
     password: req.body.password,
+    trainersId:req.body.email
   });
 
   //save user
@@ -29,7 +30,7 @@ router.post("/register", (req, res, next) => {
       return res.status(200).json({ success: true, data: doc });
     } else {
       if (err.code == 11000) {
-        res.status(422).send(["Duplicate email address found"]);
+        res.status(422).send(["Duplicate email address found"+err]);
       } else {
         return next(err);
       }

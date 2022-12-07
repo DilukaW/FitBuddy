@@ -32,6 +32,7 @@ var userSchema = new mongoose.Schema({
   },
   trainersId: {
     type: Array,
+    
   }
 });
 

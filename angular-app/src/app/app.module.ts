@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 import { FormsModule} from '@angular/forms'; //
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
@@ -31,7 +30,6 @@ import { WhyUsComponent } from './components/home/why-us/why-us.component';
 @NgModule({
   declarations: [
     AppComponent,
-    UserRegistrationComponent,
     NavbarComponent,
     FooterComponent,
     HomeComponent,

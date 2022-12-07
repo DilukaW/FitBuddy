@@ -140,9 +140,10 @@ export class TrainerProfileComponent implements OnInit {
   getUsers() {
     this.usersIds = [];
 
-    for (let i = 0; i < this.ids.length; i++) {
+    for (let i = 1; i < this.ids.length; i++) {
       this.usersIds.push(this.ids[i].split('_').pop());
     }
+    console.log('usersIds'+this.usersIds)
 
     this.users = [];
     for (let j = 0; j < this.usersIds.length; j++) {
@@ -160,7 +161,7 @@ export class TrainerProfileComponent implements OnInit {
           }
         },
         error: (err) => {
-          this.errorMsg = 'Server Error';
+          this.errorMsg = 'Server Error11';
           this.showErrorsMsg = true;
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         },

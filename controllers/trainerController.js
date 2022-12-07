@@ -21,6 +21,7 @@ router.post("/register", (req, res, next) => {
     area: req.body.area,
     description: req.body.description,
     password: req.body.password,
+    traineesId:req.body.email
 
   });
 
