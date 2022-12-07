@@ -1,12 +1,21 @@
+<!-- nav bar -->
 <nav class="navbar navbar-light navbar-expand-md py-3 sticky-top">
   <div class="container">
+
+    <!-- icon -->
     <a class="navbar-brand d-flex align-items-center " routerLink="" routerLinkActive="active-link">
       <img src="../assets/logo.png" class="img-fluid py-1 rounded me-1" style="background-color: #6610f2;"><span>Gym
         Buddy</span></a>
+    <!-- icon -->
+
+    <!-- collapse btn -->
     <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3 " type="button"
       (click)="toggleCollapsed()">
       <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
     </button>
+    <!-- collapse btn -->
+
+    <!-- nav links -->
     <div class="collapse navbar-collapse" id="navcol-3">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
@@ -34,8 +43,7 @@
           <img class="rounded-circle x" *ngIf="data.image!='undefined' && data.image else default" src={{data.image}}>
           <ng-template #default>
 
-            <img class="rounded-circle " width="40px"
-              src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+            <img class="rounded-circle bg-light p-0 " width="40px" height="40px" src="../../../assets/profile.jpg">
           </ng-template>
           {{data.uname}}
         </button>
@@ -54,5 +62,8 @@
 
 
     </div>
+    <!-- nav links -->
   </div>
+
 </nav>
+<!-- nav bar -->

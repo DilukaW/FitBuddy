@@ -1,67 +1,89 @@
 <router-outlet></router-outlet>
-    <div class="container">
-        <!-- success message -->
-        <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
-            Login successfully!
-        </div>
-        <!-- error message -->
-        <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
-            {{errorMsg}}
-        </div>
+<div class="container">
+    <!-- success message -->
+    <div class="alert alert-success text-center" role="alert" *ngIf="showSuccessMsg">
+        Login successfully!
     </div>
+    <!-- error message -->
+    <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
+        {{errorMsg}}
+    </div>
+</div>
 
-    <!-- login Form -->
-    <div class="container">
-        <div class="card_login rounded">
-            <div class="left_div">
-                <img src="../assets/login.jpg">
-            </div>
-            <div class="right_div">
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
-                    <h2><b>Log in</b></h2>
-                    <hr>
-                    <div class="mb-2">
-                        <label for="type" class="form-label">Login As</label>
-                        <select class="form-select" name="type" formControlName="type" (change)=" changeType($event)">
+<!-- login Form -->
+<div class="container">
+    <!-- card -->
+    <div class="card_login rounded position-relative ">
+        <!-- img div -->
+        <div class="left_div">
+            <img src="../assets/login.jpg">
+        </div>
+        <!-- img div -->
 
-                            <option value="1" selected>User</option>
-                            <option value="2">Trainer</option>
-                            <option value="3">Admin</option>
-                        </select>
-                    </div>
+        <!-- form div -->
+        <div class="right_div ">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+                <h2><b>Log in</b></h2>
+                <hr>
+                <div class="mb-2">
+                    <label for="type" class="form-label">Login As</label>
+                    <select class="form-select" name="type" formControlName="type" (change)=" changeType($event)">
 
-                    <div class="mb-2">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control " name="email" placeholder="name@example.com"
-                            formControlName="email" [ngClass]="(loginForm.get('email')!.touched || loginForm.get('email')!.dirty)&&
+                        <option value="1" selected>User</option>
+                        <option value="2">Trainer</option>
+                        <option value="3">Admin</option>
+                    </select>
+                </div>
+
+                <div class="mb-2">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control " name="email" placeholder="name@example.com"
+                        formControlName="email" [ngClass]="(loginForm.get('email')!.touched || loginForm.get('email')!.dirty)&&
                     loginForm.get('email')!.errors? 'is-invalid':''">
 
-                        <div class="invalid-feedback">
-                            Please enter a valid email
-                        </div>
+                    <div class="invalid-feedback">
+                        Please enter a valid email
                     </div>
+                </div>
 
-                    <div class="mb-2">
-                        <label for="password" class="form-label ">Password</label>
-                        <input type="password" class="form-control" name="password" placeholder="Enter Password"
-                            formControlName="password" [ngClass]="(loginForm.get('password')!.touched || loginForm.get('password')!.dirty)&&
+                <div class="mb-2">
+                    <label for="password" class="form-label ">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Enter Password"
+                        formControlName="password" [ngClass]="(loginForm.get('password')!.touched || loginForm.get('password')!.dirty)&&
                     loginForm.get('password')!.errors? 'is-invalid':'' ">
-                        <div class="invalid-feedback">
-                            Password must be at least 8 characters.
-                        </div>
+                    <div class="invalid-feedback">
+                        Password must be at least 8 characters.
                     </div>
-                    <br>
-                    <div class="d-grid gap-2 mx-auto">
-                        <button class="btn btn-custom" type="submit" [disabled]="loginForm.invalid">Log In</button>
-                    </div>
-                    <br>
-                    <div>
-                        <p style="text-align: center; font-size: 14px; color: #0a2a59;">Don't have an Account ? <a
-                                routerLink="/register">Sign Up</a></p>
-                    </div>
+                </div>
+                <br>
+                <div class="d-grid gap-2 mx-auto">
+                    <button class="btn btn-custom" type="submit" [disabled]="loginForm.invalid">
+                        <span>Log In</span>
+                    </button>
 
-                </form>
+                </div>
+                <br>
+                <div>
+                    <p style="text-align: center; font-size: 14px; color: #0a2a59;">Don't have an Account ? <a
+                            routerLink="/register">Sign Up</a></p>
+                </div>
+
+            </form>
+
+        </div>
+        <!-- form div -->
+
+        <!-- spinner -->
+        <div
+            class="spinnerLogin position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+            <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                id="loadingLogin">
+                <span class="visually-hidden">Loading...</span>
             </div>
         </div>
-    </div>
+        <!-- spinner -->
 
+    </div>
+    <!-- card -->
+</div>
+<!-- login Form -->

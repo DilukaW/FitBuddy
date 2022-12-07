@@ -89,6 +89,9 @@
         margin: 0px;
 
     }
+    .spinnerLogin{
+        visibility: hidden;
+    }
 
 }
 
