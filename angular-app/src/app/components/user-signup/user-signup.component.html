@@ -12,7 +12,9 @@
 </div>
 <!-- register form -->
 <div class="container">
+    <!-- card -->
     <div class="card_register rounded position-relative">
+        <!-- form -->
         <div class="right_div overflow-auto">
             <form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm)">
                 <h2><b>Sign up</b></h2>
@@ -81,17 +83,24 @@
 
             </form>
         </div>
+        <!-- form -->
+
+        <!-- img -->
         <div class="left_div">
             <img src="../assets/signup.png">
         </div>
-         <!-- spinner -->
-         <div
-         class="spinnerSignup position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
-         <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
-             id="loadingSignup">
-             <span class="visually-hidden">Loading...</span>
-         </div>
-     </div>
-     <!-- spinner -->
+        <!-- img -->
+
+        <!-- spinner -->
+        <div
+            class="spinnerSignup position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+            <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                id="loadingSignup">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <!-- spinner -->
+
     </div>
+    <!-- card -->
 </div>

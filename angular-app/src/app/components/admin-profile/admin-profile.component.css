@@ -4,7 +4,8 @@ li:hover{
     border-radius: 10px;
 }
 li{
-    border-bottom:2px solid var(--secondary-color) ;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
 }
 .active{
    
@@ -38,12 +39,19 @@ li{
     max-height: 120px !important;
   
 }
-@media (max-width:767px) {
-
-    .border
-    {
-      border: none !important;
-      }
-
-
+/*media query*/
+@media only screen and (max-width: 767px) {
+    #trainerCol {
+        border-right: none !important;
+        height: 200px !important;
+        margin-bottom: 10px;
     }
+    #profile{
+        height: 320px !important;
+    }
+    #about{
+        border-right: none !important;
+    }
+    
+
+}

@@ -1,7 +1,4 @@
 <router-outlet></router-outlet>
-<!-- <p>admin-profile works!</p>
-{{data | json}}
-<button (click)="logOut()">LogOut</button> -->
 
 <div class="container">
     <!-- success message -->
@@ -16,31 +13,40 @@
 
 <!-- profile -->
 <div class="container rounded bg-white mt-5 mb-5 py-2">
-    <div class="row">
-        <div class="col-md-3 border-end border-dark">
-            <h1 class="text-center">My Dashboard</h1>
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+    <!-- card -->
+    <div class="row" style="min-height: 567px;">
+        <!-- about -->
+        <div class="col-md-3 border-end border-dark p-2" id="about" >
+
+            <div>
+                <h1 class="text-center">My Dashboard</h1>
+            </div>
+            <div class="d-flex flex-column align-items-center py-5 overflow-auto" id="profile" style="height: 467px">
+
                 <img class="rounded-circle mt-0" id="selectedImg" *ngIf="profileImg; else default" width="120px"
                     [src]="profileImg" alt="profile image" />
                 <ng-template #default>
-                    <img class="rounded-circle mt-0" width="120px"
-                        src="../../../assets/profile.jpg" />
+                    <img class="rounded-circle mt-0" width="120px" src="../../../assets/profile.jpg" />
                 </ng-template>
-                <span class="font-weight-bold mt-2">Name:{{ uname }} </span>
-                <span class="text-black-50">Email:{{ email }}</span>
 
+                <span class="text-black-50 mt-2">Name:{{ uname }} </span>
+                <span class="text-black-50">Email:{{ email }}</span>
                 <span class="text-black-50">Gender:{{ gender }}</span>
                 <span class="text-black-50">Age:{{ age }} </span>
+
             </div>
+            
         </div>
+        <!-- about -->
+
         <div class="col-md-9 pd-5">
             <!-- Tabs navs -->
             <ul class="nav nav-tabs nav-justified mb-3 mt-4" style="border: none" id="ex1" role="tablist">
-                <li class="nav-item tab-link tab" role="presentation" (click)="onTabClick('update user')"
+                <li class="nav-item tab-link tab me-1" role="presentation" (click)="onTabClick('update user')"
                     [class.active]="activeTab == 'update user'">
                     Update Account
                 </li>
-                <li class="nav-item tab" role="presentation" (click)="onTabClick('trainers')"
+                <li class="nav-item tab me-1" role="presentation" (click)="onTabClick('trainers')"
                     [class.active]="activeTab == 'trainers'">
                     My Trainer
                 </li>
@@ -53,6 +59,7 @@
 
             <!-- Tabs content -->
             <div class="tab-content">
+                <!-- update user -->
                 <div *ngIf="activeTab == 'update user'">
                     <div class="col-md-8 mx-auto">
                         <div class="p-2 py-1">
@@ -62,7 +69,7 @@
                                         width="120px" [src]="imageData" alt="profile image" />
                                     <ng-template #default>
                                         <img class="rounded-circle mt-0" width="120px"
-                                        src="../../../assets/profile.jpg" />
+                                            src="../../../assets/profile.jpg" />
                                     </ng-template>
                                     <div class="btn rounded-circle b">
                                         <label class="form-label text-white m-1" for="customFile2"><i
@@ -135,12 +142,19 @@
                         </div>
                     </div>
                 </div>
+                <!-- update user -->
             </div>
+            <!-- Tabs content -->
+
+            <!-- my trainers -->
             <div *ngIf="activeTab == 'trainers'">
+                <!-- Tabs content -->
                 <div class="tab-content">
                     <div class="tab-content" *ngIf="trainers?.length">
-                        <div class="row p-3">
-                            <div class="col-md-5 border-end border-dark">
+                        <div class="row p-3" style=" min-height: 468px">
+                            <div class="col-md-5 border-end border-dark overflow-auto" id="trainerCol"
+                                style="height: 460px">
+
                                 <div class="card my-2">
                                     <div class="card-body p-0 tab" (click)="getTrainer(trainers[0]._id, 0)"
                                         [ngClass]="{ active1: isActive(0) }">
@@ -151,7 +165,7 @@
                         " src="{{ trainers[0].image }}" />
                                             <ng-template #default>
                                                 <img class="rounded-circle m-2" width="40px"
-                                                src="../../../assets/profile.jpg" />
+                                                    src="../../../assets/profile.jpg" />
                                             </ng-template>
                                             {{ trainers[0].uname }}
                                         </span>
@@ -167,15 +181,16 @@
                         " class="rounded-circle m-2 x" src="{{ trainer.image }}" />
                                             <ng-template #default>
                                                 <img class="rounded-circle m-2" width="40px"
-                                                src="../../../assets/profile.jpg" />
+                                                    src="../../../assets/profile.jpg" />
                                             </ng-template>
                                             {{ trainer.uname }}
                                         </span>
                                     </div>
                                 </div>
+
                             </div>
-                            <!-- update trainer details form -->
-                            <div class="col-md-7">
+                            <!-- trainer details -->
+                            <div class="col-md-7 overflow-auto" style="height: 460px">
                                 <div *ngIf="trainers?.length">
                                     <h1 class="text-center">Trainer Details</h1>
                                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -185,7 +200,7 @@
                       " width="120px" [src]="updateTrainerImg" alt="profile image" />
                                         <ng-template #default>
                                             <img class="rounded-circle mt-0" width="120px"
-                                            src="../../../assets/profile.jpg" />
+                                                src="../../../assets/profile.jpg" />
                                         </ng-template>
                                         <span class="font-weight-bold mt-2">Name:{{ unameTrainer }}
                                         </span>
@@ -195,17 +210,22 @@
                                         <span class="text-black-50">{{ desTrainer }} </span>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- Tabs content -->
             </div>
+            <!-- my trainers -->
 
+            <!-- chat -->
             <div *ngIf="activeTab == 'chat'">
+                <!-- Tabs content -->
                 <div class="tab-content">
                     <div class="tab-content" *ngIf="trainers?.length">
                         <div class="row p-3">
-                            <div class="col-md-5 border-end border-dark">
+                            <div class="col-md-5 border-end border-dark overflow-auto" id="trainerCol" style="height: 460px">
                                 <div class="card my-2">
                                     <div class="card-body p-0" (click)="getTrainer(trainers[0]._id, 0)"
                                         [ngClass]="{ active1: isActive(0) }">
@@ -216,7 +236,7 @@
                         " src="{{ trainers[0].image }}" />
                                             <ng-template #default>
                                                 <img class="rounded-circle m-2" width="40px"
-                                                src="../../../assets/profile.jpg" />
+                                                    src="../../../assets/profile.jpg" />
                                             </ng-template>
                                             {{ trainers[0].uname }}
                                         </span>
@@ -232,22 +252,24 @@
                         " class="rounded-circle m-2 x" src="{{ trainer.image }}" />
                                             <ng-template #default>
                                                 <img class="rounded-circle m-2" width="40px"
-                                                src="../../../assets/profile.jpg"/>
+                                                    src="../../../assets/profile.jpg" />
                                             </ng-template>
                                             {{ trainer.uname }}
                                         </span>
                                     </div>
                                 </div>
+
                             </div>
                             <!-- chat -->
                             <div class="col-md-7">
                                 <div class="card">
                                     <div class="card-header d-flex justify-content-between align-items-center p-2"
-                                        style="border-top: 4px solid #f48e16">
+                                       >
                                         <h5 class="mb-0">Chat messages</h5>
 
                                     </div>
-                                    <div #scrollMe class="card-body overflow-auto" style="position: relative; height: 370px">
+                                    <div #scrollMe class="card-body overflow-auto"
+                                        style="position: relative; height: 350px">
 
                                         <div *ngIf="trainerMsgs.length>0 || userMsgs.length>0; else default2">
                                             <div *ngIf="userMsgs.length>=trainerMsgs.length; else default4">
@@ -269,7 +291,7 @@
                                                             </div>
                                                             <div class="d-flex flex-row justify-content-end">
                                                                 <p class="small p-2 mb-3 text-white rounded-3 "
-                                                                    style="background-color:#373d41">
+                                                                    style="background-color:#0d6efd">
                                                                     {{msg.messages}}
                                                                 </p>
                                                             </div>
@@ -281,7 +303,7 @@
 
                                                             <div class="d-flex flex-row justify-content-start">
                                                                 <p class="small text-white p-2 mb-3 rounded-3"
-                                                                    style="background-color: #5e4d4a">
+                                                                    style="background-color: #11002c">
                                                                     {{trainerMsgs[i].messages}}
                                                                 </p>
                                                             </div>
@@ -299,7 +321,7 @@
 
                                                             <div class="d-flex flex-row justify-content-start">
                                                                 <p class="small text-white p-2 mb-3 rounded-3"
-                                                                    style="background-color: #5e4d4a">
+                                                                    style="background-color: #11002c">
                                                                     {{trainerMsgs[i].messages}}
                                                                 </p>
                                                             </div>
@@ -311,7 +333,7 @@
                                                             </div>
                                                             <div class="d-flex flex-row justify-content-end">
                                                                 <p class="small p-2 mb-3 text-white rounded-3 "
-                                                                    style="background-color:#373d41">
+                                                                    style="background-color:#0d6efd">
                                                                     {{msg.messages}}
                                                                 </p>
                                                             </div>
@@ -327,7 +349,7 @@
                                                         </div>
                                                         <div class="d-flex flex-row justify-content-end">
                                                             <p class="small p-2 mb-3 text-white rounded-3 "
-                                                                style="background-color:#373d41">
+                                                                style="background-color:#0d6efd">
                                                                 {{msg.messages}}
                                                             </p>
                                                         </div>
@@ -354,7 +376,7 @@
 
                                                             <div class="d-flex flex-row justify-content-start">
                                                                 <p class="small text-white p-2 mb-3 rounded-3"
-                                                                    style="background-color: #5e4d4a">
+                                                                    style="background-color: #11002c">
                                                                     {{tmsg.messages}}
                                                                 </p>
                                                             </div>
@@ -367,7 +389,7 @@
                                                             </div>
                                                             <div class="d-flex flex-row justify-content-end">
                                                                 <p class="small p-2 mb-3 text-white rounded-3 "
-                                                                    style="background-color:#373d41">
+                                                                    style="background-color:#0d6efd">
                                                                     {{userMsgs[i].messages}}
                                                                 </p>
                                                             </div>
@@ -385,7 +407,7 @@
                                                             </div>
                                                             <div class="d-flex flex-row justify-content-end">
                                                                 <p class="small p-2 mb-3 text-white rounded-3 "
-                                                                    style="background-color:#373d41">
+                                                                    style="background-color:#0d6efd">
                                                                     {{userMsgs[i].messages}}
                                                                 </p>
                                                             </div>
@@ -396,7 +418,7 @@
 
                                                             <div class="d-flex flex-row justify-content-start">
                                                                 <p class="small text-white p-2 mb-3 rounded-3"
-                                                                    style="background-color: #5e4d4a">
+                                                                    style="background-color: #11002c">
                                                                     {{tmsg.messages}}
                                                                 </p>
                                                             </div>
@@ -412,7 +434,7 @@
 
                                                         <div class="d-flex flex-row justify-content-start">
                                                             <p class="small text-white p-2 mb-3 rounded-3"
-                                                                style="background-color: #5e4d4a">
+                                                                style="background-color: #11002c">
                                                                 {{tmsg.messages}}
                                                             </p>
                                                         </div>
@@ -436,7 +458,7 @@
 
                                             <input type="text" class="form-control" name="messages"
                                                 placeholder="Type message" [(ngModel)]="newMessage" />
-                                            <button class="btn btn-warning" type="submit" (click)="sendMessage()"
+                                            <button class="btn " type="submit" (click)="sendMessage()"
                                                 [disabled]="newMessage===''" style="padding-top: 0.55rem">
 
                                                 Send
@@ -451,7 +473,10 @@
                         </div>
                     </div>
                 </div>
+                <!-- Tabs content -->
             </div>
+            <!-- chat -->
         </div>
     </div>
+    <!-- card -->
 </div>
