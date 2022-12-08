@@ -21,8 +21,8 @@ export class ExerciseSectionComponent implements OnInit {
   constructor(private api: ApiService, private router: Router) {}
 
   ngOnInit(): void {
-    //this.getAllBodyParts();
-    //this.getAllExercise();
+    this.getAllBodyParts();
+    this.getAllExercise();
 
     //console.log('selected ' + this.selectedBodyPart);
   }
@@ -38,6 +38,7 @@ export class ExerciseSectionComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.bodyParts = res.data;
+          this.hideBodyPartsSpinner();
           //console.log(res.data);
         } else {
           this.showErrorsMsg = true;
@@ -50,9 +51,7 @@ export class ExerciseSectionComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
-      complete: () => {
-        this.hideBodyPartsSpinner();
-      },
+      complete: () => {},
     });
   }
 
@@ -62,6 +61,7 @@ export class ExerciseSectionComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.allExercises = res.data;
+          this.hideExercisesSpinner();
           //console.log(res.data);
         } else {
           this.showErrorsMsg = true;
@@ -74,9 +74,7 @@ export class ExerciseSectionComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
-      complete: () => {
-        this.hideExercisesSpinner();
-      },
+      complete: () => {},
     });
   }
 
@@ -91,7 +89,7 @@ export class ExerciseSectionComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           //console.log(res.data);
-
+          this.hideExercisesSpinner();
           this.allExercises = res.data;
           this.type = item + ' Exercises';
         } else {
@@ -105,9 +103,7 @@ export class ExerciseSectionComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 4000);
       },
-      complete: () => {
-        this.hideExercisesSpinner();
-      },
+      complete: () => {},
     });
   }
 

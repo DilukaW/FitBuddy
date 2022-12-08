@@ -34,7 +34,7 @@ export class ExercisesComponent implements OnInit {
     });
     console.log('q' + this.id);
 
-    //this.getExercises();
+    this.getExercises();
   }
 
   // displaying exercises
@@ -46,6 +46,7 @@ export class ExercisesComponent implements OnInit {
         next: (res) => {
           if (res.success) {
             this.allExercises = res.data;
+            this.hideExercisesSpinner()
             console.log(res.data);
           } else {
             this.showErrorsMsg = true;
@@ -59,7 +60,7 @@ export class ExercisesComponent implements OnInit {
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         },
         complete: () => {
-          this.hideExercisesSpinner()
+        
         },
       });
     } else {
@@ -69,7 +70,7 @@ export class ExercisesComponent implements OnInit {
         next: (res) => {
           if (res.success) {
             console.log(res.data);
-
+            this.hideExercisesSpinner()
             this.allExercises = res.data;
           } else {
             this.showErrorsMsg = true;
@@ -83,7 +84,7 @@ export class ExercisesComponent implements OnInit {
           setTimeout(() => (this.showErrorsMsg = false), 4000);
         },
         complete: () => {
-          this.hideExercisesSpinner()
+        
         },
       });
     }

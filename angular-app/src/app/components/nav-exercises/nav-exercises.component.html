@@ -1,200 +1,369 @@
 <router-outlet></router-outlet>
-<div class="container">
-   
-    <!-- error message -->
-    <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
-        {{errorMsg}}
+
+<div class="container-fluid py-5 " style="background: linear-gradient(120deg, #162a46, #11002c);">
+    <div class="container">
+        <!-- error message -->
+        <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
+            {{errorMsg}}
+        </div>
     </div>
-</div>
-<div class="container-fluid mb-5 " >
-
-
-<div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
-    <h5 id="heading" class="text-uppercase">Back Exercisers</h5>
-    <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of backExercises |slice :0:6" [routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-            <div class="card gif rounded" id="exercise-card">
-                <div class="row">
-                    <img [src]="exercise.gifUrl" alt="">
-                </div>
-                <div class="row" id="row">
-                    <div class="card-body">
-                        <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+    <div class="card rounded mx-4 p-2 " id="exercise">
+        <h5 id="heading" class="text-uppercase">Back Exercisers</h5>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 position-relative" style="min-height: 50px;">
+            <div class="col" *ngFor="let exercise of backExercises |slice :0:6" [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- spinner -->
+            <div
+                class="spinnerBack position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingBack">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
         </div>
+        <!-- view button -->
+        <div class="d-flex justify-content-center">
+            <button class="btn mb-3 mt-5 col-md-4 " [routerLink]="['/allExercises']"
+                [queryParams]="{id:'back',type:'back'}">View more</button>
+        </div>
+        <!-- view button -->
     </div>
-    <button class="text-center btn mt-5 " [routerLink]="['/allExercises']" [queryParams]="{id:'back',type:'back'}">View more</button>
 </div>
 
-<div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
-    <h5 id="heading" class="text-uppercase">Cardio Exercisers</h5>
-    <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of cardioExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-            <div class="card gif rounded" id="exercise-card">
-                <div class="row">
-                    <img [src]="exercise.gifUrl" alt="">
-                </div>
-                <div class="row" id="row">
-                    <div class="card-body">
-                        <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+<div class="container-fluid bg-white py-5">
+    <div class="card rounded mx-4 p-2 " id="exercise">
+        <h5 id="heading" class="text-uppercase">Cardio Exercisers</h5>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 position-relative" style="min-height: 50px;">
+            <div class="col" *ngFor="let exercise of cardioExercises |slice :0:6" [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- spinner -->
+            <div
+                class="spinnerCardio position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingCardio">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
         </div>
+        <!-- view button -->
+        <div class="d-flex justify-content-center">
+            <button class="btn mb-3 mt-5 col-md-4 " [routerLink]="['/allExercises']"
+                [queryParams]="{id:'cardio',type:'cardio'}">View more</button>
+        </div>
+        <!-- view button -->
     </div>
-    <button class="text-center btn mt-5 " [routerLink]="['/allExercises']" [queryParams]="{id:'cardio',type:'cardio'}">View more</button>
 </div>
 
-<div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
-    <h5 id="heading" class="text-uppercase">Chest Exercisers</h5>
-    <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of chestExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-            <div class="card gif rounded" id="exercise-card">
-                <div class="row">
-                    <img [src]="exercise.gifUrl" alt="">
-                </div>
-                <div class="row" id="row">
-                    <div class="card-body">
-                        <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+<div class="container-fluid py-5 " style="background: linear-gradient(120deg, #162a46, #11002c);">
+    <div class="card rounded mx-4  p-2 " id="exercise">
+        <h5 id="heading" class="text-uppercase">Chest Exercisers</h5>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 position-relative" style="min-height: 50px;">
+            <div class="col" *ngFor="let exercise of chestExercises |slice :0:6" [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- spinner -->
+            <div
+                class="spinnerChest position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingChest">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
         </div>
+        <!-- view button -->
+        <div class="d-flex justify-content-center">
+            <button class="btn mb-3 mt-5 col-md-4" [routerLink]="['/allExercises']"
+                [queryParams]="{id:'chest',type:'chest'}">View more</button>
+        </div>
+        <!-- view button -->
     </div>
-    <button class="text-center btn mt-5 " [routerLink]="['/allExercises']" [queryParams]="{id:'chest',type:'chest'}">View more</button>
 </div>
 
-<div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
-    <h5 id="heading" class="text-uppercase">Waist Exercisers</h5>
-    <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of waistExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-            <div class="card gif rounded" id="exercise-card">
-                <div class="row">
-                    <img [src]="exercise.gifUrl" alt="">
-                </div>
-                <div class="row" id="row">
-                    <div class="card-body">
-                        <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+<div class="container-fluid bg-white py-5">
+    <div class="card rounded mx-4 p-2 " id="exercise">
+        <h5 id="heading" class="text-uppercase">Waist Exercisers</h5>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 position-relative" style="min-height: 50px;">
+            <div class="col" *ngFor="let exercise of waistExercises |slice :0:6" [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- spinner -->
+            <div
+                class="spinnerWaist position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingWaist">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
         </div>
+        <!-- view button -->
+        <div class="d-flex justify-content-center">
+            <button class="btn mb-3 mt-5 col-md-4" [routerLink]="['/allExercises']"
+                [queryParams]="{id:'waist',type:'waist'}">View more</button>
+        </div>
+        <!-- view button -->
     </div>
-    <button class="text-center btn mt-5 " [routerLink]="['/allExercises']" [queryParams]="{id:'waist',type:'waist'}">View more</button>
 </div>
 
-<div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
-    <h5 id="heading" class="text-uppercase">Lower Arms Exercisers</h5>
-    <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of lowerArmsExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-            <div class="card gif rounded" id="exercise-card">
-                <div class="row">
-                    <img [src]="exercise.gifUrl" alt="">
-                </div>
-                <div class="row" id="row">
-                    <div class="card-body">
-                        <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+<div class="container-fluid py-5 " style="background: linear-gradient(120deg, #162a46, #11002c);">
+    <div class="card rounded mx-4 p-2 " id="exercise">
+        <h5 id="heading" class="text-uppercase">Lower Arms Exercisers</h5>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 position-relative" style="min-height: 50px;">
+            <div class="col" *ngFor="let exercise of lowerArmsExercises |slice :0:6" [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- spinner -->
+            <div
+                class="spinnerLowerArms position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingLowerArms">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
         </div>
+        <!-- view button -->
+        <div class="d-flex justify-content-center">
+            <button class="btn mb-3 mt-5 col-md-4 " [routerLink]="['/allExercises']"
+                [queryParams]="{id:'lower arms',type:'lower arms'}">View more</button>
+        </div>
+        <!-- view button -->
     </div>
-    <button class="text-center btn mt-5 " [routerLink]="['/allExercises']" [queryParams]="{id:'lower arms',type:'lower arms'}">View more</button>
 </div>
 
-<div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
-    <h5 id="heading" class="text-uppercase">Lower Legs Exercisers</h5>
-    <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of lowerLegsExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-            <div class="card gif rounded" id="exercise-card">
-                <div class="row">
-                    <img [src]="exercise.gifUrl" alt="">
-                </div>
-                <div class="row" id="row">
-                    <div class="card-body">
-                        <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+<div class="container-fluid bg-white py-5">
+    <div class="card rounded mx-4 p-2 " id="exercise">
+        <h5 id="heading" class="text-uppercase">Lower Legs Exercisers</h5>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 position-relative" style="min-height: 50px;">
+            <div class="col" *ngFor="let exercise of lowerLegsExercises |slice :0:6" [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- spinner -->
+            <div
+                class="spinnerLowerLegs position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingLowerLegs">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
         </div>
+        <!-- view button -->
+        <div class="d-flex justify-content-center">
+            <button class="btn mb-3 mt-5 col-md-4 " [routerLink]="['/allExercises']"
+                [queryParams]="{id:'lower legs',type:'lower legs'}">View more</button>
+        </div>
+        <!-- view button -->
     </div>
-    <button class="text-center btn mt-5 " [routerLink]="['/allExercises']" [queryParams]="{id:'lower legs',type:'lower legs'}">View more</button>
 </div>
 
-<div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
-    <h5 id="heading" class="text-uppercase">Upper Arms Exercisers</h5>
-    <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of upperArmsExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-            <div class="card gif rounded" id="exercise-card">
-                <div class="row">
-                    <img [src]="exercise.gifUrl" alt="">
-                </div>
-                <div class="row" id="row">
-                    <div class="card-body">
-                        <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+<div class="container-fluid py-5 " style="background: linear-gradient(120deg, #162a46, #11002c);">
+    <div class="card rounded mx-4 p-2 " id="exercise">
+        <h5 id="heading" class="text-uppercase">Upper Arms Exercisers</h5>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 position-relative" style="min-height: 50px;">
+            <div class="col" *ngFor="let exercise of upperArmsExercises |slice :0:6" [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- spinner -->
+            <div
+                class="spinnerUpperArms position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingUpperArms">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
         </div>
+        <!-- view button -->
+        <div class="d-flex justify-content-center">
+            <button class="btn mb-3 mt-5 col-md-4" [routerLink]="['/allExercises']"
+                [queryParams]="{id:'upper arms',type:'upper arms'}">View more</button>
+        </div>
+        <!-- view button -->
     </div>
-    <button class="text-center btn mt-5 " [routerLink]="['/allExercises']" [queryParams]="{id:'upper arms',type:'upper arms'}">View more</button>
 </div>
 
-<div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
-    <h5 id="heading" class="text-uppercase">Upper Legs Exercisers</h5>
-    <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of upperLegsExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-            <div class="card gif rounded" id="exercise-card">
-                <div class="row">
-                    <img [src]="exercise.gifUrl" alt="">
-                </div>
-                <div class="row" id="row">
-                    <div class="card-body">
-                        <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+<div class="container-fluid bg-white py-5">
+    <div class="card rounded mx-4 p-2 " id="exercise">
+        <h5 id="heading" class="text-uppercase">Upper Legs Exercisers</h5>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 position-relative" style="min-height: 50px;">
+            <div class="col" *ngFor="let exercise of upperLegsExercises |slice :0:6" [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- spinner -->
+            <div
+                class="spinnerUpperLegs position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingUpperLegs">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
         </div>
+        <!-- view button -->
+        <div class="d-flex justify-content-center">
+            <button class="btn mb-3 mt-5 col-md-4" [routerLink]="['/allExercises']"
+                [queryParams]="{id:'upper legs',type:'upper legs'}">View more</button>
+        </div>
+        <!-- view button -->
     </div>
-    <button class="text-center btn mt-5 " [routerLink]="['/allExercises']" [queryParams]="{id:'upper legs',type:'upper legs'}">View more</button>
 </div>
 
-<div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
-    <h5 id="heading" class="text-uppercase">Neck Exercisers</h5>
-    <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of neckExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-            <div class="card gif rounded" id="exercise-card">
-                <div class="row">
-                    <img [src]="exercise.gifUrl" alt="">
-                </div>
-                <div class="row" id="row">
-                    <div class="card-body">
-                        <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+<div class="container-fluid py-5 " style="background: linear-gradient(120deg, #162a46, #11002c);">
+    <div class="card rounded mx-4 p-2 " id="exercise">
+        <h5 id="heading" class="text-uppercase">Neck Exercisers</h5>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 position-relative" style="min-height: 50px;">
+            <div class="col" *ngFor="let exercise of neckExercises |slice :0:6" [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- spinner -->
+            <div
+                class="spinnerNeck position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingNeck">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
         </div>
+        <!-- view button -->
+        <div class="d-flex justify-content-center">
+            <button class="btn mb-3 mt-5 col-md-4 " [routerLink]="['/allExercises']"
+                [queryParams]="{id:'neck',type:'neck'}">View
+                more</button>
+        </div>
+        <!-- view button -->
     </div>
-    <button class="text-center btn mt-5 " [routerLink]="['/allExercises']" [queryParams]="{id:'neck',type:'neck'}">View more</button>
 </div>
 
-<div class="card rounded mx-4 mb-5 mt-3 p-2 " id="exercise" >
-    <h5 id="heading" class="text-uppercase">Shoulder Exercisers</h5>
-    <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3">
-        <div class="col" *ngFor="let exercise of shouldersExercises |slice :0:6"[routerLink]="['/exerciseDetails']" [queryParams]="{id:exercise.id}">
-            <div class="card gif rounded" id="exercise-card">
-                <div class="row">
-                    <img [src]="exercise.gifUrl" alt="">
-                </div>
-                <div class="row" id="row">
-                    <div class="card-body">
-                        <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+<div class="container-fluid bg-white py-5">
+    <div class="card rounded mx-4 p-2 " id="exercise">
+        <h5 id="heading" class="text-uppercase">Shoulder Exercisers</h5>
+        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-6 g-3 position-relative" style="min-height: 50px;">
+            <div class="col" *ngFor="let exercise of shouldersExercises |slice :0:6" [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- spinner -->
+            <div
+                class="spinnerShoulder position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                    id="loadingShoulder">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <!-- spinner -->
         </div>
+        <!-- view button -->
+        <div class="d-flex justify-content-center">
+            <button class="btn mb-3 mt-5 col-md-4" [routerLink]="['/allExercises']"
+                [queryParams]="{id:'shoulders',type:'shoulders'}">View more</button>
+        </div>
+        <!-- view button -->
+
     </div>
-    <button class="text-center btn mt-5 " [routerLink]="['/allExercises']" [queryParams]="{id:'shoulders',type:'shoulders'}">View more</button>
 </div>

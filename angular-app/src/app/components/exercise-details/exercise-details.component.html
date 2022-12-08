@@ -1,92 +1,127 @@
 <router-outlet></router-outlet>
-<div class="container">
+<div class="container-fluid py-5" style="background: linear-gradient(120deg, #162a46, #11002c);">
 
-    <!-- error message -->
-    <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
-        {{errorMsg}}
-    </div>
-</div>
+    <div class="container">
 
-<div class="container mt-5">
-    <h5 id="heading" class="text-uppercase mt-5">Exercise Details</h5>
-    <div class="card rounded mx-4 mb-3 mt-3 p-4" id="exercise">
+        <!-- error message -->
+        <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
+            {{errorMsg}}
+        </div>
 
-        <div class="row">
-            <div class="col-md-9 ">
-                <div class="d-flex bg-white flex-column align-items-center text-center">
+        <h5 class="text-uppercase text-white fw-bolder text-center">Exercise Details</h5>
+        <div class="card rounded mx-4 mb-3 mt-3 p-4 " id="exercise">
 
-                    <div class="row rounded">
-                        <img [src]="exercise.gifUrl">
+            <div class="row position-relative">
+                <div class="col-md-9 ">
+                    <div class="d-flex bg-white flex-column align-items-center text-center">
+                        
+                            <img class="img-fluid rounded h-100 " [src]="exercise.gifUrl">
+                        
                     </div>
+                </div>
 
+                <div class="col-md-3 d-flex flex-column align-items-center text-center  p-4 ">
+                    <h5 id="heading" class="text-uppercase mb-5 ">{{exercise.name}}</h5>
+                    <p>{{exercise.name}} is one of the best exercise to target your {{exercise.target}} mussel using
+                        {{exercise.equipment}}.
+                    </p>
+                    <p>Target mussel: {{exercise.target}}</p>
+                    <p>Equipment: {{exercise.equipment}}</p>
+                    <p>Body: {{exercise.bodyPart}}</p>
 
                 </div>
-            </div>
-
-            <div class="col-md-3 d-flex flex-column align-items-center text-center  p-4 ">
-                <h5 id="heading" class="text-uppercase mb-5 ">{{exercise.name}}</h5>
-                <p>{{exercise.name}} is one of the best exercise to target your {{exercise.target}} mussel using
-                    {{exercise.equipment}}.
-                </p>
-                <p>Target mussel: {{exercise.target}}</p>
-                <p>Equipment: {{exercise.equipment}}</p>
-                <p>Body: {{exercise.bodyPart}}</p>
+                <!-- spinner -->
+                <div
+                    class="spinnerExercise position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                    <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                        id="loadingExercise">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <!-- spinner -->
 
             </div>
 
         </div>
-
     </div>
 </div>
 
-<div class="container mb-5 mt-5">
-    <h5 id="heading" class="text-uppercase mt-5">Similar Target Mussel Exercise</h5>
-    <div class="card rounded mx-4 mb-3 mt-3 p-4" id="exercise">
-        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3" *ngIf="exerciseByEquipment; else default">
-            <div class="col " *ngFor="let exerciseEq of exerciseByMussel | slice :0:10" [routerLink]="['/exerciseDetails']" [queryParams]="{id:exerciseEq.id}"(click)="refresh()">
+<div class="container-fluid bg-white py-5 ">
+    <div class="container ">
+        <h5 class="text-uppercase fw-bolder text-center">Similar Target Mussel Exercise</h5>
+        <div class="card rounded mx-4 mb-3 mt-3 p-4  " id="exercise">
+            <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3 position-relative"
+                *ngIf="exerciseByEquipment; else default">
+                <div class="col " *ngFor="let exerciseEq of exerciseByMussel | slice :0:10"
+                    [routerLink]="['/exerciseDetails']" [queryParams]="{id:exerciseEq.id}" (click)="refresh()">
 
-                <div class="card gif rounded" id="exercise-card" >
-                    <div class="row">
-                        <img [src]="exerciseEq.gifUrl" alt="">
-                    </div>
-                    <div class="row" id="row">
-                        <div class="card-body">
-                            <div class="card-text text-center text-uppercase">{{exerciseEq.name}}</div>
+                    <div class="card gif rounded" id="exercise-card">
+                        <div class="row">
+                            <img [src]="exerciseEq.gifUrl" alt="">
+                        </div>
+                        <div class="row" id="row">
+                            <div class="card-body">
+                                <div class="card-text text-center text-uppercase">{{exerciseEq.name}}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- spinner -->
+                <div
+                    class="spinnerMussel position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                    <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                        id="loadingMussel">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <!-- spinner -->
+
             </div>
-          
+
+            <ng-template #default>
+                <h6 id="heading" class="text-uppercase mt-5">No Similar Equipment Exercise Found</h6>
+            </ng-template>
+
         </div>
-        <ng-template #default>
-            <h6 id="heading" class="text-uppercase mt-5">No Similar Equipment Exercise Found</h6>
-        </ng-template>
 
     </div>
 </div>
 
-<div class="container mb-5 mt-5">
-    <h5 id="heading" class="text-uppercase mt-5">Similar Equipment Exercise</h5>
-    <div class="card rounded mx-4 mb-3 mt-3 p-4" id="exercise">
-        <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3" *ngIf="exerciseByEquipment; else default">
-            <div class="col " *ngFor="let exerciseEq of exerciseByEquipment | slice :0:10" [routerLink]="['/exerciseDetails']" [queryParams]="{id:exerciseEq.id}"(click)="refresh()">
+<div class="container-fluid py-5" style="background: linear-gradient(120deg, #162a46, #11002c);">
+    <div class="container">
+        <h5 class="text-uppercase text-white fw-bolder text-center">Similar Equipment Exercise</h5>
+        <div class="card rounded mx-4 mb-3 mt-3 p-4" id="exercise">
+            <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3 position-relative "
+                style="min-height: 50px;" *ngIf="exerciseByEquipment; else default">
+                <div class="col " *ngFor="let exerciseEq of exerciseByEquipment | slice :0:10"
+                    [routerLink]="['/exerciseDetails']" [queryParams]="{id:exerciseEq.id}" (click)="refresh()">
 
-                <div class="card gif rounded" id="exercise-card" >
-                    <div class="row">
-                        <img [src]="exerciseEq.gifUrl" alt="">
-                    </div>
-                    <div class="row" id="row">
-                        <div class="card-body">
-                            <div class="card-text text-center text-uppercase">{{exerciseEq.name}}</div>
+                    <div class="card gif rounded" id="exercise-card">
+                        <div class="row">
+                            <img [src]="exerciseEq.gifUrl" alt="">
+                        </div>
+                        <div class="row" id="row">
+                            <div class="card-body">
+                                <div class="card-text text-center text-uppercase">{{exerciseEq.name}}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-          
-        </div>
-        <ng-template #default>
-            <h6 id="heading" class="text-uppercase mt-5">No Similar Equipment Exercise Found</h6>
-        </ng-template>
+                <!-- spinner -->
+                <div
+                    class="spinnerEquipment position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+                    <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                        id="loadingEquipment">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <!-- spinner -->
 
+            </div>
+            <ng-template #default>
+                <h6 class="text-uppercase text-white fw-bolder text-center">No Similar Equipment Exercise Found</h6>
+            </ng-template>
+
+        </div>
     </div>
 </div>

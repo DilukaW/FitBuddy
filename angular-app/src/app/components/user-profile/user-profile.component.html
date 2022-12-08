@@ -12,11 +12,11 @@
 </div>
 
 <!-- profile -->
-<div class="container rounded bg-white mt-5 mb-5 py-2">
+<div class="container rounded bg-white mt-5 mb-5 py-2 ">
     <!-- card -->
     <div class="row" style="min-height: 567px;">
         <!-- about -->
-        <div class="col-md-3 border-end border-dark p-2" id="about" >
+        <div class="col-md-3 border-end border-dark p-2" id="about">
 
             <div>
                 <h1 class="text-center">My Dashboard</h1>
@@ -35,7 +35,7 @@
                 <span class="text-black-50">Age:{{ age }} </span>
 
             </div>
-            
+
         </div>
         <!-- about -->
 
@@ -62,7 +62,7 @@
                 <!-- update user -->
                 <div *ngIf="activeTab == 'update user'">
                     <div class="col-md-8 mx-auto">
-                        <div class="p-2 py-1">
+                        <div class="p-2 py-1 ">
                             <form [formGroup]="userUpdateForm" (ngSubmit)="update(userUpdateForm)">
                                 <div class="d-flex justify-content-center a mt-0">
                                     <img class="rounded-circle mt-0" id="selectedImg" *ngIf="imageData; else default"
@@ -139,6 +139,7 @@
                                     </button>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -225,7 +226,8 @@
                 <div class="tab-content">
                     <div class="tab-content" *ngIf="trainers?.length">
                         <div class="row p-3">
-                            <div class="col-md-5 border-end border-dark overflow-auto" id="trainerCol" style="height: 460px">
+                            <div class="col-md-5 border-end border-dark overflow-auto" id="trainerCol"
+                                style="height: 460px">
                                 <div class="card my-2">
                                     <div class="card-body p-0" (click)="getTrainer(trainers[0]._id, 0)"
                                         [ngClass]="{ active1: isActive(0) }">
@@ -263,8 +265,7 @@
                             <!-- chat -->
                             <div class="col-md-7">
                                 <div class="card">
-                                    <div class="card-header d-flex justify-content-between align-items-center p-2"
-                                       >
+                                    <div class="card-header d-flex justify-content-between align-items-center p-2">
                                         <h5 class="mb-0">Chat messages</h5>
 
                                     </div>
@@ -476,7 +477,11 @@
                 <!-- Tabs content -->
             </div>
             <!-- chat -->
+
+
         </div>
+
     </div>
     <!-- card -->
+
 </div>

@@ -19,7 +19,7 @@
 
 }
 #row{
-    min-height: 85px;
+    min-height: 105px;
 }
 
 .gif{
@@ -29,6 +29,9 @@
     cursor: pointer;
     max-width: 300px;
  
+}
+#view{
+  overflow-y: auto;
 }
 #exercise{
     background-color: var(--primary-color);

@@ -1,11 +1,11 @@
 #exercise{
     background-color: var(--primary-color);
-    box-shadow: 6px 6px 18px var(--secondary-color);
+    box-shadow: 6px 6px 18px var(--outline-color);
     color: white;
     
 }
 #row{
-    min-height: 85px;
+    min-height: 105px;
 }
 #heading {
     font-weight: bold;

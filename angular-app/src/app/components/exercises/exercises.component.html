@@ -1,41 +1,43 @@
 <router-outlet></router-outlet>
 
 <!-- specific Exercisers -->
-    <div class="container-fluid">
+<div class="container-fluid">
+    <div class="container">
         <!-- error message -->
         <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
             {{errorMsg}}
         </div>
+    </div>
 
-        <div class="card rounded mx-4 mb-3 mt-3  px-4 position-relative" id="exercise" style="min-height: 100px;">
-            <h5 class="text-uppercase text-white text-center fw-bolder mt-1">{{type}}</h5>
-            <h6>Total Results:{{allExercises.length}}</h6>
-            <div class=" mt-1 row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3  overflow-auto" >
-                <div class="col" *ngFor="let exercise of allExercises " [routerLink]="['/exerciseDetails']"
-                    [queryParams]="{id:exercise.id}">
-                    <div class="card gif rounded" id="exercise-card">
-                        <div class="row">
-                            <img [src]="exercise.gifUrl" alt="">
-                        </div>
-                        <div class="row" id="row">
-                            <div class="card-body">
-                                <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
-                            </div>
+    <div class="card rounded mx-4 mb-3 mt-3  px-4 position-relative" id="exercise" style="min-height: 100px;">
+        <h5 class="text-uppercase text-white text-center fw-bolder mt-2">{{type}}</h5>
+        <h6>Total Results:{{allExercises.length}}</h6>
+        <div class=" mt-1 row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3 " id="view">
+            <div class="col" *ngFor="let exercise of allExercises " [routerLink]="['/exerciseDetails']"
+                [queryParams]="{id:exercise.id}">
+                <div class="card gif rounded" id="exercise-card">
+                    <div class="row">
+                        <img [src]="exercise.gifUrl" alt="">
+                    </div>
+                    <div class="row" id="row">
+                        <div class="card-body">
+                            <div class="card-text text-center text-uppercase">{{exercise.name}}</div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
-            <!-- spinner -->
-            <div
-                class="spinnerAllExercises position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
-                <div class="spinner-border text-primary mt-2 " style="width: 3rem; height: 3rem;" role="status"
-                    id="loadingAllExercises">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-            </div>
-            <!-- spinner -->
 
         </div>
+
+        <!-- spinner -->
+        <div
+            class="spinnerAllExercises position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+            <div class="spinner-border text-primary mt-2 " style="width: 3rem; height: 3rem;" role="status"
+                id="loadingAllExercises">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <!-- spinner -->
+
     </div>
+</div>
