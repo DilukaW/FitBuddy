@@ -36,14 +36,14 @@ export class TrainersComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.trainers = res.data;
-
+          $('.spinnerTrainers').css('visibility', 'hidden');
           console.log(this.trainees);
         }
       },
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {},
     });
@@ -66,6 +66,7 @@ export class TrainersComponent implements OnInit {
   }
 
   enroll(id: any) {
+    $('.spinnerTrainers').css('visibility', 'visible');
     this.trainees = [];
     console.log('before ' + this.trainees);
    
@@ -87,7 +88,8 @@ export class TrainersComponent implements OnInit {
         console.log('enrolled');
         this.errorMsg = 'Your are already enrolled';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        $('.spinnerTrainers').css('visibility', 'hidden');
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       } else {
         
         //add trainees for selected trainer
@@ -100,7 +102,7 @@ export class TrainersComponent implements OnInit {
                 const data = res.data;
                 this.successMsg="You have successfully enrolled "
                 this.showSuccessMsg = true;
-                setTimeout(() => (this.showSuccessMsg = false), 4000);
+                setTimeout(() => (this.showSuccessMsg = false), 2000);
                 console.log('trainees' + data.traineesId);
               }
               else{
@@ -109,7 +111,7 @@ export class TrainersComponent implements OnInit {
             },
             error: (err) => {},
             complete:async () => {
-             
+              $('.spinnerTrainers').css('visibility', 'hidden');
               this.getTrainers();
             },
           });
@@ -131,7 +133,7 @@ export class TrainersComponent implements OnInit {
           },
           error: (err) => {},
           complete:async () => {
-           
+            $('.spinnerTrainers').css('visibility', 'hidden');
             this.getTrainers();
           },
         });
@@ -141,7 +143,8 @@ export class TrainersComponent implements OnInit {
     } else {
       this.errorMsg = 'Log in to your account to enroll';
       this.showErrorsMsg = true;
-      setTimeout(() => (this.showErrorsMsg = false), 4000);
+      setTimeout(() => (this.showErrorsMsg = false), 2000);
+      $('.spinnerTrainers').css('visibility', 'hidden');
     }
     console.log('clicked ' + id);
     //

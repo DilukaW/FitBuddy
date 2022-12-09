@@ -79,7 +79,7 @@ export class UserLoginComponent implements OnInit {
         error: (err) => {
           this.errorMsg = 'Server Error';
           this.showErrorsMsg = true;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: async () => {
           this.restForm(form);
@@ -117,7 +117,7 @@ export class UserLoginComponent implements OnInit {
         error: (err) => {
           this.errorMsg = 'Server Error';
           this.showErrorsMsg = true;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: () => {
           this.restForm(form);
@@ -155,7 +155,7 @@ export class UserLoginComponent implements OnInit {
         error: (err) => {
           this.errorMsg = 'Server Error';
           this.showErrorsMsg = true;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: () => {
           this.restForm(form);

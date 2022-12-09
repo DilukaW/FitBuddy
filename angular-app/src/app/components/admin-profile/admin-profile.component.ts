@@ -87,7 +87,7 @@ export class AdminProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {},
     });
@@ -113,7 +113,7 @@ export class AdminProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {},
     });
@@ -139,7 +139,7 @@ export class AdminProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {},
     });
@@ -157,13 +157,15 @@ export class AdminProfileComponent implements OnInit {
 
   // add trainer data submit function
   onSubmit(form: FormGroup) {
-   
+    $('#spinnerAdd').removeClass('visually-hidden')
+    $('#btnAdd').addClass('visually-hidden')
+
     console.log(this.trainerUpdateForm.value);
     this.trainerService.registerTrainer(form.value).subscribe({
       next: (res) => {
         this.successMsg = 'New trainer added successfully!';
         this.showSuccessMsg = true;
-        setTimeout(() => (this.showSuccessMsg = false), 4000);
+        setTimeout(() => (this.showSuccessMsg = false), 2000);
 
         this.getTrainers();
       },
@@ -171,14 +173,16 @@ export class AdminProfileComponent implements OnInit {
         if (err.status == 422) {
           this.errorMsg = err.error.join('<br/>');
           this.showErrorsMsg = true;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         } else {
           this.errorMsg = 'Some thing went wrong !';
           this.showErrorsMsg = true;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       complete: () => {
+        $('#spinnerAdd').addClass('visually-hidden')
+        $('#btnAdd').removeClass('visually-hidden')
         this.restForm(form);
       },
     });
@@ -186,6 +190,9 @@ export class AdminProfileComponent implements OnInit {
 
   // update trainer data submit
  update(form: FormGroup) {
+  $('#spinnerUpdate').removeClass('visually-hidden')
+  $('#btnUpdate').addClass('visually-hidden')
+
   const formData=new FormData();
     console.log(this.updateForm.value);
     formData.append('file',this.updateTrainerImg);
@@ -200,20 +207,22 @@ export class AdminProfileComponent implements OnInit {
           if (res.success) {
             this.successMsg = 'Trainer Details Updated Successfully';
             this.showSuccessMsg = true;
-            setTimeout(() => (this.showSuccessMsg = false), 4000);
+            setTimeout(() => (this.showSuccessMsg = false), 2000);
         
           } else {
             this.errorMsg = res.message;
             this.showErrorsMsg = true;
-            setTimeout(() => (this.showErrorsMsg = false), 4000);
+            setTimeout(() => (this.showErrorsMsg = false), 2000);
           }
         },
         error: () => {
           this.errorMsg = 'Server Error';
           this.showErrorsMsg = true;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: () => {
+          $('#spinnerUpdate').addClass('visually-hidden')
+          $('#btnUpdate').removeClass('visually-hidden')
         
           this.getTrainers();
           this.selected = 0;
@@ -231,18 +240,18 @@ export class AdminProfileComponent implements OnInit {
           if (res.success) {
             this.successMsg = 'Trainer DeletedSuccessfully';
             this.showSuccessMsg = true;
-            setTimeout(() => (this.showSuccessMsg = false), 4000);
+            setTimeout(() => (this.showSuccessMsg = false), 2000);
         
           } else {
             this.errorMsg = res.message;
             this.showErrorsMsg = true;
-            setTimeout(() => (this.showErrorsMsg = false), 4000);
+            setTimeout(() => (this.showErrorsMsg = false), 2000);
           }
         },
         error: () => {
           this.errorMsg = 'Server Error';
           this.showErrorsMsg = true;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: () => {
         

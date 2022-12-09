@@ -5,6 +5,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TrainerService } from 'src/app/shared/trainer/trainer.service';
 import { ChatService } from 'src/app/shared/chat/chat.service';
 import { io } from 'socket.io-client';
+import * as jQuery from 'jquery';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -68,6 +70,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.getDetails();
     this.getTrainers();
 
@@ -116,6 +119,8 @@ export class UserProfileComponent implements OnInit {
 
   // update user data submit
   update(form: FormGroup) {
+    $('#spinner').removeClass('visually-hidden')
+    $('#btn').addClass('visually-hidden')
     const formData = new FormData();
     formData.append('file', this.imageData);
     formData.append('uname', form.controls['uname'].value);
@@ -128,22 +133,28 @@ export class UserProfileComponent implements OnInit {
       .subscribe({
         next: (res) => {
           if (res.success) {
+            
+           
+
+
             this.successMsg = 'User Details Updated Successfully';
             this.showSuccessMsg = true;
 
-            setTimeout(() => (this.showSuccessMsg = false), 4000);
+            setTimeout(() => (this.showSuccessMsg = false), 2000);
           } else {
             this.errorMsg = res.message;
             this.showErrorsMsg = true;
-            setTimeout(() => (this.showErrorsMsg = false), 4000);
+            setTimeout(() => (this.showErrorsMsg = false), 2000);
           }
         },
         error: (res) => {
           this.errorMsg = 'Server Error';
           this.showErrorsMsg = true;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: () => {
+          $('#spinner').addClass('visually-hidden')
+          $('#btn').removeClass('visually-hidden')
           this.getDetails();
         },
       });
@@ -209,7 +220,7 @@ export class UserProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {},
     });
@@ -242,7 +253,7 @@ export class UserProfileComponent implements OnInit {
         error: (err) => {
           this.errorMsg = 'Server Error';
           this.showErrorsMsg = true;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: () => {
           this.displayMessage(this.selectedTrainerId);
@@ -278,7 +289,7 @@ export class UserProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         this.newMessage = '';
@@ -300,7 +311,7 @@ export class UserProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         this.newMessage = '';
@@ -320,7 +331,7 @@ export class UserProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {},
     });
@@ -335,7 +346,7 @@ export class UserProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {},
     });

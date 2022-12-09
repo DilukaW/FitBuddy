@@ -39,13 +39,13 @@ export class NavExercisesComponent implements OnInit {
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
      
@@ -60,13 +60,13 @@ export class NavExercisesComponent implements OnInit {
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
       
@@ -81,13 +81,13 @@ export class NavExercisesComponent implements OnInit {
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
       
@@ -102,13 +102,13 @@ export class NavExercisesComponent implements OnInit {
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         
@@ -123,13 +123,13 @@ export class NavExercisesComponent implements OnInit {
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         
@@ -144,13 +144,13 @@ export class NavExercisesComponent implements OnInit {
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         
@@ -165,13 +165,13 @@ export class NavExercisesComponent implements OnInit {
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         
@@ -186,13 +186,13 @@ export class NavExercisesComponent implements OnInit {
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         
@@ -207,13 +207,13 @@ export class NavExercisesComponent implements OnInit {
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
      
@@ -228,13 +228,13 @@ export class NavExercisesComponent implements OnInit {
         } else {
           this.showErrorsMsg = true;
           this.errorMsg = res.message;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         }
       },
       error: (err) => {
         this.showErrorsMsg = true;
         this.errorMsg = 'Server Error';
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         

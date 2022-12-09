@@ -129,7 +129,7 @@ export class TrainerProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {},
     });
@@ -163,7 +163,7 @@ export class TrainerProfileComponent implements OnInit {
         error: (err) => {
           this.errorMsg = 'Server Error11';
           this.showErrorsMsg = true;
-          setTimeout(() => (this.showErrorsMsg = false), 4000);
+          setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: () => {
           this.displayMessage(this.selectedUserId);
@@ -193,7 +193,7 @@ export class TrainerProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         this.newMessage = '';
@@ -211,7 +211,7 @@ export class TrainerProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         this.newMessage = '';
@@ -230,7 +230,7 @@ export class TrainerProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {},
     });
@@ -245,7 +245,7 @@ export class TrainerProfileComponent implements OnInit {
       error: (err) => {
         this.errorMsg = 'Server Error';
         this.showErrorsMsg = true;
-        setTimeout(() => (this.showErrorsMsg = false), 4000);
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {},
     });

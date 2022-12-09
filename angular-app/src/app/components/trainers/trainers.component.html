@@ -8,68 +8,44 @@
         {{errorMsg}}
     </div>
 </div>
-<!-- <div class="wrap">
-    <div class="container rounded bg-white mt-5 mb-2 py-2"  *ngFor="let trainer of trainers">
-        <div class="row" *ngIf="trainers.indexOf(trainer)%2!=0; else default">
-            <div class="col-md-8 ">
-                <h1>{{trainer.uname}}</h1>
-            </div>
-            <div class="col-md-4 text-center">
-                <h1>sdfsda</h1>
-            </div>
-
-        </div>
-        <ng-template #default>
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <h1>sdfsda</h1>
-                </div>
-                <div class="col-md-8 ">
-                    <h1>{{trainer.uname}}</h1>
-                </div>
-               
-            </div>
-            
-            
-
-        </ng-template>
-      
-    </div>
-</div> -->
-<div class="container mt-5 ">
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 g-5">
+<div class="container-fluid mt-5 ">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 g-4 position-relative" style="min-height: 50px;">
         <div class="col" *ngFor="let trainer of trainers">
             <div class="card ">
                 <div class="row">
-                    <div class="col-md-4 p-3">
+                    <div class="col-md-5 p-2">
                         <div class="d-flex flex-column align-items-center">
-                            <img class="rounded-circle" *ngIf="trainer.image!='undefined' && trainer.image; else default"
-                                width="100px" height="100px"
-                                src={{trainer.image}}>
+                            <img class="rounded-circle"
+                                *ngIf="trainer.image!='undefined' && trainer.image; else default" width="140px"
+                                height="140px" src={{trainer.image}}>
 
-                                <ng-template #default>
-    
-                                    <img class="rounded-circle"
-                                    width="100px" height="100px"
-                                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                                </ng-template>
-                            <span class="font-weight-bold">
+                            <ng-template #default>
+
+                                <img class="rounded-circle" width="140px" height="140px"
+                                    src="../../../assets/profile.jpg">
+                            </ng-template>
+                            <span class="font-weight-bold m-1">
                                 <h4>{{trainer.uname}}</h4>
                             </span>
+                           
+                            <button type="button" class="btn btn-sm btn-outline-secondary mt-2" (click)="enroll(trainer._id)">
+                                Enroll Now !
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body d-flex flex-column">
                             <span class="font-weight-bold">
                                 Training Area: {{trainer.area}}
                             </span>
-                        
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <p class="card-text overflow-auto">
+                            <p class="card-text mt-2 overflow-auto">
                                 {{trainer.description}}
                             </p>
-                                <button type="button" class="btn btn-sm btn-outline-secondary" (click)="enroll(trainer._id)">Enroll Now !</button>
+
                         </div>
-                      
+                       
+
                     </div>
                 </div>
             </div>
@@ -78,7 +54,15 @@
 
 
         </div>
-
+        <!-- spinner -->
+        <div
+            class="spinnerTrainers position-absolute w-100 h-100 d-flex flex-column align-items-center bg-transparant justify-content-center">
+            <div class="spinner-border text-primary " style="width: 3rem; height: 3rem;" role="status"
+                id="loadingTrainers">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <!-- spinner -->
 
 
     </div>

@@ -17,6 +17,7 @@ li {
 }
 
 .active1 {
+    background-color: #f7f7f7;
     border-bottom: 4px solid var(--outline-color);
 }
 

@@ -16,11 +16,12 @@
     <!-- card -->
     <div class="row" style="min-height: 567px;">
         <!-- about -->
-        <div class="col-md-3 border-end border-dark" id="about">
+        <div class="col-md-3 border-end border-dark px-1" id="about">
             <div>
                 <h1 class="text-center">Admin Dashboard</h1>
             </div>
-            <div class="d-flex flex-column align-items-center text-center py-5 overflow-auto" id="profile" style="height: 467px">
+            <div class="d-flex flex-column align-items-center text-center py-5 overflow-auto" id="profile"
+                style="height: 467px">
                 <img class="rounded-circle mt-5" width="120px" src="../../../assets/profile.jpg"><span
                     class="font-weight-bold">{{data.uname}}</span><span
                     class="text-black-50">{{data.email}}</span><span>
@@ -31,11 +32,11 @@
         <div class="col-md-9 pd-5">
             <!-- Tabs navs -->
             <ul class="nav nav-tabs nav-justified mb-3 mt-4" style="border: none;" id="ex1" role="tablist">
-                <li class="nav-item tab-link me-1" role="presentation" (click)="onTabClick('add user')"
+                <li class="nav-item tab-link me-1 fw-bold" role="presentation" (click)="onTabClick('add user')"
                     [class.active]="activeTab=='add user'">
                     Add Trainer
                 </li>
-                <li class="nav-item me-1" role="presentation" (click)="onTabClick('update user')"
+                <li class="nav-item me-1 fw-bold" role="presentation" (click)="onTabClick('update user')"
                     [class.active]="activeTab=='update user' ">
                     Update Trainer
                 </li>
@@ -111,8 +112,14 @@
 
                                 </div>
                                 <div class="mt-3 text-center">
-                                    <button class="btn btn-custom" type="submit"
-                                        [disabled]="trainerUpdateForm.invalid">Add Trainer</button>
+                                    <button class="btn btn-custom" type="submit" [disabled]="trainerUpdateForm.invalid">
+                                        <span id="btnAdd">Add Trainer</span>
+                                        <div class="visually-hidden" id="spinnerAdd">
+                                            <span class="spinner-border spinner-border-sm " role="status"
+                                                aria-hidden="true"></span>
+                                            <span> Adding Trainer</span>
+                                        </div>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -126,7 +133,8 @@
             <div *ngIf=" activeTab =='update user' ">
                 <div class="tab-content" *ngIf="trainers?.length">
                     <div class="row p-3" style=" min-height: 468px">
-                        <div class="col-md-5 border-end border-dark overflow-auto" id="trainerCol"  style="height: 460px">
+                        <div class="col-md-5 border-end border-dark overflow-auto" id="trainerCol"
+                            style="height: 460px">
                             <div class="card my-2">
 
                                 <div class="card-body p-0 " (click)="getTrainer(trainers[0]._id,0)"
@@ -241,9 +249,13 @@
                                     </div>
 
                                     <div class="mt-3 text-center">
-                                        <button class="btn btn-custom" type="submit"
-                                            [disabled]="updateForm.invalid">Update
-                                            Trainer</button>
+                                        <button class="btn btn-custom" type="submit" [disabled]="updateForm.invalid">
+                                            <span id="btnUpdate">  Update Trainer</span>
+                                        <div class="visually-hidden" id="spinnerUpdate">
+                                            <span class="spinner-border spinner-border-sm "role="status" aria-hidden="true"></span>
+                                            <span> Updating</span>
+                                        </div>
+                                        </button>
                                     </div>
                                 </form>
                             </div>

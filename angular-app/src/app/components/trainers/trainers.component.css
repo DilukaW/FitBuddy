@@ -5,12 +5,12 @@
     color: white;
 }
 .card-text{
-    max-height: 200px;
+    max-height: 220px;
    
 }
 .card-body{
-    min-height: 200px;
-}
+    max-height: 220px;
+} 
 ::-webkit-scrollbar {
     width: 5px;
   }
