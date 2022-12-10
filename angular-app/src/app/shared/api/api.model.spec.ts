@@ -1,7 +1,7 @@
-import { Api } from './api.model';
+// import { Api } from './api.model';
 
-describe('Api', () => {
-  it('should create an instance', () => {
-    expect(new Api()).toBeTruthy();
-  });
-});
+// describe('Api', () => {
+//   it('should create an instance', () => {
+//     expect(new Api()).toBeTruthy();
+//   });
+// });
