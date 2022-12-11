@@ -37,7 +37,7 @@ export class TrainersComponent implements OnInit {
         if (res.success) {
           this.trainers = res.data;
           $('.spinnerTrainers').css('visibility', 'hidden');
-          console.log(this.trainees);
+          //console.log(this.trainees);
         }
       },
       error: (err) => {
@@ -57,7 +57,7 @@ export class TrainersComponent implements OnInit {
           const data = res.data;
 
           this.loggedUserId = data._id;
-          console.log(data.trainersId[0]);
+          //console.log(data.trainersId[0]);
         }
       },
       error: (err) => {},
@@ -68,7 +68,7 @@ export class TrainersComponent implements OnInit {
   enroll(id: any) {
     $('.spinnerTrainers').css('visibility', 'visible');
     this.trainees = [];
-    console.log('before ' + this.trainees);
+    //console.log('before ' + this.trainees);
    
     const l = this.trainers.length;
     for (let i = 0; i < l; i++) {
@@ -76,7 +76,7 @@ export class TrainersComponent implements OnInit {
         const z = this.trainers[i].traineesId.length;
         for (let j = 0; j < z; j++)
           this.trainees.push(this.trainers[i].traineesId[j]);
-        console.log('trainees' + this.trainees);
+        //console.log('trainees' + this.trainees);
       }
     }
 
@@ -103,10 +103,10 @@ export class TrainersComponent implements OnInit {
                 this.successMsg="You have successfully enrolled "
                 this.showSuccessMsg = true;
                 setTimeout(() => (this.showSuccessMsg = false), 2000);
-                console.log('trainees' + data.traineesId);
+                //console.log('trainees' + data.traineesId);
               }
               else{
-                console.log(res.message)
+                //console.log(res.message)
               }
             },
             error: (err) => {},
@@ -125,10 +125,10 @@ export class TrainersComponent implements OnInit {
             if (res.success) {
               const data = res.data;
             
-              console.log('trainers' + data.traineesId);
+              //console.log('trainers' + data.traineesId);
             }
             else{
-              console.log(res.message)
+              //console.log(res.message)
             }
           },
           error: (err) => {},
@@ -146,7 +146,7 @@ export class TrainersComponent implements OnInit {
       setTimeout(() => (this.showErrorsMsg = false), 2000);
       $('.spinnerTrainers').css('visibility', 'hidden');
     }
-    console.log('clicked ' + id);
+    //console.log('clicked ' + id);
     //
   }
 }

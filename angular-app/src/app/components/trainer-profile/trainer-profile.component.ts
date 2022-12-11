@@ -25,6 +25,9 @@ export class TrainerProfileComponent implements OnInit {
 
   //trainer
   data: any;
+  trainerName:any
+  trainerEmail:any
+  trainerDescription:any
   selectedTrainerId!: string;
 
   //user
@@ -90,6 +93,8 @@ export class TrainerProfileComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.data = res.data;
+          this.trainerName=this.data.uname
+          this.trainerEmail=this.data.email
           this.profileImg = this.data.image;
           this.ids = this.data.traineesId;
 

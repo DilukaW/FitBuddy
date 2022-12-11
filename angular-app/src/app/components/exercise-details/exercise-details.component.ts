@@ -12,8 +12,16 @@ export class ExerciseDetailsComponent implements OnInit {
   sub: any;
   id: any;
   exercise: any;
+  gif:any
+  exerciseName:any
+  exerciseMussel:any
+  exerciseTarget:any
+  exerciseEquipment:any
+  exerciseBodyPart:any
+
   exerciseByEquipment: any[] = [];
   exerciseByMussel: any[] = [];
+
   //messages
   showErrorsMsg!: boolean;
   errorMsg!: String;
@@ -43,8 +51,13 @@ export class ExerciseDetailsComponent implements OnInit {
     this.api.getExerciseById(this.id).subscribe({
       next: (res) => {
         if (res.success) {
-          console.log(res.data);
+          //console.log(res.data);
           this.exercise = res.data;
+          this.gif=this.exercise.gifUrl
+          this.exerciseName=this.exercise.name
+          this.exerciseTarget=this.exercise.target
+          this.exerciseEquipment=this.exercise.equipment
+          this.exerciseBodyPart=this.exercise.bodyPart
           $('.spinnerExercise').css('visibility', 'hidden');
         } else {
           this.showErrorsMsg = true;
@@ -68,7 +81,7 @@ export class ExerciseDetailsComponent implements OnInit {
     this.api.getExercisesByEquipment(this.exercise.equipment).subscribe({
       next: (res) => {
         if (res.success) {
-          console.log(res.data);
+          //console.log(res.data);
           this.exerciseByEquipment = res.data;
           $('.spinnerEquipment').css('visibility', 'hidden');
         } else {
@@ -89,7 +102,7 @@ export class ExerciseDetailsComponent implements OnInit {
     this.api.getExercisesByMussel(this.exercise.target).subscribe({
       next: (res) => {
         if (res.success) {
-          console.log(res.data);
+          //console.log(res.data);
           $('.spinnerMussel').css('visibility', 'hidden');
           this.exerciseByMussel = res.data;
         } else {

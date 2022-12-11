@@ -32,7 +32,7 @@ export class ExercisesComponent implements OnInit {
       this.id = params['id'];
       this.type = params['type'];
     });
-    console.log('q' + this.id);
+    //console.log('q' + this.id);
 
     this.getExercises();
   }
@@ -47,7 +47,7 @@ export class ExercisesComponent implements OnInit {
           if (res.success) {
             this.allExercises = res.data;
             this.hideExercisesSpinner()
-            console.log(res.data);
+            //console.log(res.data);
           } else {
             this.showErrorsMsg = true;
             this.errorMsg = res.message;
@@ -69,7 +69,7 @@ export class ExercisesComponent implements OnInit {
       this.api.getExercisesByBodyPart(this.id).subscribe({
         next: (res) => {
           if (res.success) {
-            console.log(res.data);
+            //console.log(res.data);
             this.hideExercisesSpinner()
             this.allExercises = res.data;
           } else {

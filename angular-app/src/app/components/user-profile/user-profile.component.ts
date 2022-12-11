@@ -70,7 +70,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.getDetails();
     this.getTrainers();
 
@@ -119,24 +118,20 @@ export class UserProfileComponent implements OnInit {
 
   // update user data submit
   update(form: FormGroup) {
-    $('#spinner').removeClass('visually-hidden')
-    $('#btn').addClass('visually-hidden')
+    $('#spinner').removeClass('visually-hidden');
+    $('#btn').addClass('visually-hidden');
     const formData = new FormData();
     formData.append('file', this.imageData);
     formData.append('uname', form.controls['uname'].value);
     formData.append('email', form.controls['email'].value);
     formData.append('age', form.controls['age'].value);
     formData.append('gender', form.controls['gender'].value);
-    console.log(this.userUpdateForm.value);
+    //console.log(this.userUpdateForm.value);
     this.userService
       .updateUserById(this.selectedUserId, formData, formData)
       .subscribe({
         next: (res) => {
           if (res.success) {
-            
-           
-
-
             this.successMsg = 'User Details Updated Successfully';
             this.showSuccessMsg = true;
 
@@ -153,8 +148,8 @@ export class UserProfileComponent implements OnInit {
           setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: () => {
-          $('#spinner').addClass('visually-hidden')
-          $('#btn').removeClass('visually-hidden')
+          $('#spinner').addClass('visually-hidden');
+          $('#btn').removeClass('visually-hidden');
           this.getDetails();
         },
       });
@@ -193,7 +188,7 @@ export class UserProfileComponent implements OnInit {
 
           this.userUpdateForm.get('gender')?.setValue(this.data.gender);
           this.profileImg = this.data.image;
-          console.log('Ids ' + this.ids);
+          //console.log('Ids ' + this.ids);
         }
       },
       error: (err) => {},
@@ -261,15 +256,15 @@ export class UserProfileComponent implements OnInit {
       });
     }
 
-    console.log('trainersIds ' + this.trainersIds);
-    console.log('trainers ' + this.trainers);
-    console.log('uname' + this.unameTrainer);
+    // console.log('trainersIds ' + this.trainersIds);
+    // console.log('trainers ' + this.trainers);
+    // console.log('uname' + this.unameTrainer);
   }
 
   //chat
   sendMessage() {
-    console.log('user ' + this.selectedUserId);
-    console.log('trainer' + this.selectedTrainerId);
+    // console.log('user ' + this.selectedUserId);
+    // console.log('trainer' + this.selectedTrainerId);
 
     //this.chatService.sendMessage(this.newMessage)
 
@@ -305,7 +300,7 @@ export class UserProfileComponent implements OnInit {
     this.chatService.addTrainerChat(data2).subscribe({
       next: (res) => {
         if (res.success) {
-          console.log(res.data);
+          //console.log(res.data);
         }
       },
       error: (err) => {
@@ -361,7 +356,7 @@ export class UserProfileComponent implements OnInit {
       email: ' ',
       password: ' ',
       image: ' ',
-      trainersId:''
+      trainersId: '',
     };
     form.reset();
     this.userUpdateForm.get('gender')?.setValue('Male');

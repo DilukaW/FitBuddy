@@ -52,7 +52,7 @@ export class UserLoginComponent implements OnInit {
     //login for user
     if (form.get('type')?.value == 1) {
       const data = form.value;
-      console.log(data);
+      //console.log(data);
       delete data['type'];
       this.userService.loginUser(data).subscribe({
         next: async (res) => {
@@ -89,7 +89,7 @@ export class UserLoginComponent implements OnInit {
 
     //login for trainer
     else if (form.get('type')?.value == 2) {
-      console.log(2);
+      //console.log(2);
       const data = form.value;
       delete data['type'];
       this.trainerService.loginTrainer(data).subscribe({
@@ -127,7 +127,7 @@ export class UserLoginComponent implements OnInit {
 
     //login for admin
     else {
-      console.log(3);
+      //console.log(3);
       const data = form.value;
       delete data['type'];
       this.adminService.loginAdmin(data).subscribe({

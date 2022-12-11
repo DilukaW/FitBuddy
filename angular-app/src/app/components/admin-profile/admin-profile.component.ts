@@ -18,6 +18,8 @@ export class AdminProfileComponent implements OnInit {
   trainers: any[] = [];
   trainer: any;
   data: any;
+  adminName:any
+  adminEmail:any
 
   // tab controls
   tab: any;
@@ -38,6 +40,7 @@ export class AdminProfileComponent implements OnInit {
   email: any;
   area: any;
   des: any;
+  password: any;
 
    //profile image
   selectedAdminId:any;
@@ -80,8 +83,10 @@ export class AdminProfileComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.data = res.data;
+          this.adminName=this.data.uname
+          this.adminEmail=this.data.email
           this.selectedAdminId=this.data._id
-          console.log(this.selectedAdminId)
+          //console.log(this.selectedAdminId)
         }
       },
       error: (err) => {
@@ -160,7 +165,7 @@ export class AdminProfileComponent implements OnInit {
     $('#spinnerAdd').removeClass('visually-hidden')
     $('#btnAdd').addClass('visually-hidden')
 
-    console.log(this.trainerUpdateForm.value);
+    //console.log(this.trainerUpdateForm.value);
     this.trainerService.registerTrainer(form.value).subscribe({
       next: (res) => {
         this.successMsg = 'New trainer added successfully!';
@@ -194,7 +199,7 @@ export class AdminProfileComponent implements OnInit {
   $('#btnUpdate').addClass('visually-hidden')
 
   const formData=new FormData();
-    console.log(this.updateForm.value);
+    //console.log(this.updateForm.value);
     formData.append('file',this.updateTrainerImg);
      formData.append('uname',form.controls['uname'].value);
      formData.append('email',form.controls['email'].value);
