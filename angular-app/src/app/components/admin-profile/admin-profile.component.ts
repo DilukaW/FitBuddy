@@ -150,11 +150,6 @@ export class AdminProfileComponent implements OnInit {
     });
   }
 
-  // logout function
-  logOut() {
-    sessionStorage.clear();
-  }
-
   // tab function
   onTabClick(tab: string) {
     this.activeTab = tab;

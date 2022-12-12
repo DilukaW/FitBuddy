@@ -31,11 +31,20 @@ import { RouterTestingModule } from '@angular/router/testing';
     expect(component.users).toEqual([]);
   });
 
-  it('should give relevant data of selected trainer', () => {
+  it('should give relevant data of selected user', () => {
     const item = 0;
     component.isActive(item);
     fixture.detectChanges();
     expect(component.selected).toBe(item);
   });
+
+  it('should return customized date on chat', () => {
+    
+    const date= component.stringAsDate("10 12 2022 17:38:40.757")
+     fixture.detectChanges();
+     expect(date).toBe('12 Oct 17:38 pm');
+   });
+
+   
   
  });

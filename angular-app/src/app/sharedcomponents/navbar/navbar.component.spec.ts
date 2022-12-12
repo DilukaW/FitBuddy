@@ -35,30 +35,29 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be navigate to /login after clicking Get login button',()=>{
-    const location=TestBed.inject(Location);
-    const btn=fixture.debugElement.nativeElement.querySelector('#log');
-    expect(btn.textContent).toContain('Log In')
-    btn.click();
-    fixture.detectChanges();
-    fixture.whenStable().then(()=>{
-      expect(location.path()).toEqual('/login');
-    })
+  // it('should be navigate to /login after clicking Get login button',()=>{
+  //   const location=TestBed.inject(Location);
+  //   const btn=fixture.debugElement.nativeElement.querySelector('#log');
+  //   expect(btn.textContent).toContain('Log In')
+  //   btn.click();
+  //   fixture.detectChanges();
+  //   fixture.whenStable().then(()=>{
+  //     expect(location.path()).toEqual('/login');
+  //   })
    
-  })
+  // })
 
-  it('should be navigate to home after clicking home',()=>{
-    const location=TestBed.inject(Location);
-    const btn=fixture.debugElement.nativeElement.querySelector('#home');
-    expect(btn.textContent).toContain('Home')
-    btn.click();
-    fixture.detectChanges();
-    fixture.whenStable().then(()=>{
-      expect(location.path()).toEqual('');
-    })
+  // it('should be navigate to home after clicking home',()=>{
+  //   const location=TestBed.inject(Location);
+  //   const btn=fixture.debugElement.nativeElement.querySelector('#home');
+  //   expect(btn.textContent).toContain('Home')
+  //   btn.click();
+  //   fixture.detectChanges();
+  //   fixture.whenStable().then(()=>{
+  //     expect(location.path()).toEqual('');
+  //   });
    
-  })
-
+  // });
   
 });
 

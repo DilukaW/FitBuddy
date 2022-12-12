@@ -82,10 +82,10 @@ export class TrainersComponent implements OnInit {
 
     //check for user login
     if (sessionStorage.getItem('user-token')) {
-      console.log("logged "+this.loggedUserId)
+      //console.log("logged "+this.loggedUserId)
       //check for previous enrollment
       if (this.trainees.includes(id+"_"+this.loggedUserId)) {
-        console.log('enrolled');
+        //console.log('enrolled');
         this.errorMsg = 'Your are already enrolled';
         this.showErrorsMsg = true;
         $('.spinnerTrainers').css('visibility', 'hidden');

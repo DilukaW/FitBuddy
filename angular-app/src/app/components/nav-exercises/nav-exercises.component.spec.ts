@@ -40,4 +40,7 @@ describe('NavExercisesComponent', () => {
   it('should have initial empty lowerExercises array', () => {
     expect(component.lowerArmsExercises).toEqual([]);
   });
+
+ 
+
 });

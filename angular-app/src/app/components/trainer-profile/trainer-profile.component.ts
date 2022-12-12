@@ -259,7 +259,7 @@ export class TrainerProfileComponent implements OnInit {
   stringAsDate(dateStr: string) {
     let h = '';
     const d = new Date(dateStr);
-    if (d.getTime() >= 12) {
+    if (d.getHours() >= 12) {
       h = 'pm';
     } else {
       h = 'am';

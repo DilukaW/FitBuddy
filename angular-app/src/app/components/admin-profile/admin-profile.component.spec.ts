@@ -37,6 +37,17 @@ describe('AdminProfileComponent', () => {
     expect(button.nativeElement.disabled).toBeTruthy();
   });
 
+  it('should enable the Add trainer button when text fields are not empty', () => {
+    component.trainerUpdateForm.get('email')!.setValue('tom@gmail.com');
+    component.trainerUpdateForm.get('password')!.setValue('12345678');
+    component.trainerUpdateForm.get('uname')!.setValue('tom');
+    component.trainerUpdateForm.get('area')!.setValue('yoga');
+    component.trainerUpdateForm.get('description')!.setValue('new');
+    fixture.detectChanges();
+    const button = fixture.debugElement.query(By.css('button'));
+    expect(button.nativeElement.disabled).toBeFalsy();
+  });
+
   it('should display correct admin name', () => {
     component.adminName = 'tom';
     fixture.detectChanges();
@@ -46,13 +57,7 @@ describe('AdminProfileComponent', () => {
     ).toContain('tom');
   });
 
-  it('should clear session storage when click on logout', () => {
-    sessionStorage.setItem('admin', 'tom');
-    component.logOut();
-    fixture.detectChanges();
-    expect(sessionStorage.getItem('admin')).toBe(null);
-  });
-
+  
   it('should work navigate appropriately when tab clicked', () => {
     const tab = 'Trainers';
     component.onTabClick(tab);
@@ -65,5 +70,14 @@ describe('AdminProfileComponent', () => {
     component.isActive(item);
     fixture.detectChanges();
     expect(component.selected).toBe(item);
+  });
+
+  it('should clear text fields after submitting the form', () => {
+    
+    component.updateForm.get('email')!.setValue('tom@gmail.com');
+    component.restForm(component.updateForm)
+    fixture.detectChanges()
+    const email=component.updateForm.get('email')?.value
+    expect(email).toEqual(null)
   });
 });
