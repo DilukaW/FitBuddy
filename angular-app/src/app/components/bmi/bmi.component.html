@@ -1,0 +1,58 @@
+<div class="container-fluid bg-white py-4">
+    <div class="container justify-content-center">
+        <h1 class="text-center">CALCULATE YOUR BMI</h1>
+        <div class="card mx-auto mb-3 mt-3 p-4" id="bmi">
+            <div class="row g-0">
+
+                <div class="col-md-12 col-sm-12 col-xs-9 ">
+                    <div class="card-body d-flex flex-column justify-content-center">
+                        <form [formGroup]="bmiForm" (ngSubmit)="onSubmit(bmiForm)">
+
+
+                            <div class="mb-4">
+                                <label for="email" class="form-label">Enter Height (m)</label>
+                                <input type="number" class="form-control " name="height" placeholder="168"
+                                    formControlName="height" [ngClass]="(bmiForm.get('height')!.touched || bmiForm.get('height')!.dirty)&&
+                        bmiForm.get('height')!.errors? 'is-invalid':''">
+
+                                <div class="invalid-feedback">
+                                    Please enter height
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="password" class="form-label ">Enter Weight (Kg)</label>
+                                <input type="number" class="form-control" name="password" placeholder="80"
+                                    formControlName="weight" [ngClass]="(bmiForm.get('weight')!.touched || bmiForm.get('weight')!.dirty)&&
+                        bmiForm.get('weight')!.errors? 'is-invalid':'' ">
+                                <div class="invalid-feedback">
+                                    Password enter weight
+                                </div>
+                            </div>
+                            <br>
+                            <div class="d-flex justify-content-center">
+                                <button class="btn btn-custom col-md-4" type="submit" [disabled]="bmiForm.invalid">
+                                    <span>Calculate</span>
+                                </button>
+
+                            </div>
+
+
+                        </form>
+
+
+                        <div class="mt-3 text-white text-center" *ngIf="msg">
+                            <h6>BMI: {{bmi}}</h6>
+                            <h6>{{msg}}</h6>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

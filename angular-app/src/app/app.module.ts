@@ -24,6 +24,7 @@ import { NavExercisesComponent } from './components/nav-exercises/nav-exercises.
 import { ExerciseDetailsComponent } from './components/exercise-details/exercise-details.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { WhyUsComponent } from './components/home/why-us/why-us.component';
+import { BmiComponent } from './components/bmi/bmi.component';
 
 
 
@@ -46,7 +47,8 @@ import { WhyUsComponent } from './components/home/why-us/why-us.component';
     NavExercisesComponent,
     ExerciseDetailsComponent,
     AboutUsComponent,
-    WhyUsComponent
+    WhyUsComponent,
+    BmiComponent
 
     
   ],

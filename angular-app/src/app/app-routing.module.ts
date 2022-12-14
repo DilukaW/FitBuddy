@@ -12,6 +12,7 @@ import { ExercisesComponent } from './components/exercises/exercises.component';
 import { NavExercisesComponent } from './components/nav-exercises/nav-exercises.component';
 import { ExerciseDetailsComponent } from './components/exercise-details/exercise-details.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { BmiComponent } from './components/bmi/bmi.component';
 
 const routes: Routes = [
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path:"trainersDetails",component:TrainersComponent},
   {path:"login",component:UserLoginComponent},
   {path:"register",component:UserSignupComponent},
+  {path:"bmi",component:BmiComponent},
   {path:"aboutUs",component:AboutUsComponent},
   {path:"user/profile",component:UserProfileComponent},
   {path:"admin/profile",component:AdminProfileComponent},
