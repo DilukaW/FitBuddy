@@ -14,8 +14,8 @@ export class NavbarComponent implements OnInit {
   trainerSession: any;
   adminSession: any;
   data: any;
-  uname:any;
-  img:any
+  uname: any;
+  img: any;
   path: any;
   collapsed = true;
 
@@ -44,8 +44,8 @@ export class NavbarComponent implements OnInit {
       this.path = 'trainer/profile';
     }
   }
-  
-  toggleCollapsed(): void {
+
+  toggleCollapsed() {
     this.collapsed = !this.collapsed;
   }
   // get admin details
@@ -54,8 +54,8 @@ export class NavbarComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.data = res.data;
-          this.img=this.data.image
-          this.uname=this.data.uname
+          this.img = this.data.image;
+          this.uname = this.data.uname;
         }
       },
       error: (err) => {},
@@ -69,9 +69,9 @@ export class NavbarComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.data = res.data;
-          this.img=this.data.image
-          this.uname=this.data.uname
-        } 
+          this.img = this.data.image;
+          this.uname = this.data.uname;
+        }
       },
       error: (err) => {},
       complete: () => {},
@@ -83,19 +83,22 @@ export class NavbarComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.data = res.data;
-          this.img=this.data.image
-          this.uname=this.data.uname
+          this.img = this.data.image;
+          this.uname = this.data.uname;
         }
       },
       error: (err) => {},
       complete: () => {},
     });
   }
-  
+
   //logout function
   async logOut() {
     sessionStorage.clear();
     await this.router.navigate(['/']);
     window.location.reload();
   }
+
+  
+ 
 }

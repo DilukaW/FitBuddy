@@ -17,12 +17,12 @@
                         <div class="d-flex flex-column align-items-center">
                             <img class="rounded-circle"
                                 *ngIf="trainer.image!='undefined' && trainer.image; else default" width="140px"
-                                height="140px" src={{trainer.image}}>
+                                height="140px" src={{trainer.image}} alt="trainer-img">
 
                             <ng-template #default>
 
                                 <img class="rounded-circle" width="140px" height="140px"
-                                    src="../../../assets/profile.jpg">
+                                    src="../../../assets/profile.jpg"  alt="trainer-img">
                             </ng-template>
                             <span class="font-weight-bold m-1">
                                 <h4>{{trainer.uname}}</h4>

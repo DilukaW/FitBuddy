@@ -4,41 +4,42 @@
 
     <!-- icon -->
     <a class="navbar-brand d-flex align-items-center " routerLink="" routerLinkActive="active-link">
-      <img src="../assets/logo1.jpg" class="img-fluid ">
+      <img src="../assets/logo1.jpg" class="img-fluid" alt="logo">
      
     </a>
     <!-- icon -->
 
     <!-- collapse btn -->
-    <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3 " type="button"
-      (click)="toggleCollapsed()">
+    <button  class="navbar-toggler" data-bs-target="#navcol-3 " type="button"
+    aria-controls="navcol-3" aria-expanded="false" (click)="toggleCollapsed()">
       <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
     </button>
     <!-- collapse btn -->
 
     <!-- nav links -->
-    <div class="collapse navbar-collapse" id="navcol-3">
+    <div class="navbar-collapse" id="navcol-3" [ngClass]="{'collapse': collapsed}">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a id="home" class="nav-link" routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+          <a id="home" class="nav-link" routerLink="" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
+          (click)=" collapsed = true">
             Home
           </a>
         </li>
         <li class="nav-item">
           <a id="trainer" class="nav-link" routerLinkActive="active-link" routerLink="trainersDetails"
-            [routerLinkActiveOptions]="{ exact: true }">Trainers</a>
+            [routerLinkActiveOptions]="{ exact: true }" (click)=" collapsed = true">Trainers</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active-link" routerLink='exercise'
-            [routerLinkActiveOptions]="{ exact: true }">Exercises</a>
+            [routerLinkActiveOptions]="{ exact: true } "(click)=" collapsed = true">Exercises</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active-link" routerLink='bmi'
-            [routerLinkActiveOptions]="{ exact: true }">BMI Calculator</a>
+            [routerLinkActiveOptions]="{ exact: true }"(click)=" collapsed = true">BMI Calculator</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active-link" routerLink="aboutUs"
-            [routerLinkActiveOptions]="{ exact: true }">About Us</a>
+            [routerLinkActiveOptions]="{ exact: true }"(click)=" collapsed = true">About Us</a>
         </li>
       </ul>
 
@@ -62,7 +63,7 @@
       </div>
 
       <ng-template #default>
-        <button class="btn btn-primary ms-3" type="button" routerLink="login" id="log">Log In</button>
+        <button class="btn btn-primary ms-3" type="button" routerLink="login" id="log" (click)=" collapsed = true">Log In</button>
       </ng-template>
 
 
