@@ -17,17 +17,17 @@ import { BmiComponent } from './components/bmi/bmi.component';
 const routes: Routes = [
 
   {path:"",component:HomeComponent},
-  {path:"trainersDetails",component:TrainersComponent},
-  {path:"login",component:UserLoginComponent},
-  {path:"register",component:UserSignupComponent},
-  {path:"bmi",component:BmiComponent},
-  {path:"aboutUs",component:AboutUsComponent},
-  {path:"user/profile",component:UserProfileComponent},
-  {path:"admin/profile",component:AdminProfileComponent},
-  {path:"trainer/profile",component:TrainerProfileComponent},
-  {path:"allExercises",component:ExercisesComponent},
-  {path:"exercise",component:NavExercisesComponent},
-  {path:"exerciseDetails",component:ExerciseDetailsComponent},
+  {path:"trainersDetails",component:TrainersComponent,data: {title: 'Fit Buddy-Trainers'}},
+  {path:"login",component:UserLoginComponent,data: {title: 'Fit Buddy-Login'}},
+  {path:"register",component:UserSignupComponent,data: {title: 'Fit Buddy-Register'}},
+  {path:"bmi",component:BmiComponent,data: {title: 'Fit Buddy-BMI'}},
+  {path:"aboutUs",component:AboutUsComponent,data: {title: 'Fit Buddy-About'}},
+  {path:"user/profile",component:UserProfileComponent,data: {title: 'Fit Buddy-User/Dashboard'}},
+  {path:"admin/profile",component:AdminProfileComponent,data: {title: 'Fit Buddy-Admin/Dashboard'}},
+  {path:"trainer/profile",component:TrainerProfileComponent,data: {title: 'Fit Buddy-Trainer/Dashboard'}},
+  {path:"allExercises",component:ExercisesComponent,data: {title: 'Fit Buddy-AllExercises'}},
+  {path:"exercise",component:NavExercisesComponent,data: {title: 'Fit Buddy-Exercises'}},
+  {path:"exerciseDetails",component:ExerciseDetailsComponent,data: {title: 'Fit Buddy-ExerciseDetails'}},
 ];
 
 @NgModule({

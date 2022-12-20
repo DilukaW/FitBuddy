@@ -1,6 +1,6 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import {  NgModule, } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule,Title } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +17,6 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { TrainerProfileComponent } from './components/trainer-profile/trainer-profile.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
-
 import { ExercisesComponent } from './components/exercises/exercises.component';
 import { ExerciseSectionComponent } from './components/home/exercise-section/exercise-section.component';
 import { NavExercisesComponent } from './components/nav-exercises/nav-exercises.component';
@@ -25,6 +24,7 @@ import { ExerciseDetailsComponent } from './components/exercise-details/exercise
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { WhyUsComponent } from './components/home/why-us/why-us.component';
 import { BmiComponent } from './components/bmi/bmi.component';
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 
 
@@ -58,9 +58,10 @@ import { BmiComponent } from './components/bmi/bmi.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+  
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [AppComponent],
   
   
