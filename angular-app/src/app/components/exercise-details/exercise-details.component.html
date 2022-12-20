@@ -2,27 +2,27 @@
 <div class="container-fluid py-5" style="background: linear-gradient(120deg, #162a46, #11002c);">
 
     <div class="container">
-
         <!-- error message -->
         <div class="alert alert-danger text-center" role="alert" *ngIf="showErrorsMsg">
             {{errorMsg}}
         </div>
+        <!-- error message -->
 
+        
         <h5 class="text-uppercase text-white fw-bolder text-center">Exercise Details</h5>
+        <!-- Exercise Details -->
         <div class="card rounded mx-4 mb-3 mt-3 p-4 " id="exercise">
 
             <div class="row position-relative">
                 <div class="col-md-9 ">
                     <div class="d-flex bg-white flex-column align-items-center text-center">
-                        
-                            <img class="img-fluid rounded h-100 " [src]="gif">
-                        
+                        <img class="img-fluid rounded h-100 " [src]="gif">
                     </div>
                 </div>
 
                 <div class="col-md-3 d-flex flex-column align-items-center text-center  p-4 ">
                     <h5 id="heading" class="text-uppercase mb-5 ">{{exerciseName}}</h5>
-                    <p>{{exerciseName}} is one of the best exercise to target your {{exerciseTarget}} mussel using
+                    <p id="des">{{exerciseName}} is one of the best exercise to target your {{exerciseTarget}} mussel using
                         {{exerciseEquipment}}.
                     </p>
                     <p>Target mussel: {{exerciseTarget}}</p>
@@ -39,13 +39,13 @@
                     </div>
                 </div>
                 <!-- spinner -->
-
             </div>
-
         </div>
+        <!-- Exercise Details -->
     </div>
 </div>
 
+<!-- Similar Target Mussel Exercise -->
 <div class="container-fluid bg-white py-5 ">
     <div class="container ">
         <h5 class="text-uppercase fw-bolder text-center">Similar Target Mussel Exercise</h5>
@@ -75,18 +75,17 @@
                     </div>
                 </div>
                 <!-- spinner -->
-
             </div>
 
             <ng-template #default>
                 <h6 id="heading" class="text-uppercase mt-5">No Similar Equipment Exercise Found</h6>
             </ng-template>
-
         </div>
-
     </div>
 </div>
+<!-- Similar Target Mussel Exercise -->
 
+<!-- Similar Equipment Exercise -->
 <div class="container-fluid py-5" style="background: linear-gradient(120deg, #162a46, #11002c);">
     <div class="container">
         <h5 class="text-uppercase text-white fw-bolder text-center">Similar Equipment Exercise</h5>
@@ -121,7 +120,7 @@
             <ng-template #default>
                 <h6 class="text-uppercase text-white fw-bolder text-center">No Similar Equipment Exercise Found</h6>
             </ng-template>
-
         </div>
     </div>
 </div>
+<!-- Similar Equipment Exercise -->

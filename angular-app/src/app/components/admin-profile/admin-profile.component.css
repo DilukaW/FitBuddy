@@ -1,45 +1,53 @@
-li:hover{
+li:hover {
     background-color: var(--secondary-color);
     color: white;
     border-radius: 10px;
 }
-li{
+
+li {
     border: 2px solid var(--secondary-color);
     border-radius: 10px;
 }
-.active{
-   
+
+.active {
+
     background-color: var(--secondary-color);
     color: white;
     border-radius: 10px;
 }
-.active1{
+
+.active1 {
     background-color: #f7f7f7;
     border-bottom: 4px solid var(--outline-color);
 }
-.a{
+
+.a {
     position: relative;
 }
-.b{
-  position: absolute;
-  top: 90px;
-  margin-left: 70px;
-  
+
+.b {
+    position: absolute;
+    top: 90px;
+    margin-left: 70px;
+
 }
-.x{
+
+.x {
     min-width: 40px !important;
     max-width: 40px !important;
     min-height: 40px !important;
     max-height: 40px !important;
-  
+
 }
-#selectedImg{
+
+#selectedImg {
     min-width: 120px !important;
     max-width: 120px !important;
     min-height: 120px !important;
     max-height: 120px !important;
-  
+
 }
+
 /*media query*/
 @media only screen and (max-width: 767px) {
     #trainerCol {
@@ -47,12 +55,14 @@ li{
         height: 200px !important;
         margin-bottom: 10px;
     }
-    #profile{
+
+    #profile {
         height: 320px !important;
     }
-    #about{
+
+    #about {
         border-right: none !important;
     }
-    
+
 
 }

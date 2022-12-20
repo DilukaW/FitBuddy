@@ -1,33 +1,34 @@
- import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
- import { UserSignupComponent } from './user-signup.component';
+import { UserSignupComponent } from './user-signup.component';
 
- describe('UserSignupComponent', () => {
-   let component: UserSignupComponent;
-   let fixture: ComponentFixture<UserSignupComponent>;
+describe('UserSignupComponent', () => {
+  let component: UserSignupComponent;
+  let fixture: ComponentFixture<UserSignupComponent>;
+  let compiled: any;
 
-   beforeEach(async () => {
-     await TestBed.configureTestingModule({
-       declarations: [ UserSignupComponent ],
-       imports:[HttpClientTestingModule],
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [UserSignupComponent],
+      imports: [HttpClientTestingModule],
       schemas: [NO_ERRORS_SCHEMA],
-     })
-     .compileComponents();
+    }).compileComponents();
 
-     fixture = TestBed.createComponent(UserSignupComponent);
-     component = fixture.componentInstance;
-     fixture.detectChanges();
-   });
+    fixture = TestBed.createComponent(UserSignupComponent);
+    component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
+    fixture.detectChanges();
+  });
 
-   it('should create UserSignupComponent', () => {
-     expect(component).toBeTruthy();
-   });
+  it('should create UserSignupComponent', () => {
+    expect(component).toBeTruthy();
+  });
 
-   it('should disable the signup button when text fields are empty', () => {
+  it('should disable the signup button when text fields are empty', () => {
     const button = fixture.debugElement.query(By.css('button'));
     expect(button.nativeElement.disabled).toBeTruthy();
   });
@@ -66,19 +67,34 @@ import { By } from '@angular/platform-browser';
   });
 
   it('should clear text fields after submitting the form', () => {
-    
     component.signupForm.get('email')!.setValue('tom@gmail.com');
-    component.restForm(component.signupForm)
-    fixture.detectChanges()
-    const email=component.signupForm.get('email')?.value
-    expect(email).toEqual(null)
+    component.restForm(component.signupForm);
+    fixture.detectChanges();
+    const email = component.signupForm.get('email')?.value;
+    expect(email).toEqual(null);
   });
- 
+
   it('should clear text fields after submitting the form', () => {
     component.signupForm.get('email')!.setValue('tom@gmail.com');
-    component.restForm(component.signupForm)
-    fixture.detectChanges()
-    const email=component.signupForm.get('email')?.value
-    expect(email).toEqual(null)
+    component.restForm(component.signupForm);
+    fixture.detectChanges();
+    const email = component.signupForm.get('email')?.value;
+    expect(email).toEqual(null);
   });
- });
+
+  it('should display appropriate error messages', () => {
+    component.errorMsg = 'error';
+    component.showErrorsMsg = true;
+    fixture.detectChanges();
+    expect(compiled.querySelector('.alert').textContent).toBe(' error ');
+  });
+
+  it('should display appropriate success messages', () => {
+    component.successMsg = 'success';
+    component.showSuccessMsg = true;
+    fixture.detectChanges();
+    expect(compiled.querySelector('.alert-success').textContent).toBe(
+      ' success '
+    );
+  });
+});

@@ -9,6 +9,7 @@ import { ExerciseDetailsComponent } from './exercise-details.component';
 describe('ExerciseDetailsComponent', () => {
   let component: ExerciseDetailsComponent;
   let fixture: ComponentFixture<ExerciseDetailsComponent>;
+  let compiled: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,6 +21,7 @@ describe('ExerciseDetailsComponent', () => {
 
     fixture = TestBed.createComponent(ExerciseDetailsComponent);
     component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
   });
 
@@ -38,4 +40,31 @@ describe('ExerciseDetailsComponent', () => {
   it('should have initial empty exerciseByMussel array', () => {
     expect(component.exerciseByMussel).toEqual([]);
   });
+
+  it('should display correct exercise name', () => {
+    component.exerciseName="push up"
+    fixture.detectChanges()
+    expect(compiled.querySelector('#heading').textContent).toBe(
+      'push up'
+    );
+  });
+
+  it('should display correct exercise name, target mussel, equipment and description ', () => {
+    component.exerciseName="push up"
+    component.exerciseTarget="shoulders"
+    component.exerciseEquipment="body"
+    fixture.detectChanges()
+    expect(compiled.querySelector('#des').textContent).toBe(
+      'push up is one of the best exercise to target your shoulders mussel using body. '
+    );
+  });
+
+  it('should display appropriate error messages', () => {
+    component.errorMsg="api error"
+    component.showErrorsMsg=true
+    fixture.detectChanges()
+    expect(compiled.querySelector('.alert').textContent).toBe(' api error ')
+  });
+
+ 
 });

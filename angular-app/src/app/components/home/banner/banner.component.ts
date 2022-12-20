@@ -78,6 +78,6 @@ export class BannerComponent implements OnInit {
   //hide loading spinner
   hideSpinner() {
     $('#loading').css('display', 'none');
-    $('.spinner').remove()
+    $('.spinner').remove();
   }
 }

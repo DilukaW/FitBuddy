@@ -1,15 +1,13 @@
 import { NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { FooterComponent } from 'src/app/sharedcomponents/footer/footer.component';
 import { AboutUsComponent } from './about-us.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { NgModel } from '@angular/forms';
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('AboutUsComponent', () => {
   let component: AboutUsComponent;
   let fixture: ComponentFixture<AboutUsComponent>;
+  let compiled: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,6 +18,7 @@ describe('AboutUsComponent', () => {
 
     fixture = TestBed.createComponent(AboutUsComponent);
     component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
   });
 
@@ -28,32 +27,27 @@ describe('AboutUsComponent', () => {
   });
 
   it('should have the footer component', () => {
-    const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-footer')).not.toBe(null);
   });
 
   it('should have the title WE ARE GYM BUDDY', () => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain(
-      'WE ARE GYM BUDDY'
+    expect(compiled.querySelector('h1').textContent).toBe(
+      'WE ARE FIT BUDDY'
     );
   });
 
   it('should have the title OUR VALUES', () => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#values').textContent).toContain(
+    expect(compiled.querySelector('#values').textContent).toBe(
       'OUR VALUES'
     );
   });
 
   it('should have the title OUR STORY', () => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#story').textContent).toContain('OUR STORY');
+    expect(compiled.querySelector('#story').textContent).toBe('OUR STORY');
   });
 
   it('should have the title OUR CULTURE', () => {
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#culture').textContent).toContain(
+    expect(compiled.querySelector('#culture').textContent).toBe(
       'OUR CULTURE'
     );
   });

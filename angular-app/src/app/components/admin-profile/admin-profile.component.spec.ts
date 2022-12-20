@@ -1,28 +1,32 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture,flushMicrotasks,TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-
+import { TrainerService } from 'src/app/shared/trainer/trainer.service';
 import { AdminProfileComponent } from './admin-profile.component';
 
 describe('AdminProfileComponent', () => {
   let component: AdminProfileComponent;
   let fixture: ComponentFixture<AdminProfileComponent>;
-
+  let trainerService: TrainerService;
+  let compiled:any;
+ 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AdminProfileComponent],
       imports: [HttpClientTestingModule],
       schemas: [NO_ERRORS_SCHEMA],
+     
     }).compileComponents();
 
     fixture = TestBed.createComponent(AdminProfileComponent);
+    trainerService=TestBed.inject(TrainerService)
     component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
   });
 
+  
   it('should create AdminProfileComponent', () => {
     expect(component).toBeTruthy();
   });
@@ -58,7 +62,7 @@ describe('AdminProfileComponent', () => {
   });
 
   
-  it('should work navigate appropriately when tab clicked', () => {
+  it('should work navigation appropriately when tab clicked', () => {
     const tab = 'Trainers';
     component.onTabClick(tab);
     fixture.detectChanges();
@@ -79,5 +83,21 @@ describe('AdminProfileComponent', () => {
     fixture.detectChanges()
     const email=component.updateForm.get('email')?.value
     expect(email).toEqual(null)
+  });
+
+  it('should display appropriate error messages', () => {
+    component.errorMsg = 'error';
+    component.showErrorsMsg = true;
+    fixture.detectChanges();
+    expect(compiled.querySelector('.alert').textContent).toBe(' error ');
+  });
+
+  it('should display appropriate success messages', () => {
+    component.successMsg = 'success';
+    component.showSuccessMsg = true;
+    fixture.detectChanges();
+    expect(compiled.querySelector('.alert-success').textContent).toBe(
+      ' success '
+    );
   });
 });

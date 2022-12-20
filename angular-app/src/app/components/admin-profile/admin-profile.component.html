@@ -15,6 +15,7 @@
 <div class="container rounded bg-white mt-5 mb-5 py-2">
     <!-- card -->
     <div class="row" style="min-height: 567px;">
+
         <!-- about -->
         <div class="col-md-3 border-end border-dark px-1" id="about">
             <div>
@@ -23,14 +24,13 @@
             <div class="d-flex flex-column align-items-center text-center py-5 overflow-auto" id="profile"
                 style="height: 467px">
                 <img class="rounded-circle mt-5" width="120px" src="../../../assets/profile.jpg">
-                <span
-                    class="font-weight-bold">{{adminName}}</span>
-                    <span id="c"
-                    class="text-black-50">{{adminEmail}}</span><span>
+                <span class="font-weight-bold">{{adminName}}</span>
+                <span id="c" class="text-black-50">{{adminEmail}}</span><span>
                 </span>
             </div>
         </div>
         <!-- about -->
+
         <div class="col-md-9 pd-5">
             <!-- Tabs navs -->
             <ul class="nav nav-tabs nav-justified mb-3 mt-4" style="border: none;" id="ex1" role="tablist">
@@ -54,7 +54,6 @@
                     <div class="col-md-8 mx-auto">
                         <div class="p-3 py-2">
                             <form [formGroup]="trainerUpdateForm" (ngSubmit)="onSubmit(trainerUpdateForm)">
-
 
                                 <div class="row mt-2">
                                     <div class="col">
@@ -123,9 +122,9 @@
                                         </div>
                                     </button>
                                 </div>
+
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -138,7 +137,6 @@
                         <div class="col-md-5 border-end border-dark overflow-auto" id="trainerCol"
                             style="height: 460px">
                             <div class="card my-2">
-
                                 <div class="card-body p-0 " (click)="getTrainer(trainers[0]._id,0)"
                                     [ngClass]="{active1: isActive(0)}"><span>
                                         <img class="rounded-circle m-2 x"
@@ -175,15 +173,14 @@
                                     </span>
                                 </div>
                             </div>
-
                         </div>
+
                         <!-- update trainer details form -->
                         <div class="col-md-7 overflow-auto" style="height: 460px">
                             <div *ngIf="trainers?.length">
                                 <form [formGroup]="updateForm" (ngSubmit)="update(updateForm)">
 
                                     <div class="d-flex justify-content-center a mt-0">
-
                                         <img class="rounded-circle mt-0" id="selectedImg"
                                             *ngIf="updateTrainerImg!='undefined' && updateTrainerImg; else default"
                                             width="120px" [src]="updateTrainerImg" alt="profile image">
@@ -252,23 +249,24 @@
 
                                     <div class="mt-3 text-center">
                                         <button class="btn btn-custom" type="submit" [disabled]="updateForm.invalid">
-                                            <span id="btnUpdate">  Update Trainer</span>
-                                        <div class="visually-hidden" id="spinnerUpdate">
-                                            <span class="spinner-border spinner-border-sm "role="status" aria-hidden="true"></span>
-                                            <span> Updating</span>
-                                        </div>
+                                            <span id="btnUpdate"> Update Trainer</span>
+                                            <div class="visually-hidden" id="spinnerUpdate">
+                                                <span class="spinner-border spinner-border-sm " role="status"
+                                                    aria-hidden="true"></span>
+                                                <span> Updating</span>
+                                            </div>
                                         </button>
                                     </div>
                                 </form>
                             </div>
                         </div>
+                        <!-- update trainer details form -->
                     </div>
                 </div>
-
-
             </div>
-
+            <!-- display all trainers -->
         </div>
-
     </div>
+    <!-- card -->
 </div>
+<!-- profile -->

@@ -9,8 +9,11 @@ import { ApiService } from 'src/app/shared/api/api.service';
   styleUrls: ['./exercise-details.component.css'],
 })
 export class ExerciseDetailsComponent implements OnInit {
+  //params
   sub: any;
   id: any;
+
+  //exercise
   exercise: any;
   gif:any
   exerciseName:any
@@ -41,12 +44,14 @@ export class ExerciseDetailsComponent implements OnInit {
     this.getExercise();
   }
 
+  //refresh page
   refresh() {
     setTimeout(function () {
       location.reload();
     }, 1000);
   }
 
+  //get exercise details by id
   getExercise() {
     this.api.getExerciseById(this.id).subscribe({
       next: (res) => {
@@ -77,6 +82,7 @@ export class ExerciseDetailsComponent implements OnInit {
     });
   }
 
+  //get similar equipment exercises
   getEquipmentExercises() {
     this.api.getExercisesByEquipment(this.exercise.equipment).subscribe({
       next: (res) => {
@@ -98,6 +104,8 @@ export class ExerciseDetailsComponent implements OnInit {
       complete: () => {},
     });
   }
+
+  //get similar target mussel exercises
   getTargetExercises() {
     this.api.getExercisesByMussel(this.exercise.target).subscribe({
       next: (res) => {

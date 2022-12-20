@@ -9,6 +9,7 @@ import * as jQuery from 'jquery';
   styleUrls: ['./exercise-section.component.css'],
 })
 export class ExerciseSectionComponent implements OnInit {
+  //arrays
   bodyParts: any[] = [];
   allExercises: any[] = [];
   selectedBodyPart: any = 0;

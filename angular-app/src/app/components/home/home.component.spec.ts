@@ -14,6 +14,7 @@ import { WhyUsComponent } from './why-us/why-us.component';
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  let compiled: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -31,6 +32,7 @@ describe('HomeComponent', () => {
 
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
   });
 
@@ -39,17 +41,18 @@ describe('HomeComponent', () => {
   });
 
   it('should have the banner component', () => {
-    const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-banner')).not.toBe(null);
   });
 
+  it('should have the exercise section', () => {
+    expect(compiled.querySelector('app-exercise-section')).not.toBe(null);
+  });
+
   it('should have the why us component', () => {
-    const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-why-us')).not.toBe(null);
   });
 
   it('should have the footer component', () => {
-    const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('app-footer')).not.toBe(null);
   });
 });

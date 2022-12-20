@@ -1,4 +1,4 @@
- import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -8,17 +8,18 @@ import { UserProfileComponent } from './user-profile.component';
 describe('UserProfileComponent', () => {
   let component: UserProfileComponent;
   let fixture: ComponentFixture<UserProfileComponent>;
+  let compiled: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserProfileComponent ],
-      imports:[HttpClientTestingModule],
+      declarations: [UserProfileComponent],
+      imports: [HttpClientTestingModule],
       schemas: [NO_ERRORS_SCHEMA],
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UserProfileComponent);
     component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
   });
 
@@ -51,7 +52,7 @@ describe('UserProfileComponent', () => {
     expect(button.nativeElement.disabled).toBeTruthy();
   });
 
-  it('should work navigate appropriately when tab clicked', () => {
+  it('should work navigation appropriately when tab clicked', () => {
     const tab = 'Users';
     component.onTabClick(tab);
     fixture.detectChanges();
@@ -66,19 +67,32 @@ describe('UserProfileComponent', () => {
   });
 
   it('should return customized date on chat', () => {
-    
-   const date= component.stringAsDate("12 12 2022 07:38:40.757")
+    const date = component.stringAsDate('12 12 2022 07:38:40.757');
     fixture.detectChanges();
     expect(date).toBe('12 Dec 7:38 am');
   });
 
   it('should clear text fields after submitting the form', () => {
-    
     component.userUpdateForm.get('email')!.setValue('tom@gmail.com');
-    component.restForm(component.userUpdateForm)
-    fixture.detectChanges()
-    const email=component.userUpdateForm.get('email')?.value
-    expect(email).toEqual(null)
+    component.restForm(component.userUpdateForm);
+    fixture.detectChanges();
+    const email = component.userUpdateForm.get('email')?.value;
+    expect(email).toEqual(null);
   });
 
+  it('should display appropriate error messages', () => {
+    component.errorMsg = 'error';
+    component.showErrorsMsg = true;
+    fixture.detectChanges();
+    expect(compiled.querySelector('.alert').textContent).toBe(' error ');
+  });
+
+  it('should display appropriate success messages', () => {
+    component.successMsg = 'success';
+    component.showSuccessMsg = true;
+    fixture.detectChanges();
+    expect(compiled.querySelector('.alert-success').textContent).toBe(
+      ' success '
+    );
+  });
 });

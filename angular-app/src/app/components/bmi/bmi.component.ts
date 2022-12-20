@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-bmi',
   templateUrl: './bmi.component.html',
@@ -22,10 +20,10 @@ export class BmiComponent implements OnInit {
     });
   }
 
+  //on form submit
   onSubmit(form: FormGroup) {
     let h = form.get('height')?.value;
     let w = form.get('weight')?.value;
-    this.msg = w;
     this.bmi = this.bmiCal(h, w);
     if (parseInt(this.bmi) < 18.5) {
       this.msg = 'Underweight';
@@ -37,6 +35,7 @@ export class BmiComponent implements OnInit {
     form.reset();
   }
 
+  //function to calculate bmi
   bmiCal(h: number, w: number) {
     return (w / (h * h)).toFixed(2);
   }

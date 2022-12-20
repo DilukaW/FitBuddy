@@ -18,8 +18,8 @@ export class AdminProfileComponent implements OnInit {
   trainers: any[] = [];
   trainer: any;
   data: any;
-  adminName:any
-  adminEmail:any
+  adminName: any;
+  adminEmail: any;
 
   // tab controls
   tab: any;
@@ -42,9 +42,9 @@ export class AdminProfileComponent implements OnInit {
   des: any;
   password: any;
 
-   //profile image
-  selectedAdminId:any;
-  updateTrainerImg!:string
+  //profile image
+  selectedAdminId: any;
+  updateTrainerImg!: string;
 
   constructor(
     private adminService: AdminService,
@@ -54,7 +54,6 @@ export class AdminProfileComponent implements OnInit {
   ngOnInit(): void {
     this.getDetails();
     this.getTrainers();
-  
 
     // add trainer from validation
     this.trainerUpdateForm = new FormGroup({
@@ -83,9 +82,9 @@ export class AdminProfileComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.data = res.data;
-          this.adminName=this.data.uname
-          this.adminEmail=this.data.email
-          this.selectedAdminId=this.data._id
+          this.adminName = this.data.uname;
+          this.adminEmail = this.data.email;
+          this.selectedAdminId = this.data._id;
           //console.log(this.selectedAdminId)
         }
       },
@@ -104,15 +103,14 @@ export class AdminProfileComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.trainers = res.data;
-    
+
           this.uname = this.trainers[0].uname;
           this.email = this.trainers[0].email;
           this.area = this.trainers[0].area;
           this.des = this.trainers[0].description;
-          this.updateTrainerImg=this.trainers[0].image
+          this.updateTrainerImg = this.trainers[0].image;
 
           this.selectedTrainerId = this.trainers[0]._id;
-         
         }
       },
       error: (err) => {
@@ -138,7 +136,7 @@ export class AdminProfileComponent implements OnInit {
           this.email = this.trainer.email;
           this.area = this.trainer.area;
           this.des = this.trainer.description;
-          this.updateTrainerImg=this.trainer.image
+          this.updateTrainerImg = this.trainer.image;
         }
       },
       error: (err) => {
@@ -157,8 +155,8 @@ export class AdminProfileComponent implements OnInit {
 
   // add trainer data submit function
   onSubmit(form: FormGroup) {
-    $('#spinnerAdd').removeClass('visually-hidden')
-    $('#btnAdd').addClass('visually-hidden')
+    $('#spinnerAdd').removeClass('visually-hidden');
+    $('#btnAdd').addClass('visually-hidden');
 
     //console.log(this.trainerUpdateForm.value);
     this.trainerService.registerTrainer(form.value).subscribe({
@@ -181,34 +179,33 @@ export class AdminProfileComponent implements OnInit {
         }
       },
       complete: () => {
-        $('#spinnerAdd').addClass('visually-hidden')
-        $('#btnAdd').removeClass('visually-hidden')
+        $('#spinnerAdd').addClass('visually-hidden');
+        $('#btnAdd').removeClass('visually-hidden');
         this.restForm(form);
       },
     });
   }
 
   // update trainer data submit
- update(form: FormGroup) {
-  $('#spinnerUpdate').removeClass('visually-hidden')
-  $('#btnUpdate').addClass('visually-hidden')
+  update(form: FormGroup) {
+    $('#spinnerUpdate').removeClass('visually-hidden');
+    $('#btnUpdate').addClass('visually-hidden');
 
-  const formData=new FormData();
+    const formData = new FormData();
     //console.log(this.updateForm.value);
-    formData.append('file',this.updateTrainerImg);
-     formData.append('uname',form.controls['uname'].value);
-     formData.append('email',form.controls['email'].value);
-     formData.append('area',form.controls['area'].value);
-    formData.append('description',form.controls['description'].value);
+    formData.append('file', this.updateTrainerImg);
+    formData.append('uname', form.controls['uname'].value);
+    formData.append('email', form.controls['email'].value);
+    formData.append('area', form.controls['area'].value);
+    formData.append('description', form.controls['description'].value);
     this.trainerService
-      .updateTrainerById(this.selectedTrainerId, formData,formData)
+      .updateTrainerById(this.selectedTrainerId, formData, formData)
       .subscribe({
         next: (res) => {
           if (res.success) {
             this.successMsg = 'Trainer Details Updated Successfully';
             this.showSuccessMsg = true;
             setTimeout(() => (this.showSuccessMsg = false), 2000);
-        
           } else {
             this.errorMsg = res.message;
             this.showErrorsMsg = true;
@@ -221,9 +218,9 @@ export class AdminProfileComponent implements OnInit {
           setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: () => {
-          $('#spinnerUpdate').addClass('visually-hidden')
-          $('#btnUpdate').removeClass('visually-hidden')
-        
+          $('#spinnerUpdate').addClass('visually-hidden');
+          $('#btnUpdate').removeClass('visually-hidden');
+
           this.getTrainers();
           this.selected = 0;
         },
@@ -231,17 +228,14 @@ export class AdminProfileComponent implements OnInit {
   }
 
   // delete trainer function
-  deleteTrainer(_id: string){
-    if(confirm("Confirm deletion")==true){
-      this.trainerService
-      .deleteTrainerById(_id)
-      .subscribe({
+  deleteTrainer(_id: string) {
+    if (confirm('Confirm deletion') == true) {
+      this.trainerService.deleteTrainerById(_id).subscribe({
         next: (res) => {
           if (res.success) {
             this.successMsg = 'Trainer DeletedSuccessfully';
             this.showSuccessMsg = true;
             setTimeout(() => (this.showSuccessMsg = false), 2000);
-        
           } else {
             this.errorMsg = res.message;
             this.showErrorsMsg = true;
@@ -254,30 +248,27 @@ export class AdminProfileComponent implements OnInit {
           setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
         complete: () => {
-        
           this.getTrainers();
-          this.trainers=[];
+          this.trainers = [];
           this.selected = 0;
         },
       });
     }
-    
   }
 
   //update trainer image
-  updateTrainerImage(event:Event){
-    const file=(event.target as HTMLInputElement).files![0];
-    this.updateForm.patchValue({image:file});
-    const allowedType=["image/png","image/jpeg","image/jpg"];
+  updateTrainerImage(event: Event) {
+    const file = (event.target as HTMLInputElement).files![0];
+    this.updateForm.patchValue({ image: file });
+    const allowedType = ['image/png', 'image/jpeg', 'image/jpg'];
 
-   if(file &&allowedType.includes(file.type)){
-    const reader=new FileReader();
-    reader.onload=()=>{
-      this.updateTrainerImg=reader.result as string;
+    if (file && allowedType.includes(file.type)) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.updateTrainerImg = reader.result as string;
+      };
+      reader.readAsDataURL(file);
     }
-    reader.readAsDataURL(file);
-   }
-
   }
 
   // reset form field values
@@ -289,7 +280,7 @@ export class AdminProfileComponent implements OnInit {
       area: ' ',
       description: ' ',
       password: ' ',
-      image:' '
+      image: ' ',
     };
     form.reset();
     this.errorMsg = '';

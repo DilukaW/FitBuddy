@@ -9,6 +9,7 @@ import { UserLoginComponent } from './user-login.component';
 describe('UserLoginComponent', () => {
   let component: UserLoginComponent;
   let fixture: ComponentFixture<UserLoginComponent>;
+  let compiled: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,6 +20,7 @@ describe('UserLoginComponent', () => {
 
     fixture = TestBed.createComponent(UserLoginComponent);
     component = fixture.componentInstance;
+    compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
   });
 
@@ -62,4 +64,20 @@ describe('UserLoginComponent', () => {
     const email = component.loginForm.get('email')?.value;
     expect(email).toEqual(null);
   });
+
+  it('should display appropriate error messages', () => {
+    component.errorMsg = 'error';
+    component.showErrorsMsg = true;
+    fixture.detectChanges();
+    expect(compiled.querySelector('.alert').textContent).toBe(' error ');
+  });
+
+  it('should display appropriate success messages', () => {
+    component.showSuccessMsg = true;
+    fixture.detectChanges();
+    expect(compiled.querySelector('.alert-success').textContent).toBe(
+      ' Login successfully! '
+    );
+  });
+  
 });

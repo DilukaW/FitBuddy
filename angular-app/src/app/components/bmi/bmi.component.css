@@ -1,9 +1,10 @@
 #bmi {
-    background-color: var(--primary-color);
-    box-shadow: 6px 6px 18px var(--outline-color);
-    color: white;
-  
-  }
-.card{
-    max-width: 500px;
+  background-color: var(--primary-color);
+  box-shadow: 6px 6px 18px var(--outline-color);
+  color: white;
+
+}
+
+.card {
+  max-width: 500px;
 }

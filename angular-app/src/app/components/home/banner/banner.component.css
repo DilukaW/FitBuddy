@@ -26,7 +26,7 @@
 }
 
 #counter {
-    
+
     margin-top: 50px;
 }
 
@@ -36,7 +36,8 @@
     color: white;
 
 }
-.container{
+
+.container {
     margin-top: 25px;
     margin-bottom: 40px;
 }
@@ -47,7 +48,8 @@
     #banner-img {
         margin-top: 50px;
     }
-    #img{
+
+    #img {
         margin: auto;
     }
 }
@@ -76,13 +78,17 @@
     #heading {
         font-size: 25px;
     }
-    #title span{
-        padding:2px;
-    }
-    #title{
+
+    #title span {
         padding: 2px;
     }
-    #counter h3, #counter h4{
+
+    #title {
+        padding: 2px;
+    }
+
+    #counter h3,
+    #counter h4 {
         font-size: small;
     }
 }

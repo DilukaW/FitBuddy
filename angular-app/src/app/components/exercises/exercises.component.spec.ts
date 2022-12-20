@@ -3,12 +3,12 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { ExercisesComponent } from './exercises.component';
 
 describe('ExercisesComponent', () => {
   let component: ExercisesComponent;
   let fixture: ComponentFixture<ExercisesComponent>;
+  let compiled: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,6 +18,7 @@ describe('ExercisesComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(ExercisesComponent);
+    compiled = fixture.debugElement.nativeElement;
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -35,6 +36,13 @@ describe('ExercisesComponent', () => {
     const count=component.allExercises.length
     fixture.detectChanges()
     expect(fixture.debugElement.query(By.css('h6')).nativeElement.textContent).toContain('Total Results:'+count);
+  });
+
+  it('should display appropriate error messages', () => {
+    component.errorMsg="api error"
+    component.showErrorsMsg=true
+    fixture.detectChanges()
+    expect(compiled.querySelector('.alert').textContent).toBe(' api error ')
   });
  
 });
