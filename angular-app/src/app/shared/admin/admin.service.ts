@@ -19,7 +19,6 @@ export class AdminService {
   constructor(private http:HttpClient) { }
 
   loginAdmin(data: any):Observable<any>{
- 
     return this.http.post('admins/login',data);
   }
 

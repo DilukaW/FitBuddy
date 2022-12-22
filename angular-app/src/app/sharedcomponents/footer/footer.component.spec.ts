@@ -28,7 +28,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 
    it('should have copyright', () => {
     expect(compiled.querySelector('#copy').textContent).toContain(
-      '© 2022 Gym Buddy. All rights reserved'
+      '© 2022 Fit Buddy. All rights reserved'
     );
   });
  });
