@@ -6,6 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
 
+#build
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +24,7 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
  
-
+#testNodeJs
   testNodeJs:
     runs-on: ubuntu-latest
     strategy:
@@ -43,6 +44,7 @@ jobs:
           CI: true
     - run: npm test
   
+#test angular
   testAngular:
   
     runs-on: ubuntu-latest
