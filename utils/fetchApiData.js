@@ -4,7 +4,7 @@ dotenv.config()
   const options = {
     
     headers: {
-      'X-RapidAPI-Key': process.env.KEY14,
+      'X-RapidAPI-Key': process.env.KEY_TEST1,
       'X-RapidAPI-Host': process.env.HOST
     }
   };

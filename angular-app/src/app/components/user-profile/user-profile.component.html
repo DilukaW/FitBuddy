@@ -23,7 +23,7 @@
             </div>
             <div class="d-flex flex-column align-items-center py-5 overflow-auto" id="profile" style="height: 467px">
 
-                <img class="rounded-circle mt-0" id="selectedImg" *ngIf="profileImg; else default" width="120px"
+                <img class="rounded-circle mt-0" id="selectedImg" *ngIf="profileImg!='undefined' && profileImg; else default" width="120px"
                     [src]="profileImg" alt="profile image" />
                 <ng-template #default>
                     <img class="rounded-circle mt-0" width="120px" src="../../../assets/profile.jpg" />
@@ -65,7 +65,7 @@
                         <div class="p-2 py-1 ">
                             <form [formGroup]="userUpdateForm" (ngSubmit)="update(userUpdateForm)">
                                 <div class="d-flex justify-content-center a mt-0" formControlName="img">
-                                    <img class="rounded-circle mt-0" id="selectedImg" *ngIf="imageData; else default"
+                                    <img class="rounded-circle mt-0" id="selectedImg" *ngIf=" imageData!='undefined'&& imageData; else default"
                                         width="120px" [src]="imageData" alt="profile image" />
                                     <ng-template #default>
                                         <img class="rounded-circle mt-0" width="120px"

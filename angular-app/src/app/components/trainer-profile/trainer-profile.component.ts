@@ -96,6 +96,7 @@ export class TrainerProfileComponent implements OnInit {
           this.trainerName=this.data.uname
           this.trainerEmail=this.data.email
           this.profileImg = this.data.image;
+          this.trainerDescription=this.data.description
           this.ids = this.data.traineesId;
 
           this.selectedTrainerId = this.data._id;
