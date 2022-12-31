@@ -8,7 +8,7 @@ const connectDb = (async () => {
             console.log(`mongodbdev connected:${con}`);
         }
         else {
-            const con = await mongoose.connect(process.env.MONGO_URI_TEST);
+            const con = await mongoose.connect("mongodb+srv://admin:admin123456@cluster0.acrd108.mongodb.net/TEST?retryWrites=true&w=majority");
             console.log(`mongodbtest connected:${con}`);
         }
     } catch (err) {
