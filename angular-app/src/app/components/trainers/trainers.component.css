@@ -1,31 +1,33 @@
-
 .card {
-    box-shadow: 6px 6px 18px var(--outline-color);
-    background-color: var(--primary-color);
-    color: white;
+  box-shadow: 6px 6px 18px var(--outline-color);
+  background-color: var(--primary-color);
+  color: white;
 }
-.card-text{
-    max-height: 220px;
-   
+
+.card-text {
+  max-height: 220px;
+
 }
-.card-body{
-    max-height: 220px;
-} 
+
+.card-body {
+  max-height: 220px;
+}
+
 ::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background:#292b2c;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background:#292b2c;
-  }
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #292b2c;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #292b2c;
+}

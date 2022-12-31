@@ -47,9 +47,7 @@ export class NavExercisesComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
-      complete: () => {
-     
-      },
+      complete: () => {},
     });
     this.api.getExercisesByBodyPart('cardio').subscribe({
       next: (res) => {
@@ -68,9 +66,7 @@ export class NavExercisesComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
-      complete: () => {
-      
-      },
+      complete: () => {},
     });
     this.api.getExercisesByBodyPart('chest').subscribe({
       next: (res) => {
@@ -89,9 +85,7 @@ export class NavExercisesComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
-      complete: () => {
-      
-      },
+      complete: () => {},
     });
     this.api.getExercisesByBodyPart('waist').subscribe({
       next: (res) => {
@@ -110,9 +104,7 @@ export class NavExercisesComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
-      complete: () => {
-        
-      },
+      complete: () => {},
     });
     this.api.getExercisesByBodyPart('neck').subscribe({
       next: (res) => {
@@ -131,9 +123,7 @@ export class NavExercisesComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
-      complete: () => {
-        
-      },
+      complete: () => {},
     });
     this.api.getExercisesByBodyPart('upper arms').subscribe({
       next: (res) => {
@@ -152,9 +142,7 @@ export class NavExercisesComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
-      complete: () => {
-        
-      },
+      complete: () => {},
     });
     this.api.getExercisesByBodyPart('upper legs').subscribe({
       next: (res) => {
@@ -173,9 +161,7 @@ export class NavExercisesComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
-      complete: () => {
-        
-      },
+      complete: () => {},
     });
     this.api.getExercisesByBodyPart('lower arms').subscribe({
       next: (res) => {
@@ -194,9 +180,7 @@ export class NavExercisesComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
-      complete: () => {
-        
-      },
+      complete: () => {},
     });
     this.api.getExercisesByBodyPart('lower legs').subscribe({
       next: (res) => {
@@ -215,9 +199,7 @@ export class NavExercisesComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
-      complete: () => {
-     
-      },
+      complete: () => {},
     });
     this.api.getExercisesByBodyPart('shoulders').subscribe({
       next: (res) => {
@@ -236,9 +218,7 @@ export class NavExercisesComponent implements OnInit {
         this.errorMsg = 'Server Error';
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
-      complete: () => {
-        
-      },
+      complete: () => {},
     });
   }
 }

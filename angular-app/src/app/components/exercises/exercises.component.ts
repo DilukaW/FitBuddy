@@ -46,7 +46,7 @@ export class ExercisesComponent implements OnInit {
         next: (res) => {
           if (res.success) {
             this.allExercises = res.data;
-            this.hideExercisesSpinner()
+            this.hideExercisesSpinner();
             //console.log(res.data);
           } else {
             this.showErrorsMsg = true;
@@ -59,9 +59,7 @@ export class ExercisesComponent implements OnInit {
           this.errorMsg = 'Server Error';
           setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
-        complete: () => {
-        
-        },
+        complete: () => {},
       });
     } else {
       this.allExercises = [];
@@ -70,7 +68,7 @@ export class ExercisesComponent implements OnInit {
         next: (res) => {
           if (res.success) {
             //console.log(res.data);
-            this.hideExercisesSpinner()
+            this.hideExercisesSpinner();
             this.allExercises = res.data;
           } else {
             this.showErrorsMsg = true;
@@ -83,9 +81,7 @@ export class ExercisesComponent implements OnInit {
           this.errorMsg = 'Server Error';
           setTimeout(() => (this.showErrorsMsg = false), 2000);
         },
-        complete: () => {
-        
-        },
+        complete: () => {},
       });
     }
   }

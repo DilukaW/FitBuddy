@@ -1,11 +1,10 @@
-import { TestBed, getTestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { AdminService } from './admin.service';
 import { Admin } from './admin.model';
-import { Type } from '@angular/core';
 
 describe('AdminService', () => {
   let injector: TestBed;

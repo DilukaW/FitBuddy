@@ -64,8 +64,6 @@ describe('BannerComponent', () => {
   it('should display counter values correctly', () => {
     expect(compiled.querySelector('h4').textContent).toContain('1000');
   });
-
-
 });
 @Component({ template: '' })
 class DummyComponent {}

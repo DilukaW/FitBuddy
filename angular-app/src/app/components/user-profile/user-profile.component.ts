@@ -84,7 +84,6 @@ export class UserProfileComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       uname: new FormControl('', [Validators.required]),
       age: new FormControl(Number(null), [Validators.required]),
-
       gender: new FormControl(''),
     });
 

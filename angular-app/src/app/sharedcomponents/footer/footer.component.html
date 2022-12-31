@@ -1,52 +1,51 @@
+<router-outlet></router-outlet>
+<!-- footer -->
 <div class="container-fluid p-2" style="background-color: #11002c;">
 
   <footer class="text-center text-lg-start text-white">
 
     <div class="container text-center text-md-start">
 
-
       <div class="row mt-3">
-
+      
         <div class="col-md-4 col-lg-4 col-xl-3 mx-auto">
-
           <h6 class="text-uppercase fw-bold"><u>Fit Buddy</u></h6>
-
           <p class="mt-4">
             Helping people live longer, happier and healthier
           </p>
         </div>
 
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
-
           <h6 class="text-uppercase fw-bold mb-4"><u>NAVIGATE</u></h6>
           <p>
             <a routerLink="" class="text-muted" routerLinkActive="active-link"
               [routerLinkActiveOptions]="{ exact: true }">Home</a>
           </p>
           <p>
-            <a class="text-muted" routerLinkActive="active-link" routerLink="trainersDetails"
+            <a class="text-muted" routerLinkActive="active-link" routerLink="/trainersDetails"
               [routerLinkActiveOptions]="{ exact: true }">Trainers</a>
 
           </p>
           <p>
-            <a class="text-muted" routerLinkActive="active-link" routerLink='exercise'
+            <a class="text-muted" routerLinkActive="active-link" routerLink='/exercise'
               [routerLinkActiveOptions]="{ exact: true }">Exercises</a>
 
           </p>
           <p>
-            <a class="text-muted" routerLinkActive="active-link" routerLink="aboutUs"
+            <a class="text-muted" routerLinkActive="active-link" routerLink='/bmi'
+              [routerLinkActiveOptions]="{ exact: true }">BMI Calculator</a>
+          </p>
+          <p>
+            <a class="text-muted" routerLinkActive="active-link" routerLink="/aboutUs"
               [routerLinkActiveOptions]="{ exact: true }">About Us</a>
           </p>
         </div>
 
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto">
-
           <h6 class="text-uppercase fw-bold mb-4"><u>Contact</u></h6>
-
           <p><i class="bi bi-house-door-fill"></i> Kandy,Sri Lanka</p>
           <p><i class="bi bi-envelope-fill"></i> fitbuddy@gmail.com</p>
           <p><i class="bi bi-telephone-fill"></i> + 94 111111111</p>
-
         </div>
 
       </div>
@@ -55,9 +54,9 @@
 
     <div id="copy" class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
       © 2022 Fit Buddy. All rights reserved
-
     </div>
 
   </footer>
 
 </div>
+<!-- footer -->

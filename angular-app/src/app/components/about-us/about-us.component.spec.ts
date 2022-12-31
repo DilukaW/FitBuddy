@@ -31,15 +31,11 @@ describe('AboutUsComponent', () => {
   });
 
   it('should have the title WE ARE GYM BUDDY', () => {
-    expect(compiled.querySelector('h1').textContent).toBe(
-      'WE ARE FIT BUDDY'
-    );
+    expect(compiled.querySelector('h1').textContent).toBe('WE ARE FIT BUDDY');
   });
 
   it('should have the title OUR VALUES', () => {
-    expect(compiled.querySelector('#values').textContent).toBe(
-      'OUR VALUES'
-    );
+    expect(compiled.querySelector('#values').textContent).toBe('OUR VALUES');
   });
 
   it('should have the title OUR STORY', () => {
@@ -47,8 +43,6 @@ describe('AboutUsComponent', () => {
   });
 
   it('should have the title OUR CULTURE', () => {
-    expect(compiled.querySelector('#culture').textContent).toBe(
-      'OUR CULTURE'
-    );
+    expect(compiled.querySelector('#culture').textContent).toBe('OUR CULTURE');
   });
 });

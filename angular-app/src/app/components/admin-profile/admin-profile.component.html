@@ -138,7 +138,8 @@
                             style="height: 460px">
                             <div class="card my-2">
                                 <div class="card-body p-0 " (click)="getTrainer(trainers[0]._id,0)"
-                                    [ngClass]="{active1: isActive(0)}"><span>
+                                    [ngClass]="{active1: isActive(0)}">
+                                    <span>
                                         <img class="rounded-circle m-2 x"
                                             *ngIf="trainers[0].image!='undefined' && trainers[0].image else default"
                                             src={{trainers[0].image}}>
@@ -149,8 +150,8 @@
                                         </ng-template>
                                         {{ trainers[0].uname }}
                                         <button class="btn text-dark bg-transparent float-end p-1 m-2"
-                                            (click)="deleteTrainer(trainers[0]._id)"><i
-                                                class="bi bi-trash-fill"></i></button>
+                                            (click)="deleteTrainer(trainers[0]._id)"><i class="bi bi-trash-fill"></i>
+                                        </button>
                                     </span>
                                 </div>
                             </div>
@@ -159,7 +160,8 @@
                             <div class="card my-2" *ngFor="let trainer of trainers | slice:1"
                                 [ngClass]="{active1: isActive(trainer)}">
                                 <div class="card-body p-0 " (click)="getTrainer(trainer._id,trainer)">
-                                    <span><img *ngIf="trainer.image!='undefined' && trainer.image; else default"
+                                    <span>
+                                        <img *ngIf="trainer.image!='undefined' && trainer.image; else default"
                                             class="rounded-circle m-2 x" src={{trainer.image}}>
                                         <ng-template #default>
 
@@ -168,8 +170,8 @@
                                         </ng-template>
                                         {{ trainer.uname }}
                                         <button class="btn text-dark bg-transparent float-end p-1 m-2"
-                                            (click)="deleteTrainer(trainer._id)"><i
-                                                class="bi bi-trash-fill"></i></button>
+                                            (click)="deleteTrainer(trainer._id)"><i class="bi bi-trash-fill"></i>
+                                        </button>
                                     </span>
                                 </div>
                             </div>
@@ -185,13 +187,13 @@
                                             *ngIf="updateTrainerImg!='undefined' && updateTrainerImg; else default"
                                             width="120px" [src]="updateTrainerImg" alt="profile image">
                                         <ng-template #default>
-
                                             <img class="rounded-circle mt-0 " width="120px"
                                                 src="../../../assets/profile.jpg">
                                         </ng-template>
                                         <div class="btn rounded-circle b">
                                             <label class="form-label text-white m-1" for="customFile2"><i
-                                                    class="bi bi-camera-fill"></i></label>
+                                                    class="bi bi-camera-fill"></i>
+                                            </label>
                                             <input type="file" name="file" class="form-control d-none" id="customFile2"
                                                 (change)="updateTrainerImage($event)" />
                                         </div>
@@ -240,7 +242,7 @@
                                                 placeholder="Enter Description" [ngModel]="des"
                                                 formControlName="description" [ngClass]="(updateForm.get('description')!.touched || updateForm.get('description')!.dirty)&&
                                     updateForm.get('description')!.errors? 'is-invalid':'' ">
-                                </textarea>
+                                            </textarea>
                                             <div class="invalid-feedback">
                                                 Please enter a Description
                                             </div>

@@ -1,9 +1,8 @@
-import { TestBed, getTestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { Api } from './api.model';
 import { ApiService } from './api.service';
 
 describe('ApiService', () => {
@@ -27,12 +26,12 @@ describe('ApiService', () => {
       equipment: 'body',
     },
   ];
-  let fakeExercise={
+  let fakeExercise = {
     id: '01',
     name: 'situp',
     target: 'abs',
     equipment: 'body',
-  }
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({

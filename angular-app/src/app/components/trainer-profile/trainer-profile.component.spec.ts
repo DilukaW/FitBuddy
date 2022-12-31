@@ -1,15 +1,13 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { TrainerProfileComponent } from './trainer-profile.component';
 
 describe('TrainerProfileComponent', () => {
   let component: TrainerProfileComponent;
   let fixture: ComponentFixture<TrainerProfileComponent>;
-  let compiled:any;
+  let compiled: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,7 +20,6 @@ describe('TrainerProfileComponent', () => {
     component = fixture.componentInstance;
     compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
-  
   });
 
   it('should create TrainerProfileComponent', () => {
@@ -57,8 +54,8 @@ describe('TrainerProfileComponent', () => {
     component.successMsg = 'success';
     component.showSuccessMsg = true;
     fixture.detectChanges();
-    expect(compiled.querySelector('.alert-success').textContent).toBe(' success ');
+    expect(compiled.querySelector('.alert-success').textContent).toBe(
+      ' success '
+    );
   });
-
-
 });

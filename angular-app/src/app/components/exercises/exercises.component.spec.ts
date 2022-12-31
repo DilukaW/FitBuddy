@@ -13,7 +13,7 @@ describe('ExercisesComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ExercisesComponent],
-      imports:[HttpClientTestingModule,RouterTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
@@ -32,17 +32,18 @@ describe('ExercisesComponent', () => {
   });
 
   it('should equal total results to length of allExercise array', () => {
-    component.allExercises=['situp','pushup']
-    const count=component.allExercises.length
-    fixture.detectChanges()
-    expect(fixture.debugElement.query(By.css('h6')).nativeElement.textContent).toContain('Total Results:'+count);
+    component.allExercises = ['situp', 'pushup'];
+    const count = component.allExercises.length;
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.query(By.css('h6')).nativeElement.textContent
+    ).toContain('Total Results:' + count);
   });
 
   it('should display appropriate error messages', () => {
-    component.errorMsg="api error"
-    component.showErrorsMsg=true
-    fixture.detectChanges()
-    expect(compiled.querySelector('.alert').textContent).toBe(' api error ')
+    component.errorMsg = 'api error';
+    component.showErrorsMsg = true;
+    fixture.detectChanges();
+    expect(compiled.querySelector('.alert').textContent).toBe(' api error ');
   });
- 
 });

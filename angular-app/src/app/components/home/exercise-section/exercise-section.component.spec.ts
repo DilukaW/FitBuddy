@@ -9,14 +9,17 @@ import { By } from '@angular/platform-browser';
 describe('ExerciseSectionComponent', () => {
   let component: ExerciseSectionComponent;
   let fixture: ComponentFixture<ExerciseSectionComponent>;
-  let compiled:any;
+  let compiled: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ExerciseSectionComponent],
-      imports:[HttpClientTestingModule,RouterTestingModule.withRoutes([
-        { path: 'allExercises', component: DummyComponent },
-      ])],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes([
+          { path: 'allExercises', component: DummyComponent },
+        ]),
+      ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
@@ -46,16 +49,16 @@ describe('ExerciseSectionComponent', () => {
   });
 
   it('should display appropriate error messages', () => {
-    component.errorMsg="api error"
-    component.showErrorsMsg=true
-    fixture.detectChanges()
-    expect(compiled.querySelector('.alert').textContent).toBe(' api error ')
+    component.errorMsg = 'api error';
+    component.showErrorsMsg = true;
+    fixture.detectChanges();
+    expect(compiled.querySelector('.alert').textContent).toBe(' api error ');
   });
 
   it('should display appropriate exercises based on selected target mussel', () => {
-    component.type ="Back Exercises"
-    fixture.detectChanges()
-    expect(compiled.querySelector('h5').textContent).toBe('Back Exercises')
+    component.type = 'Back Exercises';
+    fixture.detectChanges();
+    expect(compiled.querySelector('h5').textContent).toBe('Back Exercises');
   });
 
   it('should be in / before click View more button', () => {
@@ -80,9 +83,6 @@ describe('ExerciseSectionComponent', () => {
     fixture.detectChanges();
     expect(compiled.querySelector('.alert').textContent).toBe(' api error ');
   });
-
- 
-
 });
 @Component({ template: '' })
 class DummyComponent {}

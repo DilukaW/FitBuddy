@@ -8,7 +8,7 @@
         </div>
         <!-- error message -->
 
-        
+
         <h5 class="text-uppercase text-white fw-bolder text-center">Exercise Details</h5>
         <!-- Exercise Details -->
         <div class="card rounded mx-4 mb-3 mt-3 p-4 " id="exercise">
@@ -22,7 +22,8 @@
 
                 <div class="col-md-3 d-flex flex-column align-items-center text-center  p-4 ">
                     <h5 id="heading" class="text-uppercase mb-5 ">{{exerciseName}}</h5>
-                    <p id="des">{{exerciseName}} is one of the best exercise to target your {{exerciseTarget}} mussel using
+                    <p id="des">{{exerciseName}} is one of the best exercise to target your {{exerciseTarget}} mussel
+                        using
                         {{exerciseEquipment}}.
                     </p>
                     <p>Target mussel: {{exerciseTarget}}</p>
@@ -51,7 +52,7 @@
         <h5 class="text-uppercase fw-bolder text-center">Similar Target Mussel Exercise</h5>
         <div class="card rounded mx-4 mb-3 mt-3 p-4  " id="exercise">
             <div class=" mt-2 row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3 position-relative"
-                *ngIf="exerciseByEquipment; else default">
+                style="min-height: 50px;" *ngIf="exerciseByEquipment; else default">
                 <div class="col " *ngFor="let exerciseEq of exerciseByMussel | slice :0:10"
                     [routerLink]="['/exerciseDetails']" [queryParams]="{id:exerciseEq.id}" (click)="refresh()">
 
@@ -124,3 +125,6 @@
     </div>
 </div>
 <!-- Similar Equipment Exercise -->
+<!-- footer -->
+<app-footer></app-footer>
+<!-- footer -->

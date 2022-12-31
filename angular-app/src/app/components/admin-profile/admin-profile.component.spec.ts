@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture,flushMicrotasks,TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TrainerService } from 'src/app/shared/trainer/trainer.service';
 import { AdminProfileComponent } from './admin-profile.component';
@@ -9,24 +9,22 @@ describe('AdminProfileComponent', () => {
   let component: AdminProfileComponent;
   let fixture: ComponentFixture<AdminProfileComponent>;
   let trainerService: TrainerService;
-  let compiled:any;
- 
+  let compiled: any;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AdminProfileComponent],
       imports: [HttpClientTestingModule],
       schemas: [NO_ERRORS_SCHEMA],
-     
     }).compileComponents();
 
     fixture = TestBed.createComponent(AdminProfileComponent);
-    trainerService=TestBed.inject(TrainerService)
+    trainerService = TestBed.inject(TrainerService);
     component = fixture.componentInstance;
     compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
   });
 
-  
   it('should create AdminProfileComponent', () => {
     expect(component).toBeTruthy();
   });
@@ -61,7 +59,6 @@ describe('AdminProfileComponent', () => {
     ).toContain('tom');
   });
 
-  
   it('should work navigation appropriately when tab clicked', () => {
     const tab = 'Trainers';
     component.onTabClick(tab);
@@ -77,12 +74,11 @@ describe('AdminProfileComponent', () => {
   });
 
   it('should clear text fields after submitting the form', () => {
-    
     component.updateForm.get('email')!.setValue('tom@gmail.com');
-    component.restForm(component.updateForm)
-    fixture.detectChanges()
-    const email=component.updateForm.get('email')?.value
-    expect(email).toEqual(null)
+    component.restForm(component.updateForm);
+    fixture.detectChanges();
+    const email = component.updateForm.get('email')?.value;
+    expect(email).toEqual(null);
   });
 
   it('should display appropriate error messages', () => {

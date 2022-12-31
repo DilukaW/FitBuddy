@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { query } from 'express';
+
 import { ApiService } from 'src/app/shared/api/api.service';
 
 @Component({
@@ -15,12 +15,12 @@ export class ExerciseDetailsComponent implements OnInit {
 
   //exercise
   exercise: any;
-  gif:any
-  exerciseName:any
-  exerciseMussel:any
-  exerciseTarget:any
-  exerciseEquipment:any
-  exerciseBodyPart:any
+  gif: any;
+  exerciseName: any;
+  exerciseMussel: any;
+  exerciseTarget: any;
+  exerciseEquipment: any;
+  exerciseBodyPart: any;
 
   exerciseByEquipment: any[] = [];
   exerciseByMussel: any[] = [];
@@ -28,13 +28,13 @@ export class ExerciseDetailsComponent implements OnInit {
   //messages
   showErrorsMsg!: boolean;
   errorMsg!: String;
-  
+
   constructor(
     private api: ApiService,
     private aRoute: ActivatedRoute,
     private router: Router
   ) {}
- 
+
   ngOnInit(): void {
     //getting params from previous route
     this.sub = this.aRoute.queryParams.subscribe((params) => {
@@ -58,11 +58,11 @@ export class ExerciseDetailsComponent implements OnInit {
         if (res.success) {
           //console.log(res.data);
           this.exercise = res.data;
-          this.gif=this.exercise.gifUrl
-          this.exerciseName=this.exercise.name
-          this.exerciseTarget=this.exercise.target
-          this.exerciseEquipment=this.exercise.equipment
-          this.exerciseBodyPart=this.exercise.bodyPart
+          this.gif = this.exercise.gifUrl;
+          this.exerciseName = this.exercise.name;
+          this.exerciseTarget = this.exercise.target;
+          this.exerciseEquipment = this.exercise.equipment;
+          this.exerciseBodyPart = this.exercise.bodyPart;
           $('.spinnerExercise').css('visibility', 'hidden');
         } else {
           this.showErrorsMsg = true;
@@ -71,9 +71,9 @@ export class ExerciseDetailsComponent implements OnInit {
         }
       },
       error: (err) => {
-         this.showErrorsMsg = true;
-         this.errorMsg = 'Server Error';
-         setTimeout(() => (this.showErrorsMsg = false), 2000);
+        this.showErrorsMsg = true;
+        this.errorMsg = 'Server Error';
+        setTimeout(() => (this.showErrorsMsg = false), 2000);
       },
       complete: () => {
         this.getEquipmentExercises();

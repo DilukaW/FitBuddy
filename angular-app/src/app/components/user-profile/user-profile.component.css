@@ -60,10 +60,12 @@ li {
         height: 200px !important;
         margin-bottom: 10px;
     }
-    #profile{
+
+    #profile {
         height: 320px !important;
     }
-    #about{
+
+    #about {
         border-right: none !important;
     }
 

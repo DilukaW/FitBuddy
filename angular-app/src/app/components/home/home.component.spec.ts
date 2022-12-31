@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -7,7 +6,6 @@ import { UserService } from 'src/app/shared/auth/user.service';
 import { FooterComponent } from 'src/app/sharedcomponents/footer/footer.component';
 import { BannerComponent } from './banner/banner.component';
 import { ExerciseSectionComponent } from './exercise-section/exercise-section.component';
-
 import { HomeComponent } from './home.component';
 import { WhyUsComponent } from './why-us/why-us.component';
 

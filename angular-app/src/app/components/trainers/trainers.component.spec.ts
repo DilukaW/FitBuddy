@@ -37,11 +37,11 @@ describe('TrainersComponent', () => {
   });
 
   it('should display trainer details', () => {
-    component.trainers=[{uname:"tom"}]
-    fixture.detectChanges()
-      expect(compiled.querySelector('h4').textContent).toBe(
-        component.trainers[0].uname
-      );
+    component.trainers = [{ uname: 'tom' }];
+    fixture.detectChanges();
+    expect(compiled.querySelector('h4').textContent).toBe(
+      component.trainers[0].uname
+    );
   });
 
   it('should have logged user id', () => {
@@ -66,5 +66,4 @@ describe('TrainersComponent', () => {
       ' success '
     );
   });
-  
 });

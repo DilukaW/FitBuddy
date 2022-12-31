@@ -1,11 +1,10 @@
-import { TestBed, getTestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { regUser, User } from './user.model';
 import { UserService } from './user.service';
-import { Type } from '@angular/core';
 
 describe('AuthService', () => {
   let injector: TestBed;
@@ -34,12 +33,13 @@ describe('AuthService', () => {
       uname: 'tom',
       email: 'tom@gmial.com',
       password: '1234',
-    },{
-        _id: '02',
-        uname: 'sam',
-        email: 'sam@gmial.com',
-        password: '81234',
-      },
+    },
+    {
+      _id: '02',
+      uname: 'sam',
+      email: 'sam@gmial.com',
+      password: '81234',
+    },
   ];
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -138,7 +138,7 @@ describe('AuthService', () => {
 
   describe('#updateUserById', () => {
     it('should return Observable for updateUserById', (done: DoneFn) => {
-      service.updateUserById('01','img',fakeUser).subscribe({
+      service.updateUserById('01', 'img', fakeUser).subscribe({
         next: (user) => {
           expect(user).toEqual(fakeUser);
           done();
@@ -154,7 +154,7 @@ describe('AuthService', () => {
 
   describe('#addTrainers', () => {
     it('should return Observable for addTrainers', (done: DoneFn) => {
-      service.addTrainers('01',{id:'04',uname:'sam'}).subscribe({
+      service.addTrainers('01', { id: '04', uname: 'sam' }).subscribe({
         next: (user) => {
           expect(user).toEqual(fakeUser);
           done();

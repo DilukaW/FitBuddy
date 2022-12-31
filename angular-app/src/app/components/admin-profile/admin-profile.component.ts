@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { from } from 'rxjs';
 import { AdminService } from 'src/app/shared/admin/admin.service';
 import { TrainerService } from 'src/app/shared/trainer/trainer.service';
 

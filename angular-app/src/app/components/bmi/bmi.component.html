@@ -1,3 +1,4 @@
+<router-outlet></router-outlet>
 <!-- bmi -->
 <div class="container-fluid bg-white py-4">
     <div class="container justify-content-center">
@@ -9,12 +10,12 @@
                     <div class="card-body d-flex flex-column justify-content-center">
                         <!-- bmi form -->
                         <form [formGroup]="bmiForm" (ngSubmit)="onSubmit(bmiForm)">
+
                             <div class="mb-4">
                                 <label for="email" class="form-label">Enter Height (m)</label>
                                 <input type="number" class="form-control " name="height" placeholder="1.68"
                                     formControlName="height" [ngClass]="(bmiForm.get('height')!.touched || bmiForm.get('height')!.dirty)&&
                         bmiForm.get('height')!.errors? 'is-invalid':''">
-
                                 <div class="invalid-feedback">
                                     Please enter height
                                 </div>

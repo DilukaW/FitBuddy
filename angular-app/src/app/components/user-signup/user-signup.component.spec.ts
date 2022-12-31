@@ -1,9 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormGroup } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-
 import { UserSignupComponent } from './user-signup.component';
 
 describe('UserSignupComponent', () => {

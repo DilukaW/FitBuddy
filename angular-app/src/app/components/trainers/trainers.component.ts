@@ -6,7 +6,6 @@ import { UserService } from 'src/app/shared/auth/user.service';
   selector: 'app-trainers',
   templateUrl: './trainers.component.html',
   styleUrls: ['./trainers.component.css'],
-
 })
 export class TrainersComponent implements OnInit {
   //users
@@ -22,8 +21,7 @@ export class TrainersComponent implements OnInit {
 
   constructor(
     private trainerService: TrainerService,
-    private userService: UserService,
-   
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -69,7 +67,7 @@ export class TrainersComponent implements OnInit {
     $('.spinnerTrainers').css('visibility', 'visible');
     this.trainees = [];
     //console.log('before ' + this.trainees);
-   
+
     const l = this.trainers.length;
     for (let i = 0; i < l; i++) {
       if (this.trainers[i]._id == id) {
@@ -84,33 +82,31 @@ export class TrainersComponent implements OnInit {
     if (sessionStorage.getItem('user-token')) {
       //console.log("logged "+this.loggedUserId)
       //check for previous enrollment
-      if (this.trainees.includes(id+"_"+this.loggedUserId)) {
+      if (this.trainees.includes(id + '_' + this.loggedUserId)) {
         //console.log('enrolled');
         this.errorMsg = 'Your are already enrolled';
         this.showErrorsMsg = true;
         $('.spinnerTrainers').css('visibility', 'hidden');
         setTimeout(() => (this.showErrorsMsg = false), 2000);
       } else {
-        
         //add trainees for selected trainer
         this.trainerService
-          .addTrainees(id, { traineesId: id+"_"+this.loggedUserId})
-         
+          .addTrainees(id, { traineesId: id + '_' + this.loggedUserId })
+
           .subscribe({
             next: (res) => {
               if (res.success) {
                 const data = res.data;
-                this.successMsg="You have successfully enrolled "
+                this.successMsg = 'You have successfully enrolled ';
                 this.showSuccessMsg = true;
                 setTimeout(() => (this.showSuccessMsg = false), 2000);
                 //console.log('trainees' + data.traineesId);
-              }
-              else{
+              } else {
                 //console.log(res.message)
               }
             },
             error: (err) => {},
-            complete:async () => {
+            complete: async () => {
               $('.spinnerTrainers').css('visibility', 'hidden');
               this.getTrainers();
             },
@@ -118,27 +114,26 @@ export class TrainersComponent implements OnInit {
 
         //add trainers for user
         this.userService
-        .addTrainers(this.loggedUserId, { trainersId: this.loggedUserId+"_"+id })
-       
-        .subscribe({
-          next: (res) => {
-            if (res.success) {
-              const data = res.data;
-            
-              //console.log('trainers' + data.traineesId);
-            }
-            else{
-              //console.log(res.message)
-            }
-          },
-          error: (err) => {},
-          complete:async () => {
-            $('.spinnerTrainers').css('visibility', 'hidden');
-            this.getTrainers();
-          },
-        });
+          .addTrainers(this.loggedUserId, {
+            trainersId: this.loggedUserId + '_' + id,
+          })
 
-       
+          .subscribe({
+            next: (res) => {
+              if (res.success) {
+                const data = res.data;
+
+                //console.log('trainers' + data.traineesId);
+              } else {
+                //console.log(res.message)
+              }
+            },
+            error: (err) => {},
+            complete: async () => {
+              $('.spinnerTrainers').css('visibility', 'hidden');
+              this.getTrainers();
+            },
+          });
       }
     } else {
       this.errorMsg = 'Log in to your account to enroll';
@@ -147,6 +142,6 @@ export class TrainersComponent implements OnInit {
       $('.spinnerTrainers').css('visibility', 'hidden');
     }
     //console.log('clicked ' + id);
-    //
+    
   }
 }

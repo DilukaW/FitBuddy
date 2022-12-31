@@ -1,6 +1,6 @@
 /*styles for forms*/
 .container {
-    margin-top:40px 
+    margin-top: 40px
 }
 
 .card_f {
@@ -89,7 +89,8 @@
         margin: 0px;
 
     }
-    .spinnerLogin{
+
+    .spinnerLogin {
         visibility: hidden;
     }
 

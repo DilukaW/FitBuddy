@@ -25,9 +25,9 @@ export class TrainerProfileComponent implements OnInit {
 
   //trainer
   data: any;
-  trainerName:any
-  trainerEmail:any
-  trainerDescription:any
+  trainerName: any;
+  trainerEmail: any;
+  trainerDescription: any;
   selectedTrainerId!: string;
 
   //user
@@ -93,10 +93,10 @@ export class TrainerProfileComponent implements OnInit {
       next: (res) => {
         if (res.success) {
           this.data = res.data;
-          this.trainerName=this.data.uname
-          this.trainerEmail=this.data.email
+          this.trainerName = this.data.uname;
+          this.trainerEmail = this.data.email;
           this.profileImg = this.data.image;
-          this.trainerDescription=this.data.description
+          this.trainerDescription = this.data.description;
           this.ids = this.data.traineesId;
 
           this.selectedTrainerId = this.data._id;
@@ -149,7 +149,7 @@ export class TrainerProfileComponent implements OnInit {
     for (let i = 1; i < this.ids.length; i++) {
       this.usersIds.push(this.ids[i].split('_').pop());
     }
-    console.log('usersIds'+this.usersIds)
+    //console.log('usersIds'+this.usersIds)
 
     this.users = [];
     for (let j = 0; j < this.usersIds.length; j++) {
@@ -181,8 +181,8 @@ export class TrainerProfileComponent implements OnInit {
   //chat
   sendMessage() {
     //alert(this.newMessage);
-    console.log('user ' + this.selectedUserId);
-    console.log('trainer' + this.selectedTrainerId);
+    //console.log('user ' + this.selectedUserId);
+    //console.log('trainer' + this.selectedTrainerId);
 
     //add to trainer chat
     const data2 = {
@@ -193,7 +193,7 @@ export class TrainerProfileComponent implements OnInit {
     this.chatService.addTrainerChat(data2).subscribe({
       next: (res) => {
         if (res.success) {
-          console.log(res.data);
+          //console.log(res.data);
         }
       },
       error: (err) => {
@@ -211,7 +211,7 @@ export class TrainerProfileComponent implements OnInit {
     this.chatService.addUserChat(data2).subscribe({
       next: (res) => {
         if (res.success) {
-          console.log(res.data);
+          //console.log(res.data);
         }
       },
       error: (err) => {

@@ -3,38 +3,28 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
-
-  getBodyParts():Observable<any>{
-  
+  getBodyParts(): Observable<any> {
     return this.http.get('bodyPartList');
   }
 
-  getAllExercises():Observable<any>{
-  
+  getAllExercises(): Observable<any> {
     return this.http.get('exercises');
   }
- getExercisesByBodyPart(part:string):Observable<any>{
-  
-   return this.http.get('part/'+part);
- }
- getExerciseById(id:any):Observable<any>{
-  
-  return this.http.get('exerciseId/'+id);
-}
-getExercisesByEquipment(equipment:any):Observable<any>{
-  
-  return this.http.get('equipmentName/'+equipment);
-}
-getExercisesByMussel(mussel:any):Observable<any>{
-  
-  return this.http.get('targetMussel/'+mussel);
-}
-
- 
- 
+  getExercisesByBodyPart(part: string): Observable<any> {
+    return this.http.get('part/' + part);
+  }
+  getExerciseById(id: any): Observable<any> {
+    return this.http.get('exerciseId/' + id);
+  }
+  getExercisesByEquipment(equipment: any): Observable<any> {
+    return this.http.get('equipmentName/' + equipment);
+  }
+  getExercisesByMussel(mussel: any): Observable<any> {
+    return this.http.get('targetMussel/' + mussel);
+  }
 }

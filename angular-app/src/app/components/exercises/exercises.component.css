@@ -1,74 +1,82 @@
 .card-b {
-    
-    min-height: 100px;
-    max-height: 100px;
-    margin-right: 10px;
-    
-    background-color: var(--primary-color);
-    box-shadow: 6px 6px 10px var(--outline-color);
-    color: white;
-    font-size: small;
-    cursor: pointer;
 
-    
-}
-.card-b:hover{
-    background-color:var(--secondary-color) ;
-    box-shadow: 6px 6px 10px var(--primary-color);
-    font-weight: bold;
+  min-height: 100px;
+  max-height: 100px;
+  margin-right: 10px;
+
+  background-color: var(--primary-color);
+  box-shadow: 6px 6px 10px var(--outline-color);
+  color: white;
+  font-size: small;
+  cursor: pointer;
+
 
 }
-#row{
-    min-height: 105px;
+
+.card-b:hover {
+  background-color: var(--secondary-color);
+  box-shadow: 6px 6px 10px var(--primary-color);
+  font-weight: bold;
+
 }
 
-.gif{
-    background-color: var(--card-color);
-    box-shadow: 6px 6px 10px var(--outline-color);
-    color: white;
-    cursor: pointer;
-    max-width: 300px;
- 
+#row {
+  min-height: 105px;
 }
-#view{
+
+.gif {
+  background-color: var(--card-color);
+  box-shadow: 6px 6px 10px var(--outline-color);
+  color: white;
+  cursor: pointer;
+  max-width: 300px;
+
+}
+
+#view {
   overflow-y: auto;
 }
-#exercise{
-    background-color: var(--primary-color);
-    box-shadow: 6px 6px 18px var(--outline-color);
-    color: white;
-    max-height: 620px;
-    min-height: 100px;
+
+#exercise {
+  background-color: var(--primary-color);
+  box-shadow: 6px 6px 18px var(--outline-color);
+  color: white;
+  max-height: 620px;
+  min-height: 100px;
 }
-#exercise-card:hover{
-    background-color:var(--secondary-color) ;
-    box-shadow: none;
-    font-weight: bold;
+
+#exercise-card:hover {
+  background-color: var(--secondary-color);
+  box-shadow: none;
+  font-weight: bold;
 
 }
+
 @media (max-width: 560px) {
-   .gif{
-max-width: 100%;
-   }
+  .gif {
+    max-width: 100%;
+  }
 }
+
 ::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background:#292b2c;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background:#292b2c;
-  }
-  .body{
-    background-color: white;
-  }
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #292b2c;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #292b2c;
+}
+
+.body {
+  background-color: white;
+}
